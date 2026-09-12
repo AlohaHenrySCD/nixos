@@ -31,6 +31,9 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # Allow libvirt guests to use the host's Clash proxy.
+  networking.firewall.interfaces.virbr0.allowedTCPPorts = [ 7897 ];
+
   # Ensure the default NAT network is available after boot and nixos-rebuild.
   systemd.services.libvirt-default-network = {
     description = "Start the default libvirt network";
