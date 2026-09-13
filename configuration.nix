@@ -7,6 +7,15 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
+      gtk4 = prev.gtk4.overrideAttrs (oldAttrs: {
+        postPatch = (oldAttrs.postPatch or "") + ''
+          # Allow 1% dragging steps for volume controls with a 0..1 range.
+          substituteInPlace gtk/ui/gtkscalebutton.ui \
+            --replace-fail '<property name="round-digits">1</property>' \
+                           '<property name="round-digits">2</property>'
+        '';
+      });
+
       pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
         (pythonFinal: pythonPrev: {
           nanoemoji = pythonPrev.nanoemoji.overrideAttrs (oldAttrs: {
