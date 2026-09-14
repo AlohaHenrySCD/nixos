@@ -202,7 +202,7 @@
   '';
   xdg.configFile."fcitx5/conf/rime.conf".text = ''
     # Commit the typed pinyin when switching away from Rime.
-    SwitchInputMethodBehavior=CommitRawInput
+    SwitchInputMethodBehavior=Commit raw input
   '';
 
   home.pointerCursor = {
