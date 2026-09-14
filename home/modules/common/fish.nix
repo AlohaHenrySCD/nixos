@@ -1,10 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  # Let nix-shell find Bash without requiring <nixpkgs> in NIX_PATH.
+  home.sessionVariables.NIX_BUILD_SHELL = "${pkgs.bashInteractive}/bin/bash";
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set -g fish_greeting "Hello! AlohaHenry"
       set -g fish_cursor_default block
+      bind alt-u backward-kill-line
       abbr --add add --set-cursor='%' 'nix shell nixpkgs#%'
       # abbr --add fd --set-cursor='%' 'find . -iname "*%*" 2>/dev/null'
     '';
@@ -15,7 +19,8 @@
       cd = "z";
       grep = "rg";
       ove = "ov --exec --";
-      # bd = "sudo nixos-rebuild switch --impure --flake /etc/nixos ";
+      ns = "nix-shell --run fish";
+      ur = "uv run";
     };
     functions = {
       mkcd = ''

@@ -3,9 +3,12 @@
   xdg.configFile."kitty/Everforest.conf".source = ./Everforest.conf;
   xdg.configFile."kitty/hotkeys-overlay.fish".source = ./hotkeys-overlay.fish;
   programs.kitty = {
+    shellIntegration.mode = "no-rc no-cursor";
     enable = true;
     # mouse_map = "mouse_map left release ungrabbed mouse_handle_click selection link";
     keybindings = {
+      "ctrl+d" = "remote_control scroll-window 0.5p";
+      "ctrl+u" = "remote_control scroll-window 0.5p-";
       "ctrl+shift+q" = "no_op";
       "ctrl+shift+enter" = "no_op";
       "ctrl+shift+/" =
@@ -30,7 +33,6 @@
       remember_window_size = "yes";
 
       cursor_shape = "block";
-      shell_integration = "enabled no-cursor";
       cursor_trail = 1;
       cursor_trail_decay = "0.05 0.4";
       cursor_trail_start_threshold = 0;
