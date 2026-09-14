@@ -7,8 +7,8 @@
     enable = true;
     # mouse_map = "mouse_map left release ungrabbed mouse_handle_click selection link";
     keybindings = {
-      "ctrl+d" = "remote_control scroll-window 0.5p";
-      "ctrl+u" = "remote_control scroll-window 0.5p-";
+      "ctrl+shift+d" = "remote_control scroll-window 0.5p";
+      "ctrl+shift+u" = "remote_control scroll-window 0.5p-";
       "ctrl+shift+q" = "no_op";
       "ctrl+shift+enter" = "no_op";
       "ctrl+shift+/" =
