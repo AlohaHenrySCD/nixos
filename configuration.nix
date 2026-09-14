@@ -7,6 +7,10 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
+      # Keep Chromium's encryption backend identical in Plasma and niri.
+      chromium = prev.chromium.override {
+        commandLineArgs = "--password-store=kwallet6";
+      };
       pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
         (pythonFinal: pythonPrev: {
           nanoemoji = pythonPrev.nanoemoji.overrideAttrs (oldAttrs: {
@@ -115,6 +119,8 @@
   programs.niri.enable = true;
   services.greetd.enable = false;
   services.desktopManager.plasma6.enable = true;
+  # Plasma supplies KWallet and PAM unlock for both SDDM sessions.
+  services.gnome.gnome-keyring.enable = false;
   services.displayManager = {
     defaultSession = "niri";
     sddm = {
@@ -132,6 +138,18 @@
   #   };
   # };
   systemd.user.services.niri.enableDefaultPath = false;
+  # Plasma runs this helper itself; niri needs its own PAM unlock hook.
+  systemd.user.services.niri-kwallet-pam = {
+    description = "Unlock KWallet in niri from PAM credentials";
+    wantedBy = [ "niri.service" ];
+    after = [ "niri.service" ];
+    partOf = [ "niri.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
+      RemainAfterExit = true;
+    };
+  };
 
   programs.clash-verge = {
     enable = true;
@@ -146,6 +164,7 @@
 
   xdg.portal = {
     enable = true;
+    config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*";
   };
