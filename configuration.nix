@@ -68,6 +68,30 @@
 
   services.dbus.enable = true;
 
+  # Bazecor checks this exact filename and content before requesting root access.
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "dygma-udev-rules";
+      destination = "/lib/udev/rules.d/60-dygma.rules";
+      text = ''
+        # Dygma Raise
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2200", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2201", MODE="0660", TAG+="uaccess"
+
+        # Dygma USB Keyboards Vendor ID
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+
+        # Dygma HID Keyboards Vendor ID
+        KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+      '';
+    })
+  ];
+
   services.tailscale.enable = true;
 
   # services.nirinit = {

@@ -25,11 +25,7 @@
     libnotify
     kdePackages.kate
     papers
-    (pkgs.osu-lazer.overrideAttrs (old: {
-      meta = old.meta // {
-        platforms = old.meta.platforms ++ [ "aarch64-linux" ];
-      };
-    }))
+    osu-lazer
     prismlauncher
     polychromatic
   ];

@@ -111,7 +111,7 @@
   xdg.configFile."fcitx5/config".source = ./fcitx5;
   # Leave Ctrl+Shift+U available for Kitty scrollback.
   xdg.configFile."fcitx5/conf/unicode.conf".text = ''
-    [DirectUnicodeMode]
+    DirectUnicodeMode=
   '';
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
     Theme=everforest
