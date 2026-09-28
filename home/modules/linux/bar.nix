@@ -96,6 +96,7 @@ let
 in
 {
   home.packages = [ niriWindows ];
+  services.playerctld.enable = true;
 
   programs.waybar = {
     enable = true;
@@ -118,6 +119,7 @@ in
         "cffi/niri-windows"
       ];
       modules-right = [
+        "mpris"
         "custom/input-method"
         "group/system"
         "network"
@@ -184,6 +186,20 @@ in
         };
       };
 
+      mpris = {
+        format = "{status_icon} {dynamic}";
+        status-icons = {
+          playing = "";
+          paused = "";
+          stopped = "";
+        };
+        dynamic-order = [ "title" ];
+        title-len = 16;
+        dynamic-len = 16;
+        max-length = 18;
+        tooltip-format = "{player}\n{title}\n{artist}";
+      };
+
       "custom/input-method" = {
         exec = "${inputMethod}";
         return-type = "json";
@@ -248,7 +264,14 @@ in
       network = {
         interface = "wl*";
         interval = 5;
-        format-wifi = "󰖩 {signalStrength}%";
+        format-wifi = "{icon}";
+        format-icons = [
+          "󰤯"
+          "󰤟"
+          "󰤢"
+          "󰤥"
+          "󰤨"
+        ];
         format-linked = "󰖩 …";
         format-disconnected = "󰖪";
         format-disabled = "󰖪";
@@ -356,7 +379,7 @@ in
       #workspaces button.urgent { background: @red; color: @bg; }
       #workspaces button:hover { background: @bg_alt; color: @fg; }
 
-      #custom-input-method, #custom-system, #disk, #memory,
+      #mpris, #custom-input-method, #custom-system, #disk, #memory,
       #cpu, #network, #bluetooth, #pulseaudio, #upower, #clock {
         padding: 0 8px;
         margin: 4px 0;
@@ -373,6 +396,9 @@ in
       .cffi-niri-windows .tile:hover { background: @muted; color: @bg; }
       .cffi-niri-windows .tile:active { background: @green; color: @bg; }
       .cffi-niri-windows .tile.urgent { background: @red; color: @bg; }
+      #mpris { color: @aqua; background: @bg_alt; }
+      #mpris.paused, #mpris.stopped { color: @muted; }
+      #mpris:hover { color: @fg; }
       #custom-input-method { color: @yellow; background: @bg_alt; }
       #custom-input-method.active { color: @green; }
       #custom-input-method.offline { color: @muted; }
@@ -394,5 +420,11 @@ in
     '';
   };
 
-  systemd.user.services.waybar.Install.WantedBy = lib.mkForce [ "niri.service" ];
+  systemd.user.services.waybar = {
+    Unit = {
+      Wants = [ "playerctld.service" ];
+      After = [ "playerctld.service" ];
+    };
+    Install.WantedBy = lib.mkForce [ "niri.service" ];
+  };
 }
