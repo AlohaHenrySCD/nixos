@@ -36,6 +36,13 @@ let
       GOSUMDB = "off";
     };
 
+    postPatch = ''
+      substituteInPlace module/module.go \
+        --replace-fail \
+        'i.calculateWindowSizes(column, scale, maxHeight-i.config.ColumnBorders)' \
+        'i.calculateWindowSizes(column, scale*1.5, maxHeight-i.config.ColumnBorders)'
+    '';
+
     buildPhase = ''
       runHook preBuild
       export GOCACHE="$TMPDIR/go-cache"
@@ -212,7 +219,7 @@ in
         path = "/";
         interval = 30;
         format = "󰋊 {percentage_used}%";
-        tooltip-format = "硬盘 {path}\n已用 {used} / {total}\n可用 {free}";
+        tooltip-format = "已用 {used} / {total}\n可用 {free}";
         on-click = systemMonitor;
       };
 
@@ -284,7 +291,8 @@ in
 
       upower = {
         format = "{percentage}";
-        format-alt = "{percentage} {time}";
+        min-length = 4;
+        align = 1.0;
         icon-size = 20;
         hide-if-empty = true;
         tooltip = true;
@@ -358,6 +366,10 @@ in
       .cffi-niri-windows { margin: 4px 0; }
       .cffi-niri-windows .column, .cffi-niri-windows .floating { margin: 0 2px; }
       .cffi-niri-windows .tile { background: @bg_alt; color: @fg; border-radius: 3px; }
+      .cffi-niri-windows .tile label {
+        font-family: "JetBrainsMono Nerd Font Mono";
+        font-size: 16px;
+      }
       .cffi-niri-windows .tile:hover { background: @muted; color: @bg; }
       .cffi-niri-windows .tile:active { background: @green; color: @bg; }
       .cffi-niri-windows .tile.urgent { background: @red; color: @bg; }
