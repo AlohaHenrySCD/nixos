@@ -14,6 +14,7 @@ $nodejs\
 $rust\
 $golang\
 $nix_shell
+$status\
 $character"""
 
 # right_format = """
@@ -319,7 +320,9 @@ symbol = " "
 symbol = " "
 
 [status]
-symbol = " "
+disabled = false
+symbol = ""
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
 
 [sudo]
 symbol = " "

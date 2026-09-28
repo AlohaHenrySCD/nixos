@@ -52,13 +52,13 @@
 
   programs.fish = {
     shellAliases = {
-      bd = "sudo nixos-rebuild switch --impure --flake /etc/nixos#asahi";
+      bd = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi";
     };
     shellAbbrs = {
       nix-clean = "nix-collect-garbage && sudo nix-collect-garbage && sudo journalctl --vacuum-size=300M";
     };
     functions = {
-      gbd = "git add /etc/nixos/ && git commit --message $argv[1] && git push && sudo nixos-rebuild switch --impure --flake /etc/nixos#asahi ";
+      gbd = "git add /etc/nixos/ && git commit --message $argv[1] && git push && sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi ";
     };
   };
 

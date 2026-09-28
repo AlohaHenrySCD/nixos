@@ -21,6 +21,7 @@
       ove = "ov --exec --";
       ns = "nix-shell --run fish";
       ur = "uv run";
+      jlog = "journalctl -b -x --all --no-pager";
     };
     functions = {
       mkcd = ''

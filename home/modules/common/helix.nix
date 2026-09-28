@@ -42,8 +42,12 @@
         k = "move_line_down";
         l = "move_line_up";
         ";" = "move_char_right";
-        C-q = ":wq";
-        C-Q = ":q!";
+        space = {
+          q = ":wq";
+          Q = ":q!";
+          w = ":w";
+          W = ":wa";
+        };
       };
       keys.select = {
         j = "extend_char_left";
