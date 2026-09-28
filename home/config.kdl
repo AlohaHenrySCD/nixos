@@ -99,6 +99,12 @@ output "eDP-1" {
     focus-at-startup
 }
 
+output "HDMI-A-1" {
+    mode "2560x1440@119.998"
+    scale 1.1
+    position x=0 y=-1310
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Layout
@@ -630,6 +636,6 @@ window-rule {
     geometry-corner-radius 7
     clip-to-geometry true
 }
-spawn-sh-at-startup "sleep 1 && exec i3bar-river"
+// spawn-sh-at-startup "sleep 1 && exec i3bar-river"
 // spawn-sh-at-startup "sleep 2 && exec chromium"
 // spawn-sh-at-startup "sleep 2 && exec kitty"

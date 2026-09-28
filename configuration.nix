@@ -179,6 +179,7 @@
     enable = true;
     autoStart = true;
     serviceMode = true;
+    tunMode = false;
 
   };
 
@@ -220,7 +221,8 @@
 
   security.sudo = {
     enable = true;
-    wheelNeedsPassword = false;
+    # wheelNeedsPassword = false;
+    wheelNeedsPassword = true;
     extraRules = [
       {
         commands = [
