@@ -117,11 +117,18 @@
         ids = [
           "*"
           "-1d50:615e" # pskeeb5 uses its own ZMK keymap.
+          "m:1532:00b8" # Razer Viper V3 HyperSpeed
+          "m:35ef:0031" # Sonsei-BLE - 3
+          "m:3554:fa09" # Compx 2.4G Wireless Receiver
         ];
         settings = {
           main = {
             capslock = "esc";
             esc = "f12";
+            mouse1 = "layer(control)";
+            mouse2 = "layer(meta)";
+            mouseback = "layer(control)";
+            mouseforward = "layer(meta)";
           };
         };
       };
