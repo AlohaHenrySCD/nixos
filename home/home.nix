@@ -27,6 +27,8 @@
 
   xdg.configFile."tlrc/config/toml".source = ./tlrc.toml;
 
+  home.file.".codex/AGENTS.md".source = ./codex-agents.md;
+
   # Euporie writes settings and recent files back to this file. Keep a writable
   # copy and reset it to the declarative template on each activation.
   home.activation.euporieConfig = lib.hm.dag.entryAfter [ "linkGeneration" ] ''

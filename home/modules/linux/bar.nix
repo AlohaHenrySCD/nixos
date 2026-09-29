@@ -194,9 +194,9 @@ in
           stopped = "";
         };
         dynamic-order = [ "title" ];
-        title-len = 16;
-        dynamic-len = 16;
-        max-length = 18;
+        title-len = 13;
+        dynamic-len = 13;
+        max-length = 15;
         tooltip-format = "{player}\n{title}\n{artist}";
       };
 
