@@ -5,6 +5,7 @@
 }:
 {
   home.packages = with pkgs; [
+    (callPackage ../../../packages/pomotroid.nix { })
     kdePackages.kdenlive
     kazumi
     gtrash
