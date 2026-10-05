@@ -5,12 +5,6 @@
   lib,
   ...
 }:
-let
-  kernelPkgs = import inputs.nixpkgs-kernel {
-    system = "aarch64-linux";
-    overlays = [ inputs.nixos-apple-silicon.overlays.default ];
-  };
-in
 {
   imports = [
     inputs.nixos-apple-silicon.nixosModules.default
@@ -85,15 +79,10 @@ in
   };
 
   boot = {
-    # Use the pinned toolchain for the kernel and its companion packages.
-    kernelPackages = lib.mkForce (kernelPkgs.linux-asahi.override {
-      _kernelPatches = config.boot.kernelPatches;
-    });
-    # Opt in to experimental PMP support only on this M1 Pro MacBook (J314s).
     kernelPatches = [
       {
         name = "asahi-j314s-enable-pmp";
-        patch = kernelPkgs.writeText "asahi-j314s-enable-pmp.patch" ''
+        patch = pkgs.writeText "asahi-j314s-enable-pmp.patch" ''
           --- a/arch/arm64/boot/dts/apple/t6000-j314s.dts
           +++ b/arch/arm64/boot/dts/apple/t6000-j314s.dts
           @@ -12,2 +12,4 @@

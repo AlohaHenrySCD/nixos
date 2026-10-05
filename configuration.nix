@@ -92,7 +92,7 @@
     })
   ];
 
-  services.tailscale.enable = true;
+  # services.tailscale.enable = true;
 
   # services.nirinit = {
   #   enable = true;
@@ -123,12 +123,146 @@
         ];
         settings = {
           main = {
-            capslock = "esc";
-            esc = "f12";
+            capslock = "C-S-f12";
             mouse1 = "layer(control)";
             mouse2 = "layer(meta)";
             mouseback = "layer(control)";
             mouseforward = "layer(meta)";
+          };
+        };
+      };
+      internal = {
+        ids = [ "05ac:0342:89b7fedc" ];
+        settings = {
+          main = {
+            capslock = "backspace";
+            esc = "C-S-f12";
+            leftshift = "esc";
+            rightshift = "delete";
+            # Previously disabled: leftmeta = "layer(symbol)";
+            leftmeta = "layer(symbol)";
+            rightmeta = "layer(plain)";
+            a = "overloadt2(nav, a, 120)";
+            s = "overloadt2(meta, s, 120)";
+            d = "overloadt2(control, d, 120)";
+            f = "overloadt2(shift, f, 120)";
+            j = "overloadt2(shift, j, 120)";
+            k = "overloadt2(control, k, 120)";
+            l = "overloadt2(meta, l, 120)";
+            semicolon = "overloadt2(num, semicolon, 120)";
+          };
+
+          plain = {
+            a = "a";
+            s = "s";
+            d = "d";
+            f = "f";
+            j = "j";
+            k = "k";
+            l = "l";
+            semicolon = "semicolon";
+          };
+
+          # https://newblog.alohahenry.top/posts/my-symbol-layer/
+          symbol = {
+            q = "`";
+            w = "<";
+            e = ">";
+            r = "-";
+            t = "$";
+            y = "^";
+            u = "{";
+            i = "}";
+            o = "|";
+            p = "'";
+            a = "!";
+            s = ":";
+            d = "_";
+            f = "=";
+            g = "&";
+            h = "#";
+            j = "(";
+            k = ")";
+            l = "\"";
+            semicolon = ";";
+            z = "~";
+            x = "?";
+            c = "[";
+            v = "]";
+            b = "+";
+            n = "\\";
+            m = "*";
+            comma = ",";
+            dot = ".";
+            slash = "/";
+            leftalt = "%";
+            rightalt = "@";
+          };
+
+          nav = {
+            q = "kbdillumdown";
+            w = "kbdillumup";
+            e = "scrollup";
+            r = "C-S-u";
+            t = "middlemouse";
+            y = "C-u";
+            u = "noop";
+            i = "noop";
+            o = "noop";
+            p = "noop";
+            a = "noop";
+            s = "noop";
+            d = "scrolldown";
+            f = "C-S-d";
+            g = "leftmouse";
+            h = "C-d";
+            j = "left";
+            k = "down";
+            l = "up";
+            semicolon = "right";
+            z = "noop";
+            x = "noop";
+            c = "C-S-c";
+            v = "C-S-v";
+            b = "rightmouse";
+            n = "^";
+            m = "home";
+            comma = "pagedown";
+            dot = "pageup";
+            slash = "end";
+          };
+
+          num = {
+            q = "f12";
+            w = "f9";
+            e = "f8";
+            r = "f7";
+            t = "noop";
+            y = "noop";
+            u = "7";
+            i = "8";
+            o = "9";
+            p = "noop";
+            a = "f10";
+            s = "f3";
+            d = "f2";
+            f = "f1";
+            g = "noop";
+            h = "0";
+            j = "1";
+            k = "2";
+            l = "3";
+            semicolon = "noop";
+            z = "f11";
+            x = "f6";
+            c = "f5";
+            v = "f4";
+            b = "noop";
+            n = "noop";
+            m = "4";
+            comma = "5";
+            dot = "6";
+            slash = "noop";
           };
         };
       };
@@ -261,6 +395,8 @@
     enable = true;
     memoryPercent = 100;
   };
+
+  nix.channel.enable = false;
 
   nix.settings = {
     max-jobs = 16;

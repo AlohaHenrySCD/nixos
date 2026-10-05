@@ -12,6 +12,11 @@
 
   home.homeDirectory = "/home/alohahenry";
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   home.sessionVariables = {
     "QT_IM_MODULE" = "fcitx";
   };

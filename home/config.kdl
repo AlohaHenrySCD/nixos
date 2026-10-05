@@ -365,9 +365,11 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+B hotkey-overlay-title="Run an Application: chromium" { spawn "chromium"; }
+    Mod+G hotkey-overlay-title="Run an Application: kazumi" { spawn "kazumi"; }
+    Mod+N hotkey-overlay-title="Run an Application: netease-music" { spawn "netease-cloud-music-gtk4"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

@@ -11,6 +11,8 @@
         completion-trigger-len = 1;
         idle-timeout = 0;
         completion-replace = true;
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics.cursor-line = "warning";
         soft-wrap.enable = true;
         line-number = "relative";
         mouse = true;
@@ -42,11 +44,14 @@
         k = "move_line_down";
         l = "move_line_up";
         ";" = "move_char_right";
+        x = "select_line_below";
+        X = "select_line_above";
         space = {
-          q = ":wq";
+          q = ":q";
           Q = ":q!";
           w = ":w";
           W = ":wa";
+          x = ":wq";
         };
       };
       keys.select = {
@@ -54,6 +59,8 @@
         k = "extend_line_down";
         l = "extend_line_up";
         ";" = "extend_char_right";
+        x = "select_line_below";
+        X = "select_line_above";
       };
 
     };
