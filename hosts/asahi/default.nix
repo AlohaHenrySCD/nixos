@@ -59,6 +59,10 @@
     '';
   };
 
+  systemd.tmpfiles.rules = [
+    "d /.Trash-1000 0700 alohahenry users - -"
+  ];
+
   users.users.alohahenry.extraGroups = [
     "dialout"
     "libvirtd"

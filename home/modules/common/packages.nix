@@ -25,6 +25,7 @@
     lazygit
     btop
     fd
+    trash-cli
 
     pkg-config
 

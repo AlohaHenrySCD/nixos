@@ -22,7 +22,7 @@
       ns = "nix-shell --run fish";
       ur = "uv run";
       jlog = "journalctl -b -x --all --no-pager";
-      rm = "gtrash put";
+      rm = "trash-put";
     };
     functions = {
       mkcd = ''
