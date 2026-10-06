@@ -5,6 +5,8 @@
 }:
 {
   home.packages = with pkgs; [
+    ffmpeg
+    yazi
     jujutsu
     usbutils
     codex
@@ -15,6 +17,10 @@
     eza
     ripgrep
     jq
+    wl-clipboard
+    resvg
+    poppler
+    imagemagick
     bat
     ov
     # animeko

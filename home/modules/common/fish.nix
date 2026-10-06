@@ -11,6 +11,14 @@
       bind alt-u backward-kill-line
       abbr --add add --set-cursor='%' 'nix shell nixpkgs#%'
       # abbr --add fd --set-cursor='%' 'find . -iname "*%*" 2>/dev/null'
+      function y
+      	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+      	command yazi $argv --cwd-file="$tmp"
+      	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+      		builtin cd -- "$cwd"
+      	end
+      	command rm -f -- "$tmp"
+      end
     '';
     shellAbbrs = {
       ls = "eza";
