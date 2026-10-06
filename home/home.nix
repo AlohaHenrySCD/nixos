@@ -26,6 +26,7 @@
   };
 
   xdg.configFile."tlrc/config/toml".source = ./tlrc.toml;
+  xdg.configFile."yazi/theme.toml".source = ./yazi/theme.toml;
 
   home.file.".codex/AGENTS.md".source = ./codex-agents.md;
 
