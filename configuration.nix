@@ -136,20 +136,21 @@
         settings = {
           main = {
             capslock = "backspace";
+            backspace = "C-S-f12";
             esc = "C-S-f12";
             leftshift = "esc";
             rightshift = "delete";
             # Previously disabled: leftmeta = "layer(symbol)";
             leftmeta = "layer(symbol)";
             rightmeta = "layer(plain)";
-            a = "overloadt2(nav, a, 120)";
-            s = "overloadt2(meta, s, 120)";
-            d = "overloadt2(control, d, 120)";
-            f = "overloadt2(shift, f, 120)";
-            j = "overloadt2(shift, j, 120)";
-            k = "overloadt2(control, k, 120)";
-            l = "overloadt2(meta, l, 120)";
-            semicolon = "overloadt2(num, semicolon, 120)";
+            a = "overloadt2(nav, a, 160)";
+            s = "overloadt2(meta, s, 160)";
+            d = "overloadt2(control, d, 160)";
+            f = "overloadt2(shift, f, 160)";
+            j = "overloadt2(shift, j, 160)";
+            k = "overloadt2(control, k, 160)";
+            l = "overloadt2(meta, l, 160)";
+            semicolon = "overloadt2(num, semicolon, 160)";
           };
 
           plain = {

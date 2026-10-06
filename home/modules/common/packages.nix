@@ -5,6 +5,7 @@
 }:
 {
   home.packages = with pkgs; [
+    yazi
     jujutsu
     usbutils
     codex
