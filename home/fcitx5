@@ -12,7 +12,8 @@ EnumerateSkipFirst=False
 ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
-0=F12
+# 0=F12
+0=Control+Shift+F12
 1=Zenkaku_Hankaku
 2=Hangul
 
@@ -81,4 +82,3 @@ AllowInputMethodForPassword=False
 ShowPreeditForPassword=False
 # Interval of saving user data in minutes
 AutoSavePeriod=30
-

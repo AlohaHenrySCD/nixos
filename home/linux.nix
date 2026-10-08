@@ -111,6 +111,10 @@
 
   xdg.configFile."niri/config.kdl".source = ./config.kdl;
   home.file.".local/share/fcitx5/rime/default.custom.yaml".source = ./default.custom.yaml;
+  home.file.".local/share/fcitx5/rime/rime_ice.custom.yaml".text = ''
+    patch:
+      "switches/@1/reset": 1
+  '';
 
   xdg.configFile."mako/config".source = ./mako;
   xdg.configFile."fcitx5/config".source = ./fcitx5;

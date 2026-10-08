@@ -13,6 +13,9 @@ auto-format = true
 [language-server.rust-analyzer.config.check]
 command = "clippy"
 
+[language-server.rust-analyzer.config.rustfmt.rangeFormatting]
+enable = true
+
 [[language]]
 name = "toml"
 indent.tab-width = 4
