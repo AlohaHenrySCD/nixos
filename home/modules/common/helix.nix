@@ -52,6 +52,7 @@
           w = ":w";
           W = ":wa";
           x = ":wq";
+          c = ":bc";
         };
       };
       keys.select = {

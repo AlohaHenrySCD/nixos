@@ -6,6 +6,7 @@
 {
   imports = [
     ./modules/linux/packages.nix
+    ./modules/linux/bazecor.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
   ];
