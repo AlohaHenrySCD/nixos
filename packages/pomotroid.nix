@@ -17,16 +17,22 @@
 }:
 let
   inlangModules = [
-    (fetchurl {
-      name = "plugin-message-format-index.js";
+    {
       url = "https://cdn.jsdelivr.net/npm/@inlang/plugin-message-format@4/dist/index.js";
-      hash = "sha256-siz2DrKLPIw84ftjAGEaBVLxLQ2ZXTfE3SyW462AxkU=";
-    })
-    (fetchurl {
-      name = "plugin-m-function-matcher-index.js";
+      file = fetchurl {
+        name = "plugin-message-format-index.js";
+        url = "https://cdn.jsdelivr.net/npm/@inlang/plugin-message-format@4.5.4/dist/index.js";
+        hash = "sha256-haXOnXFFMPbPLlSR+mEYtXWTluJ/LLZz4zT6St7KerM=";
+      };
+    }
+    {
       url = "https://cdn.jsdelivr.net/npm/@inlang/plugin-m-function-matcher@2/dist/index.js";
-      hash = "sha256-hYYvYwV5O1a/2a/lNosJbmP7Kuqzi3eZwFFRe+NJnAs=";
-    })
+      file = fetchurl {
+        name = "plugin-m-function-matcher-index.js";
+        url = "https://cdn.jsdelivr.net/npm/@inlang/plugin-m-function-matcher@2.3.0/dist/index.js";
+        hash = "sha256-p+bEEwevxks/NBFvIg6SXwrTrKRyMehJ8IAFGi+0Wag=";
+      };
+    }
   ];
 in
 rustPlatform.buildRustPackage (finalAttrs: {
@@ -52,7 +58,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   postPatch = ''
     substituteInPlace project.inlang/settings.json ${
-      lib.concatMapStringsSep " " (m: "--replace-fail ${m.url} ${m}") inlangModules
+      lib.concatMapStringsSep " " (m: "--replace-fail ${m.url} ${m.file}") inlangModules
     }
   '';
 
