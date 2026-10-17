@@ -5,6 +5,8 @@
   ...
 }:
 {
+  imports = [ ./modules/keyd.nix ];
+
   nixpkgs.overlays = [
     (final: prev: {
       # Keep Chromium's encryption backend identical in Plasma and niri.
@@ -68,7 +70,7 @@
 
   services.dbus.enable = true;
 
-  # Bazecor checks this exact filename and content before requesting root access.
+  # Bazecor checks 60-dygma.rules exactly; keep Bluetooth permissions separate.
   services.udev.packages = [
     (pkgs.writeTextFile {
       name = "dygma-udev-rules";
@@ -90,6 +92,9 @@
         KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
       '';
     })
+    (pkgs.writeTextDir "lib/udev/rules.d/60-sonsei-bluetooth.rules" ''
+      SUBSYSTEM=="hidraw", KERNELS=="0005:35EF:0031.*", MODE="0660", TAG+="uaccess"
+    '')
   ];
 
   # services.tailscale.enable = true;
@@ -109,166 +114,6 @@
   #     size = 4*1024;
   #   }
   # ];
-
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [
-          "*"
-          "-1d50:615e" # pskeeb5 uses its own ZMK keymap.
-          "m:1532:00b8" # Razer Viper V3 HyperSpeed
-          "m:35ef:0031" # Sonsei-BLE - 3
-          "m:3554:fa09" # Compx 2.4G Wireless Receiver
-        ];
-        settings = {
-          main = {
-            capslock = "C-S-f12";
-            mouse1 = "layer(control)";
-            mouse2 = "layer(meta)";
-            mouseback = "layer(control)";
-            mouseforward = "layer(meta)";
-          };
-        };
-      };
-      internal = {
-        ids = [ "05ac:0342:89b7fedc" ];
-        settings = {
-          main = {
-            capslock = "backspace";
-            backspace = "C-S-f12";
-            esc = "C-S-f12";
-            leftshift = "esc";
-            rightshift = "delete";
-            # Previously disabled: leftmeta = "layer(symbol)";
-            leftmeta = "layer(symbol)";
-            rightmeta = "layer(plain)";
-            a = "overloadt2(nav, a, 160)";
-            s = "overloadt2(meta, s, 160)";
-            d = "overloadt2(control, d, 160)";
-            f = "overloadt2(shift, f, 160)";
-            j = "overloadt2(shift, j, 160)";
-            k = "overloadt2(control, k, 160)";
-            l = "overloadt2(meta, l, 160)";
-            semicolon = "overloadt2(num, semicolon, 160)";
-          };
-
-          plain = {
-            a = "a";
-            s = "s";
-            d = "d";
-            f = "f";
-            j = "j";
-            k = "k";
-            l = "l";
-            semicolon = "semicolon";
-          };
-
-          # https://newblog.alohahenry.top/posts/my-symbol-layer/
-          symbol = {
-            q = "`";
-            w = "<";
-            e = ">";
-            r = "-";
-            t = "$";
-            y = "^";
-            u = "{";
-            i = "}";
-            o = "|";
-            p = "'";
-            a = "!";
-            s = ":";
-            d = "_";
-            f = "=";
-            g = "&";
-            h = "#";
-            j = "(";
-            k = ")";
-            l = "\"";
-            semicolon = ";";
-            z = "~";
-            x = "?";
-            c = "[";
-            v = "]";
-            b = "+";
-            n = "\\";
-            m = "*";
-            comma = ",";
-            dot = ".";
-            slash = "/";
-            leftalt = "%";
-            rightalt = "@";
-          };
-
-          nav = {
-            q = "kbdillumdown";
-            w = "kbdillumup";
-            e = "scrollup";
-            r = "C-S-u";
-            t = "middlemouse";
-            y = "C-u";
-            u = "noop";
-            i = "noop";
-            o = "noop";
-            p = "noop";
-            a = "noop";
-            s = "noop";
-            d = "scrolldown";
-            f = "C-S-d";
-            g = "leftmouse";
-            h = "C-d";
-            j = "left";
-            k = "down";
-            l = "up";
-            semicolon = "right";
-            z = "noop";
-            x = "noop";
-            c = "C-S-c";
-            v = "C-S-v";
-            b = "rightmouse";
-            n = "^";
-            m = "home";
-            comma = "pagedown";
-            dot = "pageup";
-            slash = "end";
-          };
-
-          num = {
-            q = "f12";
-            w = "f9";
-            e = "f8";
-            r = "f7";
-            t = "noop";
-            y = "noop";
-            u = "7";
-            i = "8";
-            o = "9";
-            p = "noop";
-            a = "f10";
-            s = "f3";
-            d = "f2";
-            f = "f1";
-            g = "noop";
-            h = "0";
-            j = "1";
-            k = "2";
-            l = "3";
-            semicolon = "noop";
-            z = "f11";
-            x = "f6";
-            c = "f5";
-            v = "f4";
-            b = "noop";
-            n = "noop";
-            m = "4";
-            comma = "5";
-            dot = "6";
-            slash = "noop";
-          };
-        };
-      };
-    };
-  };
 
   fonts.packages = with pkgs; [
     jetbrains-mono
