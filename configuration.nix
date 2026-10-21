@@ -177,6 +177,7 @@
   xdg.portal = {
     enable = true;
     config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
+    config.niri."org.freedesktop.impl.portal.FileChooser" = "kde";
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = "*";
   };
@@ -186,6 +187,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
+      "dlcadbmcfambdjhecipbnolmjchgnode" # everforest theme
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
       "hdokiejnpimakedhajhdlcegeplioahd" # lastpass
       "dhdgffkkebhmkfjojejmpbldmpobfkfo" # tampermonkey
@@ -310,14 +312,8 @@
     # glfw
   ];
 
-  environment.sessionVariables = lib.mkForce {
-    LC_MESSAGES = "zh_CN.UTF-8";
-    LC_ALL = "zh_CN.UTF-8";
-    LC_COLLATE = "zh_CN.UTF-8";
-    LANG = "zh_CN.UTF-8";
-  };
-
-  i18n.defaultLocale = "zh_CN.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings.LANGUAGE = "en_US:en";
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
     "zh_CN.UTF-8/UTF-8"
