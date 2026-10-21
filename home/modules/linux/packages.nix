@@ -7,8 +7,9 @@
   home.packages = with pkgs; [
     (callPackage ../../../packages/pomotroid.nix { })
     (callPackage ../../../packages/pigma.nix { })
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     kazumi
+    haruna
     gtrash
     qemu
     wechat
