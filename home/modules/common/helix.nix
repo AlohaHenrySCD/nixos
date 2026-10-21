@@ -1,5 +1,10 @@
-{ ... }:
+{ config, ... }:
 {
+  home.sessionVariables.MITOS_RUNTIME = "${config.home.homeDirectory}/git/mitos/runtime";
+
+  xdg.configFile."mitos/config.toml".source = config.xdg.configFile."helix/config.toml".source;
+  xdg.configFile."mitos/languages.toml".source = config.xdg.configFile."helix/languages.toml".source;
+
   xdg.configFile."helix/languages.toml".source = ./helix-languages.toml;
   programs.helix = {
     enable = true;
