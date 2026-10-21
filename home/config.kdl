@@ -624,7 +624,10 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-environment
+// Load KDE palettes and icons for Qt applications outside Plasma.
+environment {
+    QT_QPA_PLATFORMTHEME "kde"
+}
 cursor {
 //     xcursor-size 24
 

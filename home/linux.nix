@@ -6,17 +6,22 @@
 {
   imports = [
     ./modules/linux/packages.nix
+    ./modules/linux/qbittorrent.nix
     ./modules/linux/bazecor.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
+  home.sessionPath = [ "/home/alohahenry/.cargo/bin" ];
 
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
   };
+
+  xdg.dataFile."dbus-1/services/org.freedesktop.FileManager1.service".source =
+    "${pkgs.kdePackages.dolphin}/share/dbus-1/services/org.kde.dolphin.FileManager1.service";
 
   home.sessionVariables = {
     "QT_IM_MODULE" = "fcitx";
@@ -88,6 +93,14 @@
     inputs.kde-everforest + "/Everforest.colors";
   programs.plasma = {
     enable = true;
+
+    configFile."plasma-localerc" = {
+      Formats.LANG = "en_US.UTF-8";
+      Translations.LANGUAGE = "en_US:en";
+    };
+
+    configFile."mimeapps.list"."Default Applications"."inode/directory" =
+      "org.kde.dolphin.desktop";
 
     workspace.colorScheme = "Everforest";
 

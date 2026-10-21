@@ -1,6 +1,10 @@
 patch:
   __include: rime_ice_suggestion:/
 
+  # 原中英标点快捷键：Control+Shift+3 / Control+Shift+numbersign
+  "key_binder/bindings/@6/accept": Control+Shift+p
+  "key_binder/bindings/@7/accept": Control+Shift+P
+
   # ascii_composer/switch_key/Shift_L: noop
   ascii_composer:
     good_old_caps_lock: true
