@@ -11,6 +11,7 @@
     # kdePackages.kdenlive
     kazumi
     haruna
+    vlc
     gtrash
     qemu
     wechat
