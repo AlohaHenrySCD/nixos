@@ -248,6 +248,9 @@
 
   nix.settings = {
     max-jobs = 16;
+    substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store?priority=30"
+    ];
     experimental-features = [
       "flakes"
       "nix-command"
@@ -299,16 +302,11 @@
   programs.starship.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # moved
-    # base
     # mesa
     gtk4.dev
     gsettings-desktop-schemas
     xwayland-satellite
 
-    # gaming
-    # sbclPackages.frpc
-    # frpc
     # glfw
   ];
 

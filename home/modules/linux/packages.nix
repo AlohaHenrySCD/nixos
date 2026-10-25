@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }:
@@ -9,6 +8,7 @@
     (callPackage ../../../packages/pigma.nix { })
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
+    chatgpt
     kazumi
     haruna
     vlc
@@ -19,10 +19,10 @@
     vesktop
     chromium
     netease-cloud-music-gtk
-    ncspot
+    # ncspot
     obsidian
     libreoffice
-    localsend
+    # localsend
     glib
     gcc
     gtk4
@@ -30,7 +30,7 @@
     fuzzel
     mako
     libnotify
-    kdePackages.kate
+    # kdePackages.kate
     papers
     # osu-lazer
     prismlauncher

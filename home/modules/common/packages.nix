@@ -57,7 +57,7 @@
     vscode-css-languageserver
     yaml-language-server
     fish-lsp
-    haskell-language-server
+    # haskell-language-server
     superhtml
     typescript-language-server
     vscode-json-languageserver
