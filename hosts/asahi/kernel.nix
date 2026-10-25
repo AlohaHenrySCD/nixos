@@ -4,15 +4,36 @@
   ...
 }:
 let
+  localKernelPath = /home/alohahenry/git/linux;
+  localKernelSource = lib.fileset.toSource {
+    root = localKernelPath;
+    fileset = lib.fileset.gitTracked localKernelPath;
+  };
+
   kernelPkgs = import inputs.nixpkgs-kernel {
     system = "aarch64-linux";
-    overlays = [ inputs.nixos-apple-silicon.overlays.default ];
+    overlays = [
+      inputs.nixos-apple-silicon.overlays.default
+      # Remove this overlay to restore the pinned upstream kernel source.
+      (_final: prev: {
+        linux-asahi = prev.linux-asahi.override {
+          linuxPackagesFor = kernel: prev.linuxPackagesFor (kernel.override { src = localKernelSource; });
+        };
+      })
+    ];
   };
 in
 {
   # Use the pinned package set for Asahi's kernel and its build dependencies.
   # mkForce overrides the upstream module's assignment to the system package set.
   hardware.asahi.pkgs = lib.mkForce kernelPkgs;
+
+  # Keep module aggregation compatible with the pinned kernel's outputs.
+  nixpkgs.overlays = [
+    (_final: _prev: {
+      aggregateModules = kernelPkgs.aggregateModules;
+    })
+  ];
 
   boot.kernelPatches = [
     {
