@@ -4,23 +4,9 @@
   ...
 }:
 let
-  localKernelPath = /home/alohahenry/git/linux;
-  localKernelSource = lib.fileset.toSource {
-    root = localKernelPath;
-    fileset = lib.fileset.gitTracked localKernelPath;
-  };
-
   kernelPkgs = import inputs.nixpkgs-kernel {
     system = "aarch64-linux";
-    overlays = [
-      inputs.nixos-apple-silicon.overlays.default
-      # Remove this overlay to restore the pinned upstream kernel source.
-      (_final: prev: {
-        linux-asahi = prev.linux-asahi.override {
-          linuxPackagesFor = kernel: prev.linuxPackagesFor (kernel.override { src = localKernelSource; });
-        };
-      })
-    ];
+    overlays = [ inputs.nixos-apple-silicon.overlays.default ];
   };
 in
 {

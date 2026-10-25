@@ -64,6 +64,7 @@
   programs.fish = {
     shellAliases = {
       bd = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi";
+      bd-debug = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi-debug";
     };
     shellAbbrs = {
       nix-clean = "nix-collect-garbage && sudo nix-collect-garbage && sudo journalctl --vacuum-size=300M";

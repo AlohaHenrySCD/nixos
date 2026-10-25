@@ -92,6 +92,11 @@
           hostModules = ./hosts/asahi;
         };
 
+        asahi-debug = mkNixos {
+          system = "aarch64-linux";
+          hostModules = ./hosts/asahi-debug;
+        };
+
         x86_64 = mkNixos {
           system = "x86_64-linux";
           hostModules = ./hosts/x86_64;
