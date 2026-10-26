@@ -25,7 +25,10 @@
 
   home.sessionVariables = {
     "QT_IM_MODULE" = "fcitx";
+    QT_QPA_PLATFORMTHEME = "kde";
   };
+
+  systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "kde";
 
   programs.obs-studio = {
     enable = true;
