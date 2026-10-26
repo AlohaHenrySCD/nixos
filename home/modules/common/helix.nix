@@ -14,11 +14,16 @@
     }
   );
   xdg.configFile."mitos/languages.toml".source = config.xdg.configFile."helix/languages.toml".source;
+  xdg.configFile."mitos/themes/everforest_dark.toml".text = ''
+    inherits = "everforest_dark"
+    "ui.highlight" = { underline = { style = "curl" } }
+  '';
 
   xdg.configFile."helix/languages.toml".source = ./helix-languages.toml;
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
+    defaultEditor = false;
 
     settings = {
       theme = "everforest_dark";
@@ -40,6 +45,13 @@
           select = "underline";
         };
         statusline = {
+          left = [
+            "mode"
+            "read-only-indicator"
+            "spinner"
+            "file-name"
+            "file-modification-indicator"
+          ];
           mode = {
             normal = "NORMAL";
             insert = "INSERT";
