@@ -12,9 +12,8 @@
         ];
         settings = {
           main = {
-            capslock = "C-S-f12";
-            mouse1 = "layer(control)";
-            mouse2 = "layer(meta)";
+            # mouse1 = "layer(control)";
+            # mouse2 = "layer(meta)";
             mouseback = "layer(control)";
             mouseforward = "layer(meta)";
           };
@@ -22,7 +21,6 @@
       };
       internal =
         let
-          # Sonsei 20261011110742: shared media row; LED effects have no keyd equivalent.
           mediaRow = {
             "1" = "brightnessdown";
             "2" = "brightnessup";
@@ -44,23 +42,22 @@
               "2" = "C-S-v";
               "3" = "C-c";
               "4" = "C-v";
-              "5" = "noop";
-              "6" = "noop";
-              "7" = "7";
-              "8" = "8";
-              "9" = "9";
-              "0" = "0";
+              "5" = "C-x";
+              "6" = "brightnessdown";
+              "7" = "brightnessup";
+              "8" = "mute";
+              "9" = "volumedown";
+              "0" = "volumeup";
               capslock = "backspace";
               backspace = "C-S-f12";
               esc = "esc";
               leftshift = "delete";
-              rightshift = "delete";
-              leftcontrol = "toggle(num)";
-              leftalt = "layer(symbol)";
+              # rightshift = "noop";
+              leftcontrol = "layer(num)";
+              leftalt = "capslock";
               leftmeta = "esc";
               rightmeta = "layer(plain)";
-              rightalt = "toggle(nav)";
-              # Require the hold timeout to avoid overloadt2 misclassifying successive taps.
+              rightalt = "layer(nav)";
               a = "overloadt(alt, a, 185)";
               s = "overloadt(meta, s, 185)";
               d = "overloadt(shift, d, 185)";
@@ -149,7 +146,7 @@
               comma = ",";
               dot = ".";
               slash = "/";
-              leftcontrol = "%";
+              leftalt = "%";
               rightalt = "@";
             };
 
