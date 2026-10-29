@@ -10,6 +10,7 @@
     ./modules/linux/bazecor.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
+    ./modules/linux/clash-hkmo.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
