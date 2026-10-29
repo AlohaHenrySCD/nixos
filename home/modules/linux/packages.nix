@@ -14,13 +14,15 @@
     vlc
     gtrash
     qemu
-    wechat
+    # wechat
+    (wechat.overrideAttrs { dieWithParent = false; })
     zed-editor
     vesktop
     chromium
     netease-cloud-music-gtk
     # ncspot
-    obsidian
+    # obsidian
+    (obsidian.override { electron = electron_44; })
     libreoffice
     # localsend
     glib
