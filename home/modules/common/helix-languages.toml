@@ -1,0 +1,62 @@
+[[language]]
+name = "nix"
+indent.tab-width = 2
+indent.unit = "  "
+auto-format = true
+
+[[language]]
+name = "rust"
+indent.tab-width = 4
+indent.unit = "\t"
+auto-format = true
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server.rust-analyzer.config.rustfmt.rangeFormatting]
+enable = true
+
+[[language]]
+name = "toml"
+indent.tab-width = 4
+indent.unit = "\t"
+
+
+[[language]]
+name = "python"
+indent.tab-width = 4
+indent.unit = "\t"
+auto-format = true
+formatter = { command = "black", args = ["-", "-q"] }
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = [ "--synctex-forward", "%l:%c:%f", "%p" ]
+
+[language-server.texlab.config.texlab.build]
+auxDirectory = "build"
+logDirectory = "build"
+pdfDirectory = "build"
+
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+ "-X",
+ "compile",
+ "--synctex",
+ "--keep-logs",
+ "--keep-intermediates",
+ "--outdir=build",
+ "%f",
+ ]
+
+[[language]]
+name = "markdown"
+indent.tab-width = 2
+indent.unit = "\t"
