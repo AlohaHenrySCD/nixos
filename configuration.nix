@@ -85,6 +85,7 @@
   # Bazecor checks 60-dygma.rules exactly; keep Bluetooth permissions separate.
   fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
 
+  programs.niri.enable = true;
   services.desktopManager.plasma6.enable = true;
   # Plasma supplies KWallet and PAM unlock for both SDDM sessions.
   services.gnome.gnome-keyring.enable = false;
