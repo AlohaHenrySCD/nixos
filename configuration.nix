@@ -6,6 +6,7 @@
 {
   imports = [
     ./modules/keyd.nix
+    ./modules/nirinit.nix
   ];
 
   nixpkgs.overlays = [
