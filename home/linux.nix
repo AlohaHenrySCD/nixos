@@ -9,9 +9,12 @@ let
 in
 {
   imports = [
+    ./modules/linux/packages.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
+  home.sessionPath = [ "/home/alohahenry/.cargo/bin" ];
+
   fonts.fontconfig = fontSettings.fontconfig;
 
 

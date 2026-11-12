@@ -1,0 +1,70 @@
+{
+  lib,
+  pkgs,
+  ...
+}:
+{
+  home.packages = with pkgs; [
+    ffmpeg
+    yazi
+    jujutsu
+    usbutils
+    tree
+    halloy
+    ansifilter
+    qbittorrent
+    eza
+    ripgrep
+    jq
+    wl-clipboard
+    resvg
+    poppler
+    imagemagick
+    bat
+    ov
+    # animeko
+    fzf
+    tlrc
+    navi
+    hugo
+    lazygit
+    btop
+    fd
+    trash-cli
+
+    pkg-config
+
+    (lib.hiPrio jdk25)
+    (lib.lowPrio jdk8)
+
+    nodejs
+    python3
+    # euporie # python pack jypyter tui
+    uv
+    black
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    # clang
+    lld
+    llvm
+    gnumake
+    cmake
+    clang-tools
+    bash-language-server
+    vscode-css-languageserver
+    yaml-language-server
+    fish-lsp
+    # haskell-language-server
+    superhtml
+    typescript-language-server
+    vscode-json-languageserver
+    texlab
+    marksman
+    nil
+    ty
+    taplo
+  ];
+}
