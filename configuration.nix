@@ -57,6 +57,8 @@
   services.blueman.enable = true;
 
   # Bazecor checks 60-dygma.rules exactly; keep Bluetooth permissions separate.
+  fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
+
   programs.fish.enable = true;
 
   programs.chromium = {

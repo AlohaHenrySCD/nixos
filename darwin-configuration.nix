@@ -30,6 +30,8 @@
 
   time.timeZone = "Asia/Shanghai";
 
+  fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
+
   system.keyboard = {
     enableKeyMapping = true;
     swapCapsLockAndEscape = true;
