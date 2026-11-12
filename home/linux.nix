@@ -138,6 +138,7 @@ in
       "switches/@1/reset": 1
   '';
 
+  xdg.configFile."mako/config".source = ./mako;
   xdg.configFile."fcitx5/config".source = ./fcitx5;
   # Leave Ctrl+Shift+U available for Kitty scrollback.
   xdg.configFile."fcitx5/conf/unicode.conf".text = ''
