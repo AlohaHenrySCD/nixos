@@ -146,6 +146,12 @@
     };
   };
 
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+    serviceMode = true;
+  };
+
   xdg.portal = {
     config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
     config.niri."org.freedesktop.impl.portal.FileChooser" = "kde";

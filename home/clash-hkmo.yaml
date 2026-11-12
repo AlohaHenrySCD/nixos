@@ -1,0 +1,106 @@
+# 澳门线路实测：2026-10-29。非 AI 站点尚无稳定的代理加速收益。
+# 订阅保留节点；本文件覆盖规则及策略组，适用于 Mihomo / Clash Verge Rev。
+mode: rule
+geodata-mode: true
+geodata-loader: memconservative
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+
+profile:
+  store-selected: true
+
+dns:
+  default-nameserver:
+    - https://1.0.0.1/dns-query
+    - https://9.9.9.9/dns-query
+  nameserver:
+    - https://1.0.0.1/dns-query
+    - https://9.9.9.9/dns-query
+  proxy-server-nameserver:
+    - https://1.0.0.1/dns-query
+    - https://9.9.9.9/dns-query
+  direct-nameserver: []
+  nameserver-policy:
+    'geosite:private': system
+    '+.umac.mo': system
+    '+.um.edu.mo': system
+  fallback: []
+  fallback-filter:
+    geoip: false
+    domain: []
+    ipcidr: []
+
+proxy-groups:
+  - name: AI
+    type: select
+    proxies:
+      - AI 自动选择
+    include-all: true
+    filter: '(?i)新加坡|日本|美国|台湾|韓国|韩国|英国|Singapore|Japan|United States|Taiwan|Korea|United Kingdom|🇸🇬|🇯🇵|🇺🇸|🇹🇼|🇰🇷|🇬🇧'
+    exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程'
+    url: https://www.gstatic.com/generate_204
+
+  - name: AI 自动选择
+    type: url-test
+    include-all: true
+    filter: '(?i)新加坡|日本|美国|台湾|韓国|韩国|英国|Singapore|Japan|United States|Taiwan|Korea|United Kingdom|🇸🇬|🇯🇵|🇺🇸|🇹🇼|🇰🇷|🇬🇧'
+    exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程'
+    url: https://www.gstatic.com/generate_204
+    expected-status: 204
+    interval: 300
+    tolerance: 50
+
+  # 当前新加坡、日本节点访问 claude.ai 时 TLS 失败；美国节点可到达验证页。
+  - name: Claude
+    type: select
+    include-all: true
+    filter: '(?i)美国|United States|🇺🇸'
+    exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程'
+    url: https://www.gstatic.com/generate_204
+
+  - name: 日本限定
+    type: select
+    default-selected: 🇯🇵 日本 MT1
+    include-all: true
+    filter: '(?i)日本|Japan|🇯🇵|\bJP\b'
+    exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程|⚠️'
+    url: https://www.gstatic.com/generate_204
+
+  - name: 慢站代理
+    type: select
+    proxies:
+      - AI
+      - DIRECT
+    include-all: true
+    exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程|⚠️'
+    url: https://www.gstatic.com/generate_204
+
+rules:
+  - GEOSITE,private,DIRECT
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOSITE,anthropic,Claude
+  - GEOSITE,category-ai-!cn,AI
+  - GEOSITE,category-ai-cn,AI
+  - GEOSITE,dmm,日本限定
+  # 日本限定的 Galgame 厂商站点，补充 DMM geosite。
+  - DOMAIN-SUFFIX,akabeesoft2.com,日本限定
+  - DOMAIN-SUFFIX,akabeesoft3.com,日本限定
+  - DOMAIN-SUFFIX,akatsukiworks.com,日本限定
+  - DOMAIN-SUFFIX,alicesoft.com,日本限定
+  - DOMAIN-SUFFIX,cosmiccute.com,日本限定
+  - DOMAIN-SUFFIX,hibiki-site.com,日本限定
+  - DOMAIN-SUFFIX,tenco.cc,日本限定
+  - DOMAIN-SUFFIX,wheel-soft.com,日本限定
+  - GEOSITE,niconico,日本限定
+  - GEOSITE,abema,日本限定
+  - GEOSITE,tver,日本限定
+  - DOMAIN-SUFFIX,animestore.docomo.ne.jp,日本限定
+  - DOMAIN-SUFFIX,b-ch.com,日本限定
+  # 慢站需按本地线路复测后添加，优先 GEOSITE；示例（当前不启用）：
+  # - GEOSITE,github,慢站代理
+  - MATCH,DIRECT

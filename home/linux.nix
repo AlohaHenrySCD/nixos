@@ -13,6 +13,7 @@ in
     ./modules/linux/qbittorrent.nix
     ./modules/linux/bazecor.nix
     ./modules/linux/gtk.nix
+    ./modules/linux/clash-hkmo.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
