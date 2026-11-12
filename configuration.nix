@@ -85,6 +85,41 @@
   services.blueman.enable = true;
 
   # Bazecor checks 60-dygma.rules exactly; keep Bluetooth permissions separate.
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "dygma-udev-rules";
+      destination = "/lib/udev/rules.d/60-dygma.rules";
+      text = ''
+        # Dygma Raise
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2200", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2201", MODE="0660", TAG+="uaccess"
+
+        # Dygma USB Keyboards Vendor ID
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+
+        # Dygma HID Keyboards Vendor ID
+        KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+        # bootloader mode
+        KERNEL=="hidraw*", ATTRS{idVendor}=="35ef", MODE="0660", TAG+="uaccess"
+      '';
+    })
+    (pkgs.writeTextDir "lib/udev/rules.d/60-sonsei-bluetooth.rules" ''
+      SUBSYSTEM=="hidraw", KERNELS=="0005:35EF:0031.*", MODE="0660", TAG+="uaccess"
+    '')
+  ];
+
+  # services.tailscale.enable = true;
+
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 4*1024;
+  #   }
+  # ];
+
   fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
 
   programs.niri.enable = true;
