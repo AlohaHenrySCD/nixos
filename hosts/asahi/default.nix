@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.nixos-apple-silicon.nixosModules.default
+    inputs.steam-asahi.nixosModules.default
     ../../configuration.nix
     ./hardware-configuration.nix
     ./kernel.nix
@@ -32,6 +33,36 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+  programs.steam-asahi.enable = true;
+
+  home-manager.users.alohahenry.xdg.configFile."fex-emu/Config.json".text =
+    builtins.toJSON {
+      Config.RootFS = "/home/alohahenry/.local/share/fex-emu/RootFS/Fedora_44.ero";
+    };
+
+  nixpkgs.overlays = lib.mkAfter [
+    (final: prev: {
+      fex = final.symlinkJoin {
+        name = "fex-compat-${prev.fex.version}";
+        paths = [ prev.fex ];
+        postBuild = ''
+          ln -s FEX "$out/bin/FEXInterpreter"
+        '';
+        inherit (prev.fex) meta;
+      };
+      steam-asahi = prev.steam-asahi.override {
+        fuse = final.symlinkJoin {
+          name = "fuse-steam-compat";
+          paths = [ (lib.getBin final.fuse3) ];
+          postBuild = ''
+            ln -s fusermount3 "$out/bin/fusermount"
+          '';
+        };
+      };
+    })
+  ];
+
+  # Allow libvirt guests to use the host's Clash proxy.
   networking.firewall.interfaces.virbr0.allowedTCPPorts = [ 7897 ];
 
   # Ensure the default NAT network is available after boot and nixos-rebuild.
