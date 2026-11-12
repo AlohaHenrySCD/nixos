@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./modules/linux/packages.nix
+    ./modules/linux/qbittorrent.nix
     ./modules/linux/bazecor.nix
     ./modules/linux/gtk.nix
   ];
