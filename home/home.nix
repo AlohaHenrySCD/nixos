@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/common/packages.nix
+    ./modules/common/fish.nix
   ];
 
   home.stateVersion = "26.05";
