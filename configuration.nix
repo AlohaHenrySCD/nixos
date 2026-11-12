@@ -59,6 +59,35 @@
   # Bazecor checks 60-dygma.rules exactly; keep Bluetooth permissions separate.
   fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
 
+  services.desktopManager.plasma6.enable = true;
+  # Plasma supplies KWallet and PAM unlock for both SDDM sessions.
+  services.gnome.gnome-keyring.enable = false;
+  services.displayManager = {
+    defaultSession = "niri";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
+  # Plasma runs this helper itself; niri needs its own PAM unlock hook.
+  systemd.user.services.niri-kwallet-pam = {
+    description = "Unlock KWallet in niri from PAM credentials";
+    wantedBy = [ "niri.service" ];
+    after = [ "niri.service" ];
+    partOf = [ "niri.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
+      RemainAfterExit = true;
+    };
+  };
+
+  xdg.portal = {
+    config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
+    config.niri."org.freedesktop.impl.portal.FileChooser" = "kde";
+    config.common.default = "*";
+  };
+
   programs.fish.enable = true;
 
   programs.chromium = {

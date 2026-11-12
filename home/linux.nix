@@ -15,6 +15,28 @@ in
   home.homeDirectory = "/home/alohahenry";
   home.sessionPath = [ "/home/alohahenry/.cargo/bin" ];
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
+  xdg.dataFile."dbus-1/services/org.freedesktop.FileManager1.service".source =
+    "${pkgs.kdePackages.dolphin}/share/dbus-1/services/org.kde.dolphin.FileManager1.service";
+
+  home.sessionVariables = {
+    GLFW_IM_MODULE = "ibus";
+    SDL_IM_MODULE = "fcitx";
+    "QT_IM_MODULE" = "fcitx";
+    QT_QPA_PLATFORMTHEME = "kde";
+  };
+
+  systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "kde";
+
+  programs.obs-studio = {
+    enable = true;
+  };
+  programs.alacritty.enable = true;
+
   fonts.fontconfig = fontSettings.fontconfig;
 
   programs.kitty = {
@@ -56,6 +78,44 @@ in
       })
     ];
   }; */
+
+  xdg.dataFile."color-schemes/Everforest.colors".source =
+    inputs.kde-everforest + "/Everforest.colors";
+  programs.plasma = {
+    enable = true;
+
+    fonts = fontSettings.plasma;
+
+    configFile."plasma-localerc" = {
+      Formats.LANG = "en_US.UTF-8";
+      Translations.LANGUAGE = "en_US:en";
+    };
+
+    configFile."mimeapps.list"."Default Applications"."inode/directory" =
+      "org.kde.dolphin.desktop";
+
+    workspace.colorScheme = "Everforest";
+    configFile."kdeglobals"."Icons"."Theme" = "Papirus";
+    configFile."kded5rc"."Module-gtkconfig".autoload = false;
+
+    panels = [
+      {
+        location = "top";
+        height = 32;
+        floating = false;
+        widgets = [
+          "org.kde.plasma.kickoff"
+          "org.kde.plasma.pager"
+          "org.kde.plasma.icontasks"
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+          "org.kde.plasma.showdesktop"
+        ];
+      }
+
+    ];
+  };
 
 
 }
