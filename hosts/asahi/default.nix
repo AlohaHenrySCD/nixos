@@ -109,7 +109,7 @@
   hardware.asahi = {
     enable = true;
     # useExperimentalGPUDriver = true;
-    peripheralFirmwareDirectory = /boot/vendorfw;
+    peripheralFirmwareDirectory = null;
   };
 
   # services.pipewire.wireplumber.extraConfig."51-asahi-hdmi" = {

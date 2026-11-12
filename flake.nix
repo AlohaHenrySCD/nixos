@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Update these pins deliberately; see hosts/asahi/kernel.nix.
-    nixpkgs-kernel.url = "github:nixos/nixpkgs/55bfb4d7437bd4e09ab7cba58a43bd68eb310044";
+    nixpkgs-kernel.url = "github:nixos/nixpkgs/f9a75f41be3a74eab55d3a7679d34ad6cc0da977";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +17,7 @@
       url = "github:srinivasr/nirimod";
     };
     nixos-apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon/12cd234285d3037cedfab979aa70b75284a59afc";
+      url = "github:nix-community/nixos-apple-silicon/5de1c7ae865d645a3ebcc7d2ba5a13b9b50c0c16";
       inputs.nixpkgs.follows = "nixpkgs-kernel";
     };
     nix-darwin = {

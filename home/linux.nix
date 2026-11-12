@@ -107,7 +107,7 @@ in
 
   programs.fish = {
     shellAliases = {
-      bd = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi";
+      bd = "sudo nixos-rebuild switch -L --flake /etc/nixos#asahi";
       bd-debug = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi-debug";
     };
     shellAbbrs = {
