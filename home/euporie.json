@@ -1,0 +1,37 @@
+{
+  "notebook": {
+    "edit_mode": "helix",
+    "enable_language_servers": true,
+    "line_numbers": true,
+    "key_bindings": {
+      "euporie.notebook.tabs.notebook:Notebook": {
+        "select-previous-cell": "l",
+        "select-next-cell": [
+          "k"
+        ],
+        "extend-cell-selection-up": [
+          "L"
+        ],
+        "extend-cell-selection-down": [
+          "K"
+        ],
+        "edit-previous-cell-vi": "l",
+        "edit-next-cell-vi": "k",
+        "notebook-toggle-line-numbers": "j"
+      },
+      "euporie.core.key_binding.bindings.micro:EditMode": {},
+      "euporie.core.widgets.display:DisplayControl": {
+        "scroll-display-up": [
+          "l"
+        ],
+        "scroll-display-down": [
+          "k"
+        ]
+      },
+      "euporie.web.widgets.webview:WebViewControl": {
+        "scroll-webview-up": "l",
+        "scroll-webview-down": "k"
+      }
+    }
+  }
+}
