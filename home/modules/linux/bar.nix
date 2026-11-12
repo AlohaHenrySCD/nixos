@@ -122,9 +122,13 @@ in
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (old: {
+      # https://github.com/Alexays/Waybar/issues/5356
+      preCheck = (old.preCheck or "") + ''
+        mesonCheckFlagsArray+=('--test-args=~"SleeperThread control flags are stable under concurrent wake and stop"')
+      '';
       postPatch = (old.postPatch or "") + ''
         substituteInPlace src/modules/upower.cpp \
-          --replace-fail '"model", &upDevice_.model, NULL);' '"model", &upDevice_.model, NULL);
+          --replace-fail 'upDevice_.icon_name = (icon_name != NULL) ? icon_name : "";' 'upDevice_.icon_name = (icon_name != NULL) ? icon_name : "";
         if (upDevice_.kind == UP_DEVICE_KIND_BATTERY) {
           const int percentage = CLAMP(static_cast<int>(std::round(upDevice_.percentage)), 0, 100);
           const int level = ((percentage + 5) / 10) * 10;
@@ -133,8 +137,7 @@ in
               ? std::string("battery-full-charging-symbolic")
               : fmt::format("battery-level-{}{}-symbolic", level, charging ? "-charging" : "");
           if (gtkTheme_->has_icon(iconName)) {
-            g_free(upDevice_.icon_name);
-            upDevice_.icon_name = g_strdup(iconName.c_str());
+            upDevice_.icon_name = iconName;
           }
         }'
       '';
