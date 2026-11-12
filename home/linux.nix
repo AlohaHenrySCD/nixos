@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./modules/linux/packages.nix
+    ./modules/linux/gtk.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
