@@ -27,6 +27,10 @@
   };
 
   xdg.configFile."tlrc/config/toml".source = ./tlrc.toml;
+  xdg.configFile."yazi/theme.toml".source = ./yazi/theme.toml;
+
+  # Euporie writes settings and recent files back to this file. Keep a writable
+  # copy and reset it to the declarative template on each activation.
   programs.zoxide.enable = true;
 
   programs.git = {
