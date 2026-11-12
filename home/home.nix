@@ -12,6 +12,7 @@
     ./modules/common/ssh.nix
     ./modules/common/kitty.nix
     ./modules/common/helix.nix
+    ./modules/common/codex.nix
   ];
 
   home.stateVersion = "26.05";
