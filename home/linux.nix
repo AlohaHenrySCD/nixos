@@ -96,6 +96,10 @@ in
 
     workspace.colorScheme = "Everforest";
     configFile."kdeglobals"."Icons"."Theme" = "Papirus";
+    configFile."kcminputrc"."Mouse" = {
+      cursorTheme = "everforest-cursors";
+      cursorSize = 28;
+    };
     configFile."kded5rc"."Module-gtkconfig".autoload = false;
 
     panels = [
@@ -117,5 +121,17 @@ in
     ];
   };
 
+  home.pointerCursor = {
+    enable = true;
+    # package = pkgs.bibata-cursors;
+    package = pkgs.everforest-cursors;
+    # package = pkgs.phinger-cursors;
+    # name = "Bibata-Modern-Ice";
+    name = "everforest-cursors";
+    # name = "phinger-cursors-light";
+    size = 28;
+
+    gtk.enable = true;
+  };
 
 }
