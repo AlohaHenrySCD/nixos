@@ -15,6 +15,7 @@ in
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
     ./modules/linux/clash-hkmo.nix
+    ./modules/linux/quit-focused-app.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
