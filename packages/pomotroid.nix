@@ -13,6 +13,7 @@
   glib-networking,
   libayatana-appindicator,
   openssl,
+  sqlite,
   webkitgtk_4_1,
 }:
 let
@@ -75,6 +76,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     glib-networking
     libayatana-appindicator
     openssl
+    sqlite
     webkitgtk_4_1
   ];
 
