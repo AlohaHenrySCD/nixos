@@ -25,5 +25,24 @@
     RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
   };
 
+  xdg.configFile."tlrc/config/toml".source = ./tlrc.toml;
+  programs.zoxide.enable = true;
+
+  programs.git = {
+    enable = true;
+    settings = {
+      init.defaultBranch = "main";
+      user.name = "AlohaHenry";
+      user.email = "aloha.henry.2018@gmail.com";
+    };
+  };
+
+  xdg.configFile."starship.toml".source = ./starship.toml;
+  programs.starship.enable = true;
+
+  programs.bash = {
+    enable = true;
+
+  };
 
 }
