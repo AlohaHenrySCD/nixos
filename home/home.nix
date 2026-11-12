@@ -8,6 +8,7 @@
   imports = [
     ./modules/common/packages.nix
     ./modules/common/fish.nix
+    ./modules/common/ssh.nix
   ];
 
   home.stateVersion = "26.05";
