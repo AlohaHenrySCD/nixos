@@ -17,6 +17,16 @@ in
 
   fonts.fontconfig = fontSettings.fontconfig;
 
+  programs.kitty = {
+    settings.restore_session_after_logout = true;
+    # Compensate for Niri's touchpad scroll-factor 0.2 inside the terminal.
+    settings.touch_scroll_multiplier = 5.0;
+    keybindings = {
+      "esc" =
+        "combine : send_text all \\x1b : launch --type=background ${pkgs.fcitx5}/bin/fcitx5-remote -c";
+    };
+  };
+
   programs.fish = {
     shellAliases = {
       bd = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi";

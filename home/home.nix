@@ -9,6 +9,7 @@
     ./modules/common/packages.nix
     ./modules/common/fish.nix
     ./modules/common/ssh.nix
+    ./modules/common/kitty.nix
     ./modules/common/helix.nix
   ];
 
