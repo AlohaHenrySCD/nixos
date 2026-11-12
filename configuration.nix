@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./modules/keyd.nix
   ];
 
   nixpkgs.overlays = [
