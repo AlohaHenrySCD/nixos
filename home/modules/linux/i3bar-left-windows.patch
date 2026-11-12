@@ -1,0 +1,42 @@
+--- a/src/bar.rs
++++ b/src/bar.rs
+@@ -482,6 +482,7 @@
+     // Render blocks
+     buttons.clear();
+     let mut j = 0;
++    let mut windows_offset = offset_left;
+     for series in blocks_computed {
+         let s_len = series.blocks.len();
+         for (i, computed) in series.blocks.into_iter().enumerate() {
+@@ -492,10 +493,21 @@
+                 &computed.full
+             };
+             j += 1;
++            // Put window blocks immediately after workspace tags.
++            // Fall back to the normal position when there is no spare space.
++            let is_window = block.name.as_deref() == Some("niri_windows");
++            let x_offset = if is_window {
++                windows_offset.min(full_width - blocks_width)
++            } else {
++                full_width - blocks_width
++            };
++            if is_window {
++                windows_offset = x_offset + to_render.width;
++            }
+             to_render.render(
+                 context,
+                 RenderOptions {
+-                    x_offset: full_width - blocks_width,
++                    x_offset,
+                     bar_height: full_height,
+                     fg_color: block.color.unwrap_or(config.color),
+                     bg_color: block.background,
+@@ -505,7 +517,7 @@
+                 },
+             );
+             buttons.push(
+-                full_width - blocks_width,
++                x_offset,
+                 to_render.width,
+                 (block.name.clone(), block.instance.clone()),
+             );

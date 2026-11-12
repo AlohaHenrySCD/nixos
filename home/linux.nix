@@ -12,6 +12,7 @@ in
     ./modules/linux/packages.nix
     ./modules/linux/qbittorrent.nix
     ./modules/linux/bazecor.nix
+    ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
     ./modules/linux/clash-hkmo.nix
   ];
