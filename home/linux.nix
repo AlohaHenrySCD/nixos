@@ -16,6 +16,7 @@ in
     ./modules/linux/gtk.nix
     ./modules/linux/clash-hkmo.nix
     ./modules/linux/quit-focused-app.nix
+    ./modules/linux/kitty-session.nix
   ];
 
   home.homeDirectory = "/home/alohahenry";
@@ -97,7 +98,6 @@ in
   fonts.fontconfig = fontSettings.fontconfig;
 
   programs.kitty = {
-    settings.restore_session_after_logout = true;
     # Compensate for Niri's touchpad scroll-factor 0.2 inside the terminal.
     settings.touch_scroll_multiplier = 5.0;
     keybindings = {
