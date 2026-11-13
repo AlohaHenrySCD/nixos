@@ -10,24 +10,6 @@
     ./modules/nirinit.nix
   ];
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-        (pythonFinal: pythonPrev: {
-          nanoemoji = pythonPrev.nanoemoji.overrideAttrs (oldAttrs: {
-            version = "0.16.0";
-            src = prev.fetchFromGitHub {
-              owner = "googlefonts";
-              repo = "nanoemoji";
-              rev = "v0.16.0";
-              hash = "sha256-FysyKC01XBnRiur5RR9fcsTxQqE8x0JJHSoe3q6JtKc=";
-            };
-            doCheck = false;
-          });
-        })
-      ];
-    })
-  ];
   nixpkgs.config.allowUnsupportedSystem = true;
   users.users.alohahenry = {
     isNormalUser = true;
