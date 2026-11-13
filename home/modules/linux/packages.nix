@@ -13,14 +13,19 @@ let
   '';
 in
 {
-  xdg.desktopEntries.bazecor = {
-    name = "Bazecor";
-    comment = "Configure Dygma keyboards";
-    exec = "${bazecorLauncher}";
-    icon = "${bazecorDir}/build/logo.png";
-    categories = [ "Utility" ];
-    settings.StartupWMClass = "Bazecor";
-  };
+  xdg.desktopEntries = {
+    bazecor = {
+      name = "Bazecor";
+      comment = "Configure Dygma keyboards";
+      exec = "${bazecorLauncher}";
+      icon = "${bazecorDir}/build/logo.png";
+      categories = [ "Utility" ];
+      settings.StartupWMClass = "Bazecor";
+    };
+  } // lib.genAttrs [ "Helix" "btop" "yazi" ] (name: {
+    inherit name;
+    noDisplay = true;
+  });
 
   home.packages = with pkgs; [
     (callPackage ../../../packages/pomotroid.nix { })
