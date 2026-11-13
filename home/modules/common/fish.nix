@@ -10,6 +10,7 @@
       set -g fish_cursor_default block
       bind alt-u backward-kill-line
       abbr --add add --set-cursor='%' 'nix shell nixpkgs#%'
+      abbr --add dis --set-cursor='%' '% & disown'
       # abbr --add fd --set-cursor='%' 'find . -iname "*%*" 2>/dev/null'
       function y
       	set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -31,7 +32,9 @@
       ur = "uv run";
       jlog = "journalctl -b -x --all --no-pager";
       rm = "trash-put";
-      new = "kitty & disown";
+      cr = "codex resume";
+      co = "codex";
+      gp = "glow -p";
     };
     functions = {
       mkcd = ''
