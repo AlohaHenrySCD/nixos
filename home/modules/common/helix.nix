@@ -67,6 +67,11 @@ in
         indent-guides.skip-levels = 1;
       };
       keys.normal = {
+        "*" = "search_selection";
+        "A-*" = "search_selection_detect_word_boundaries";
+        h = "collapse_selection";
+        "A-h" = "flip_selections";
+        w = "@miwvwv";
         C-j = "jump_view_left";
         C-k = "jump_view_down";
         C-l = "jump_view_up";
@@ -87,6 +92,10 @@ in
         };
       };
       keys.select = {
+        "*" = "search_selection";
+        "A-*" = "search_selection_detect_word_boundaries";
+        h = "collapse_selection";
+        "A-h" = "flip_selections";
         j = "extend_char_left";
         k = "extend_line_down";
         l = "extend_line_up";
