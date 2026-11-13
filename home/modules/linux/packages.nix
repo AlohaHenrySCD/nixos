@@ -8,6 +8,7 @@
     (callPackage ../../../packages/pigma.nix { })
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
+    # opencode
     chatgpt
     kazumi
     haruna
