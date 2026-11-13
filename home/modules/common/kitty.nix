@@ -31,7 +31,7 @@
       cursor_trail_start_threshold = 0;
       cursor_blink_interval = "0.5 ease-in-out";
 
-      scrollback_pager = "sh -c 'cat > /tmp/kitty-scrollback.txt && ansifilter -i /tmp/kitty-scrollback.txt -o /tmp/kitty-scrollback-filtered.txt && ms + /tmp/kitty-scrollback-filtered.txt'";
+      scrollback_pager = "sh -c 'cat > /tmp/kitty-scrollback.txt && ansifilter -i /tmp/kitty-scrollback.txt -o /tmp/kitty-scrollback-filtered.txt && ms -c ~/.config/mitos/scrollback.toml + /tmp/kitty-scrollback-filtered.txt'";
       "map alt+r" = "show_scrollback";
     }
     // (import ../../../fonts.nix { inherit pkgs; }).kitty;

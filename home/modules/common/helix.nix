@@ -4,13 +4,20 @@
   pkgs,
   ...
 }:
+let
+  toml = pkgs.formats.toml { };
+  mitosSettings = lib.recursiveUpdate config.programs.helix.settings {
+    editor.cursor.block-rendering = "native";
+  };
+in
 {
   home.sessionVariables.MITOS_RUNTIME = "${config.home.homeDirectory}/git/mitos/runtime";
 
   # xdg.configFile."mitos/config.toml".source = config.xdg.configFile."helix/config.toml".source;
-  xdg.configFile."mitos/config.toml".source = (pkgs.formats.toml { }).generate "mitos-config.toml" (
-    lib.recursiveUpdate config.programs.helix.settings {
-      editor.cursor.block-rendering = "native";
+  xdg.configFile."mitos/config.toml".source = toml.generate "mitos-config.toml" mitosSettings;
+  xdg.configFile."mitos/scrollback.toml".source = toml.generate "mitos-scrollback.toml" (
+    lib.recursiveUpdate mitosSettings {
+      editor.gutters.layout = [ ];
     }
   );
   xdg.configFile."mitos/languages.toml".source = config.xdg.configFile."helix/languages.toml".source;
