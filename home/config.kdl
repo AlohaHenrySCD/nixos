@@ -365,6 +365,9 @@ binds {
 
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Shift+D hotkey-overlay-title="Look Up Selected Text: GoldenDict" {
+        spawn-sh "text=$(wl-paste --primary --no-newline 2>/dev/null); [ -n \"$text\" ] || text=$(wl-paste --no-newline); [ -n \"$text\" ] && exec goldendict -- \"$text\"";
+    }
     Mod+B hotkey-overlay-title="Run an Application: chromium" { spawn "chromium"; }
     Mod+G hotkey-overlay-title="Run an Application: kazumi" { spawn "kazumi"; }
     Mod+N hotkey-overlay-title="Run an Application: netease-music" { spawn "netease-cloud-music-gtk4"; }

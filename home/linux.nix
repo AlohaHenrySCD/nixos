@@ -64,6 +64,7 @@ in
 {
   imports = [
     ./modules/linux/packages.nix
+    ./modules/linux/goldendict.nix
     ./modules/linux/qbittorrent.nix
     ./modules/linux/flatpak.nix
     ./modules/linux/bar.nix
