@@ -5,16 +5,13 @@
 }:
 {
   imports = [
+    ./modules/flatpak.nix
     ./modules/keyd.nix
     ./modules/nirinit.nix
   ];
 
   nixpkgs.overlays = [
     (final: prev: {
-      # Keep Chromium's encryption backend identical in Plasma and niri.
-      chromium = prev.chromium.override {
-        commandLineArgs = "--password-store=kwallet6 --blink-settings=preferredColorScheme=1";
-      };
       pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
         (pythonFinal: pythonPrev: {
           nanoemoji = pythonPrev.nanoemoji.overrideAttrs (oldAttrs: {

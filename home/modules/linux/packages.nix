@@ -1,8 +1,27 @@
 {
+  config,
+  lib,
   pkgs,
   ...
 }:
+let
+  bazecorDir = "${config.home.homeDirectory}/git/Bazecor";
+  bazecorLauncher = pkgs.writeShellScript "bazecor-launch" ''
+    cd ${lib.escapeShellArg bazecorDir}
+    exec ${pkgs.nix}/bin/nix-shell ${lib.escapeShellArg "${bazecorDir}/shell.nix"} \
+      --argstr command 'exec ./out/Bazecor-linux-arm64/Bazecor'
+  '';
+in
 {
+  xdg.desktopEntries.bazecor = {
+    name = "Bazecor";
+    comment = "Configure Dygma keyboards";
+    exec = "${bazecorLauncher}";
+    icon = "${bazecorDir}/build/logo.png";
+    categories = [ "Utility" ];
+    settings.StartupWMClass = "Bazecor";
+  };
+
   home.packages = with pkgs; [
     (callPackage ../../../packages/pomotroid.nix { })
     (callPackage ../../../packages/pigma.nix { })
@@ -10,24 +29,18 @@
     # kdePackages.kdenlive
     # opencode
     chatgpt
-    kazumi
     haruna
     vlc
     gtrash
     qemu
-    (wechat.overrideAttrs { dieWithParent = false; })
     zed-editor
     vesktop
-    chromium
     netease-cloud-music-gtk
-    (obsidian.override { electron = electron_44; })
-    libreoffice
     # localsend
     glib
     gcc
     gtk4
     pavucontrol
-    fuzzel
     mako
     libnotify
     papers

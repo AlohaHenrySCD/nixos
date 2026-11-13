@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -196,7 +197,7 @@ in
         spacing = 8;
         icons = {
           Steam = "${pkgs.steam-asahi}/share/icons/hicolor/48x48/apps/steam.png";
-          obsidian_status_icon_1 = "${pkgs.obsidian.override { electron = pkgs.electron_44; }}/share/icons/hicolor/48x48/apps/obsidian.png";
+          obsidian_status_icon_1 = "${config.home.homeDirectory}/.local/share/flatpak/exports/share/icons/hicolor/512x512/apps/md.obsidian.Obsidian.png";
         };
       };
 
