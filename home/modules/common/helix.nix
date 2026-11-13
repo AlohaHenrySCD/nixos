@@ -60,7 +60,6 @@
         indent-guides.skip-levels = 1;
       };
       keys.normal = {
-        w = "rotate_view";
         C-j = "jump_view_left";
         C-k = "jump_view_down";
         C-l = "jump_view_up";

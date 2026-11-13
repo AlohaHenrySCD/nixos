@@ -31,6 +31,7 @@
       ur = "uv run";
       jlog = "journalctl -b -x --all --no-pager";
       rm = "trash-put";
+      new = "kitty & disown";
     };
     functions = {
       mkcd = ''
