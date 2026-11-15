@@ -103,6 +103,9 @@ in
   home.file.".local/share/flatpak/overrides/org.libreoffice.LibreOffice".text = ''
     [Context]
     filesystems=xdg-config/libreoffice;${fontAccess};
+
+    [Environment]
+    GTK_DATA_PREFIX=${config.gtk.theme.package}
   '';
   home.file.".local/share/flatpak/overrides/org.chromium.Chromium".text = ''
     [Context]
