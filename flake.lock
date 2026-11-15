@@ -79,11 +79,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793964982,
-        "narHash": "sha256-N7/qeqkZLY2nmnQkpZ4y+/rB993WGaQ/2jZD94CM4+k=",
+        "lastModified": 1794589920,
+        "narHash": "sha256-L0QZoMtwhpEXYtKU4N5tQgtBWSqzyo6U0D0FrJmZcgQ=",
         "owner": "srinivasr",
         "repo": "nirimod",
-        "rev": "a54a8ea978084c5d3f4b974c1dbff16250fa99d2",
+        "rev": "cacb543eabeb09f5a43a48cc764001294e3903b6",
         "type": "github"
       },
       "original": {
