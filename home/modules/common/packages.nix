@@ -5,6 +5,7 @@
 }:
 {
   home.packages = with pkgs; [
+    glow
     ffmpeg
     yazi
     jujutsu
