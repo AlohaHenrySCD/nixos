@@ -49,7 +49,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | Volume, mute, microphone, playback, brightness / 音量、静音、麦克风、播放、亮度 | [Media keys](niri.md#audio-and-brightness) · [Audio devices](desktop-tools.md#use-the-top-bar--waybar) |
 | Mako, notification, dismiss, recover / 通知、关闭通知、找回通知 | [Notifications](desktop-tools.md#read-and-recover-notifications--mako) |
 | GoldenDict, ECDICT, dictionary / 查词、词典、划词翻译 | [Word lookup](desktop-tools.md#look-up-a-word--goldendict) |
-| Fcitx5, Rime, language, punctuation / 中英文切换、输入法、标点 | [Language and punctuation](fcitx5-rime.md#switch-language-and-punctuation) |
+| Fcitx5, Rime, language, punctuation, symbols, commit raw text / 中英文切换、输入法、标点、符号、原文上屏 | [Language and punctuation](fcitx5-rime.md#switch-language-and-punctuation) |
 | Candidate, composition, pinyin / 候选词、拼音、输入串 | [Candidates](fcitx5-rime.md#choose-candidates) · [Composition](fcitx5-rime.md#edit-the-composition) |
 | keyd, physical key, Super, held key / 物理按键、长按、重映射 | [Main keyboard layer](keyd.md#main-layer) |
 | Navigation layer, numbers, symbols / 导航层、数字层、符号层 | [Navigation](keyd.md#navigation-layer) · [Numbers](keyd.md#number-and-function-key-layer) · [Symbols](keyd.md#symbol-layer) |
@@ -68,6 +68,8 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | Yazi, copy files, rename, trash / 文件管理、复制文件、重命名、删除 | [File actions](yazi.md#open-copy-and-manage-files) · [Find files](yazi.md#find-files) |
 | Broot, tree, preview, staging / 目录树、预览、暂存选择 | [Tree search](broot.md#search-and-change-the-listing) · [Panels](broot.md#panels-and-previews) · [Staging](broot.md#select-and-stage-files) |
 | Vimium, browser tab, bookmark, link / 浏览器标签、书签、链接 | [Tabs](vimium-c.md#tabs-and-bookmarks) · [Links](vimium-c.md#links-input-and-copying) · [Find text](vimium-c.md#find-text) |
+| Browser selection, caret, copy text, Helix / 网页选区、光标、复制文字 | [Select webpage text](vimium-c.md#select-webpage-text) |
+| Video keyboard controls, passthrough, typing practice / 视频快捷键、按键透传、打字练习 | [Video and typing sites](vimium-c.md#video-and-typing-sites) |
 | Euporie, notebook, cell, kernel / 笔记本、单元格、运行、内核 | [Run cells](euporie.md#run-cells-and-control-the-kernel) · [Organize cells](euporie.md#create-edit-and-organize-cells) |
 
 ## Same key, different place · 同键不同用途

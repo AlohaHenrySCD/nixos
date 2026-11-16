@@ -22,6 +22,8 @@ Linux · Rime Ice · Keys below are logical keys after [keyd](keyd.md). Physical
 | `` F4 / Ctrl+` / Ctrl+Shift+` `` | Open Rime scheme/options menu |
 | `Shift or Ctrl alone` | Does not switch Rime language mode |
 
+While composing, ASCII punctuation/symbol keys first commit the raw typed text, then Rime handles the symbol using the selected Chinese/English punctuation and half/full-width settings: `nihao,` → `nihao,` or `nihao，`. The exceptions are `-` and `=` for paging, and `[` and `]` for character selection. Apostrophe and backtick now commit raw text instead of acting as Rime separators or spelling keys. Space and digits retain candidate selection.
+
 ## Choose candidates
 
 Fcitx5 handles its own candidate keys before Rime. If Tab reaches Rime while composing, it moves by syllable instead; the next table shows that layer.
@@ -66,6 +68,7 @@ Fcitx5 handles its own candidate keys before Rime. If Tab reaches Rime while com
 | --- | --- |
 | `physical Backspace → pinyin → Tab → Space` | Activate input, choose a candidate and confirm |
 | `pinyin → = → digit` | Page through candidates and choose one |
+| `raw text → symbol` (except `-=[]`) | Commit the original letters; the symbol follows Rime's punctuation/width settings |
 | `Ctrl+Shift+P → punctuation` | Change punctuation style |
 | `F4 → choose an option` | Change a Rime option |
 | `rq / sj / xq` | Offer date / time / weekday candidates |
@@ -76,4 +79,4 @@ Switching away from Rime commits raw input. Kitty reserves Ctrl+Shift+U for scro
 
 ---
 
-[Fcitx keys](../home/fcitx5) · [Rime overrides](../home/default.custom.yaml) · [Linux integration](../home/linux.nix) · inherited keys checked against the deployed Rime schema · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Fcitx keys](../home/fcitx5) · [Rime overrides](../home/default.custom.yaml) · [Raw text on symbols](../home/raw_on_symbol.lua) · [Linux integration](../home/linux.nix) · symbol override requires rebuild and Rime redeploy · Checked 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)

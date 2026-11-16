@@ -206,7 +206,9 @@ in
   home.file.".local/share/fcitx5/rime/rime_ice.custom.yaml".text = ''
     patch:
       "switches/@1/reset": 1
+      "engine/processors/@before 0": lua_processor@*raw_on_symbol
   '';
+  home.file.".local/share/fcitx5/rime/lua/raw_on_symbol.lua".source = ./raw_on_symbol.lua;
 
   xdg.configFile."mako/config".source = ./mako;
   xdg.configFile."fcitx5/config".source = ./fcitx5;
