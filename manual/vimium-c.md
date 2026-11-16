@@ -1,41 +1,44 @@
 # Vimium C
 
-The installed extension is 2.12.2. These are all keys in your saved export; automatic import of that export is not configured. It clears the normal-mode defaults, so unlisted upstream normal shortcuts are unavailable after import. Keys act on the page, outside editable text fields.
+Vimium C 2.12.2 · Helix/Mitos layout. This guide describes the local export, which must be imported manually; it has not been applied to the browser. Import `/etc/nixos/home/vimium/config.json` through Vimium C's options page. No NixOS rebuild is required.
+
+`j k l ;` = left/down/up/right. `→` means press in sequence; uppercase letters include Shift. Keys below are the keys received by the browser after [keyd](keyd.md) remapping. Page shortcuts work outside editable text fields on pages where Vimium can run. The export clears normal-mode defaults; Visual/Caret mode retains its own defaults with the overrides below.
 
 ## On this page
 
 [Links, input and copying](#links-input-and-copying) · [Tabs and bookmarks](#tabs-and-bookmarks) · [Move around the page](#move-around-the-page) · [Navigation and page controls](#navigation-and-page-controls)
 
-[Find text](#find-text) · [Useful sequences](#useful-sequences)
+[Find text](#find-text) · [Select webpage text](#select-webpage-text) · [Video and typing sites](#video-and-typing-sites) · [Useful sequences](#useful-sequences)
 
 ## Links, input and copying
 
 | Shortcut | Use |
 | --- | --- |
-| `f` | Open a link in the current tab |
+| `f`; `F` | Open a link in the current / new tab |
 | `g → w` | Select text using hints |
-| `g → i` | Focus the N-th visible text box on the page and cycle using tab |
-| `y` | Copy page's info |
-| `c` | Copy selected text automatically |
+| `g → i` | Focus a visible input; use Tab to cycle inputs |
+| `y` / `Space → y`; `Y` / `Space → Y` | Copy selected text / current page URL |
+| `o` / `Space → f`; `O` / `Space → F` | Open the URL/search chooser for the current / new tab |
 
 ## Tabs and bookmarks
 
 | Shortcut | Use |
 | --- | --- |
-| `F` | Open a link in a new tab |
-| `d` | Close N tabs |
-| `D` | Restore closed tabs |
-| `Ctrl+q`; `Ctrl+e` | Go one tab left / right |
+| `Space → c` | Close the current tab; Chromium's Ctrl+w also works |
+| `u` | Restore a closed tab |
+| `g → p`; `g → n` | Previous / next tab |
+| `g → a` | Return to the last visited tab |
 | `<`; `>` | Move tab to the left / right |
-| `t` | Search open tabs |
-| `b` | Search bookmarks and open in a new tab |
+| `t` / `Space → b` | Search open tabs |
+| `b` / `Space → o` | Search bookmarks and open in a new tab |
 
 ## Move around the page
 
 | Shortcut | Use |
 | --- | --- |
-| `j`; `k`; `l`; `;` | Scroll left / down / up / right |
-| `Ctrl+u`; `Ctrl+d` | Scroll a page up / down |
+| `j k l ;` / `Left Down Up Right` | Scroll left/down/up/right; arrows pass through on video sites |
+| `Ctrl+u`; `Ctrl+d` | Scroll half a page up / down |
+| `PageUp`; `PageDown` | Scroll a full page up / down |
 | `g → g`; `g → e` | Scroll to the top / bottom of the page |
 
 ## Navigation and page controls
@@ -43,36 +46,61 @@ The installed extension is 2.12.2. These are all keys in your saved export; auto
 | Shortcut | Use |
 | --- | --- |
 | `r` | Reload current frame |
-| `Ctrl+p` | Pass the next keys to the page |
-| `Ctrl+k` | Cycle forward to the next frame on the page |
+| `Ctrl+p` | Pass the next key to the page |
+| `i`; `Esc` | Enter passthrough (Insert) mode / leave it |
+| `g → f` | Cycle forward to the next frame on the page |
 | `[ → [`; `] → ]` | Follow the previous / next page link |
-| `J`; `:` | Back / forward in browser history |
-| `?` | Show help |
-| `Ctrl+o` | Open URL |
+| `Ctrl+o`; `Ctrl+i` | Back / forward in browser history |
+| `g → ?` / `Space → ?` | Show help |
 
 ## Find text
 
 | Shortcut | Use |
 | --- | --- |
-| `p`; `n` | Previous / next find match |
-| `/` | Enter find mode |
+| `/`; `?` | Search forward / backward |
+| `n`; `N` | Next / previous find match |
+| `*` | Search forward for selected text |
+
+## Select webpage text
+
+Start with `g → w` and a text hint, or find text with `/`. Press `v` to enter Visual mode. Movement extends the selection in Visual mode and moves the caret in Caret mode.
+
+| Shortcut | Use |
+| --- | --- |
+| `v` | Enter Visual mode; from Caret mode, resume extending the selection |
+| `j k l ;` | Left/down/up/right in Visual/Caret mode |
+| `w`; `b`; `e` | Next word start / previous word start / next word end |
+| `h` | Switch to Caret mode and collapse the selection |
+| `Alt+h` | Swap selection anchor and moving end |
+| `x` | Enter line selection mode |
+| `y` | Copy the selection and leave Visual mode |
+| `Esc` | Leave Visual/Caret mode |
+
+These are browser text selections: the custom Helix `w` macro, repeated `x/X`, text objects and multiple selections are not reproduced. `Space` shortcuts are normal-mode mappings; use `y` directly while selecting. Visual/Caret mode keeps upstream commands such as `gg` / `G` for document start/end and `0` / `$` for line start/end.
+
+## Video and typing sites
+
+On `www.bilibili.com` and `www.youtube.com`, Space and the four arrows pass through to the page so the player can use them. Player behavior still depends on focus. `Space` sequences are unavailable there; use `t`, `o/O`, `b`, `y/Y`, `g?` and Chromium's Ctrl+w instead. For other player shortcuts, use `Ctrl+p → key`, or `i → player keys → Esc`.
+
+Vimium is disabled on `www.typing.com` and `codingspeedtest.com`. These rules preserve the inspected browser exceptions, adding Space passthrough for the video sites. Importing this export also imports these rules.
 
 ## Useful sequences
 
 | Shortcut | Use |
 | --- | --- |
 | `f → displayed hint` | Open a link here |
-| `F → displayed hint → Ctrl+E` | Open a link in a new tab and switch tabs |
-| `/ → query → Enter → n / p` | Find text, then next / previous match |
-| `t → tab title → Enter` | Switch to an existing tab |
+| `F → displayed hint → g → n` | Open a link in a new tab and move to the next tab |
+| `/ → query → Enter → n / N` | Find text, then next / previous match |
+| `Space → b → tab title → Enter` | Switch to an existing tab; use `t` on video sites |
 | `b → bookmark → Enter` | Open a bookmark in a new tab |
 | `gi → type → Esc` | Focus an input; leave it before using page shortcuts |
 | `Ctrl+P → key` | Send the next key directly to the page |
-| `d → D` | Close and restore a tab |
-| `y → switch app → paste` | Share the current URL |
+| `Space → c → u` | Close and restore a tab |
+| `gw → hint → v → movement → y` | Select and copy webpage text |
+| `Y → switch app → paste` | Share the current URL |
 
-Esc cancels an active hint/search/chooser. For restricted browser pages, the extension may not receive keys. `Ctrl+O` is saved as an open-URL action without a URL argument; use `t`/`b` for the configured searchable choosers.
+Esc cancels an active hint/search/chooser. On restricted browser pages or when a browser shortcut takes precedence, use Chromium's native shortcuts. Commands were checked against the installed extension; the new mappings have not been interactively tested.
 
 ---
 
-[Saved export](../home/vimium/config.json) · [Extension installation](../configuration.nix) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Saved export](../home/vimium/config.json) · [Extension installation](../configuration.nix) · [Per-mode mapping reference](https://github.com/gdh1995/vimium-c/wiki/Use-in-another-keyboard-layout#per-mode-mapkey) · Updated 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)
