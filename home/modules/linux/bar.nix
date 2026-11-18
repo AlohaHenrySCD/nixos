@@ -6,10 +6,8 @@
 }:
 let
   fontSettings = (import ../../../fonts.nix { inherit pkgs; }).waybar;
-  inherit (fontSettings) iconSize networkIconSize bluetoothIconSize;
-  sizedIcon =
-    size: glyph: "<span font_desc=\"${fontSettings.iconFamily} ${toString size}px\">${glyph}</span>";
-  icon = sizedIcon iconSize;
+  inherit (fontSettings) iconSize;
+  icon = glyph: "<span font_family=\"${fontSettings.iconFamily}\">${glyph}</span>";
   systemMonitor = "${pkgs.kitty}/bin/kitty --title 'System Monitor' -e ${pkgs.btop}/bin/btop";
 
   gtkBindings = pkgs.fetchurl {
@@ -151,7 +149,7 @@ in
     settings.mainBar = {
       layer = "top";
       position = "top";
-      height = 26;
+      height = 32;
       spacing = 4;
       fixed-center = false;
       no-center = true;
@@ -332,7 +330,7 @@ in
       network = {
         interface = "wl*";
         interval = 5;
-        format-wifi = "${sizedIcon networkIconSize "{icon}"}";
+        format-wifi = "${icon "{icon}"}";
         format-icons = [
           "󰤯"
           "󰤟"
@@ -340,9 +338,9 @@ in
           "󰤥"
           "󰤨"
         ];
-        format-linked = "${sizedIcon networkIconSize "󰖩"} …";
-        format-disconnected = "${sizedIcon networkIconSize "󰖪"}";
-        format-disabled = "${sizedIcon networkIconSize "󰖪"}";
+        format-linked = "${icon "󰖩"} …";
+        format-disconnected = "${icon "󰖪"}";
+        format-disabled = "${icon "󰖪"}";
         tooltip-format-wifi = "{essid}\n{ipaddr} · 信号 {signalStrength}%";
         tooltip-format-disconnected = "Wi-Fi 未连接";
         tooltip-format-disabled = "Wi-Fi 已关闭";
@@ -351,10 +349,10 @@ in
       };
 
       bluetooth = {
-        format = "${sizedIcon bluetoothIconSize ""}";
-        format-disabled = "${sizedIcon bluetoothIconSize "󰂲"}";
-        format-off = "${sizedIcon bluetoothIconSize "󰂲"}";
-        format-connected = "${sizedIcon bluetoothIconSize ""} {num_connections}";
+        format = "${icon ""}";
+        format-disabled = "${icon "󰂲"}";
+        format-off = "${icon "󰂲"}";
+        format-connected = "${icon ""} {num_connections}";
         tooltip-format = "蓝牙 {status}";
         tooltip-format-connected = "{device_enumerate}";
         tooltip-format-enumerate-connected = "{device_alias}";
@@ -411,6 +409,8 @@ in
         font-family: ${fontSettings.family};
         font-size: ${toString fontSettings.textSize}px;
         font-weight: ${toString fontSettings.weight};
+        padding: 0;
+        margin: 0;
         border: none;
         border-radius: 0;
         min-height: 0;
@@ -460,7 +460,6 @@ in
       .cffi-niri-windows .tile { background: @bg_alt; color: @fg; border-radius: 3px; }
       .cffi-niri-windows .tile label {
         font-family: "${fontSettings.iconFamily}";
-        font-size: ${toString iconSize}px;
       }
       .cffi-niri-windows .tile:active { background: @green; color: @bg; }
       .cffi-niri-windows .tile.urgent { background: @red; color: @bg; }
@@ -474,11 +473,6 @@ in
       #custom-system, #memory { color: @aqua; }
       #disk, #upower { color: @green; }
       #upower image { margin-right: 4px; }
-      #upower label {
-        font-size: ${toString fontSettings.textSize}px;
-        padding: 0;
-        margin: 0;
-      }
       #cpu, #pulseaudio { color: @yellow; }
       #network, #bluetooth { color: @blue; }
       #clock { color: @fg; background: @bg_alt; }

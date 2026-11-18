@@ -4,8 +4,7 @@ let
   uiCjk = "LXGW WenKai GB Screen";
   monospace = "JetBrainsMonoNL Nerd Font Mono";
   monospaceCjk = "LXGW Neo XiHei";
-  icons = "JetBrainsMono Nerd Font";
-  monoIcons = "JetBrainsMono Nerd Font Mono";
+  icons = "JetBrainsMono Nerd Font Propo";
 in
 {
   packages =
@@ -102,13 +101,11 @@ in
 
   fcitx = "${monospaceCjk} 11";
 
-  waybar = {
+  waybar = rec {
     family = ''"${ui}", "${uiCjk}", "${icons}", sans-serif'';
     textSize = 16;
     weight = 600;
-    iconFamily = monoIcons;
-    iconSize = 20;
-    networkIconSize = 22;
-    bluetoothIconSize = 18;
+    iconFamily = icons;
+    iconSize = textSize;
   };
 }
