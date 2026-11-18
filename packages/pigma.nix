@@ -9,18 +9,18 @@ let
   releases = {
     aarch64-linux = {
       target = "aarch64-unknown-linux-gnu";
-      sha256 = "9f390337da0d488b09744b5644461b588f43fac79b13b2ca69628c620700c738";
+      sha256 = "5a2a70dac1fdad0bcfb9c783fbab544ca13eef3893ed7454cc728295cb78ba44";
     };
     x86_64-linux = {
       target = "x86_64-unknown-linux-gnu";
-      sha256 = "1cbaa8713cb23a655e544230d11d28e2164131889663f052e4674686f8667b42";
+      sha256 = "d786e51c687744d65009bc0a8337a433720c67a742db8eb4e242d3a7eede093f";
     };
   };
   release = releases.${stdenv.hostPlatform.system};
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "pigma";
-  version = "0.2.15";
+  version = "0.3.0";
 
   src = fetchurl {
     url = "https://github.com/akirco/pigma/releases/download/v${finalAttrs.version}/pigma-${release.target}.tar.gz";
