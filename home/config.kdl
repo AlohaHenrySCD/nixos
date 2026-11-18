@@ -630,12 +630,11 @@ environment {
     QT_QPA_PLATFORMTHEME "kde"
 }
 cursor {
-//     xcursor-size 24
+    xcursor-size 32
+    xcursor-theme "everforest-cursors"
 
     hide-when-typing
     hide-after-inactive-ms 5000
-
-//     xcursor-theme "Adwaita"
 }
 
 window-rule {

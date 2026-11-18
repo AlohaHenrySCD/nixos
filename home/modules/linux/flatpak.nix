@@ -7,6 +7,8 @@
 }:
 let
   flatpakDataDirs = "${config.xdg.dataHome}/flatpak/exports/share:/var/lib/flatpak/exports/share";
+  cursor = config.home.pointerCursor;
+  cursorIcons = "${cursor.package}/share/icons";
   apps = {
     chromium = "org.chromium.Chromium";
     kazumi = "io.github.Predidit.Kazumi";
@@ -98,7 +100,12 @@ in
   '';
   home.file.".local/share/flatpak/overrides/com.tencent.WeChat".text = ''
     [Context]
-    filesystems=${config.home.homeDirectory}/.xwechat;${fontAccess};
+    filesystems=${config.home.homeDirectory}/.xwechat;${fontAccess};${cursorIcons}:ro;
+
+    [Environment]
+    XCURSOR_PATH=${cursorIcons}:/usr/share/icons:/app/share/icons
+    XCURSOR_THEME=${cursor.name}
+    XCURSOR_SIZE=${toString cursor.size}
   '';
   home.file.".local/share/flatpak/overrides/org.libreoffice.LibreOffice".text = ''
     [Context]
