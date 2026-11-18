@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules/common/packages.nix
+    ./modules/common/btop.nix
     ./modules/common/broot.nix
     ./modules/common/fish.nix
     ./modules/common/ssh.nix

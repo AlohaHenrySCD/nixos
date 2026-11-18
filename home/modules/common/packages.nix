@@ -29,7 +29,6 @@
     navi
     hugo
     lazygit
-    btop
     fd
     trash-cli
 
