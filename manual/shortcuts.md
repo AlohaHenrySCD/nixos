@@ -60,7 +60,7 @@ Each guide has a section directory at the top. [The task index](task-index.md) l
 | Inspect old terminal output | Kitty `Alt+R` → [Mitos](mitos.md) navigation → `Space → q` |
 | Find errors in logs | Fish `jlog \| ov` → `/ → error → Enter → n` |
 | Enter a project directory | Fish `y` → [Yazi](yazi.md) navigation → `q`; or `zi project` |
-| Look up selected text | Select text → Niri `Mod+Shift+D` |
+| Look up selected text | Select text → Niri `Mod+Ctrl+D` |
 | Copy editor text to another app | Helix/Mitos selection → `Space → y` → paste in destination |
 | Recover a dismissed notification | Fish `makoctl restore` |
 | Recover a trashed file | Fish `trash-list` → `trash-restore PATH` → choose an item |

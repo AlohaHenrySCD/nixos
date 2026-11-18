@@ -87,8 +87,8 @@ No global notification-dismiss shortcut is configured. Use the commands or point
 
 | Entry | Use |
 | --- | --- |
-| Select text → Mod+Shift+D | Look it up in GoldenDict |
-| Copy text → Mod+Shift+D | Clipboard fallback when primary selection is empty |
+| Select text → Mod+Ctrl+D | Look it up in GoldenDict |
+| Copy text → Mod+Ctrl+D | Clipboard fallback when primary selection is empty |
 | `goldendict -- 'word'` | Look up an explicit word |
 
 An older primary selection takes precedence over newer clipboard text. For a precise lookup, select the intended word again or use the explicit command. The configured dictionary is ECDICT.

@@ -21,7 +21,7 @@
 | `Mod+Shift+/` | Show Niri's shortcut overlay |
 | `Mod+T` | Launch Kitty |
 | `Mod+D` | Launch Fuzzel |
-| `Mod+Shift+D` | Look up primary selected text in GoldenDict; fall back to clipboard text |
+| `Mod+Ctrl+D` | Look up primary selected text in GoldenDict; fall back to clipboard text |
 | `Mod+B` | Launch Chromium |
 | `Mod+G` | Launch Kazumi |
 | `Mod+N` | Launch NetEase Cloud Music GTK4 |
@@ -108,7 +108,7 @@ For launcher input, bar clicks, notification recovery and dictionary lookup, see
 | `Mod+, → Mod+W` | Bring a window from the right into the column and show it as tabs |
 | `Mod+Ctrl+3 → Mod+3` | Move the column to workspace 3, then follow it |
 | `Mod+V → Mod+Shift+V` | Float a window, then switch focus between floating and tiled windows |
-| `select text → Mod+Shift+D` | Look up in GoldenDict; clipboard is used only if primary selection is empty |
+| `select text → Mod+Ctrl+D` | Look up in GoldenDict; clipboard is used only if primary selection is empty |
 | `Mod+Shift+E → Save Kitty and log out` | Save terminal sessions and confirm logout |
 
 Media/brightness keys and Orca work while locked. Logout opens a confirmation menu; Cancel is the default.
