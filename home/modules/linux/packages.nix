@@ -22,7 +22,8 @@ in
       categories = [ "Utility" ];
       settings.StartupWMClass = "Bazecor";
     };
-  } // lib.genAttrs [ "Helix" "btop" "yazi" ] (name: {
+  }
+  // lib.genAttrs [ "Helix" "btop" "yazi" ] (name: {
     inherit name;
     noDisplay = true;
   });
