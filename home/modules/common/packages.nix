@@ -5,6 +5,7 @@
 }:
 {
   home.packages = with pkgs; [
+    bubblewrap # codex required
     glow
     ffmpeg
     yazi
