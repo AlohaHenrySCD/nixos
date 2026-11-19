@@ -58,18 +58,18 @@
               leftmeta = "esc";
               rightmeta = "layer(plain)";
               rightalt = "layer(nav)";
-              a = "overloadt(alt, a, 185)";
-              s = "overloadt(meta, s, 185)";
-              d = "overloadt(shift, d, 185)";
-              f = "overloadt(nav, f, 185)";
-              j = "overloadt(num, j, 185)";
-              k = "overloadt(shift, k, 185)";
-              l = "overloadt(meta, l, 185)";
-              semicolon = "overloadt(altgr, semicolon, 185)";
-              v = "overloadt(control, v, 185)";
-              m = "overloadt(control, m, 185)";
-              c = "overloadt(symbol, c, 185)";
-              comma = "overloadt(symbol, comma, 185)";
+              a = "overloadt(alt, a, 150)";
+              s = "overloadt(meta, s, 150)";
+              d = "overloadt(shift, d, 150)";
+              f = "overloadt(nav, f, 150)";
+              j = "overloadt(num, j, 150)";
+              k = "overloadt(shift, k, 150)";
+              l = "overloadt(meta, l, 150)";
+              semicolon = "overloadt(altgr, semicolon, 150)";
+              v = "overloadt(control, v, 150)";
+              m = "overloadt(control, m, 150)";
+              c = "overloadt(symbol, c, 150)";
+              comma = "overloadt(symbol, comma, 150)";
             };
 
             plain = {
