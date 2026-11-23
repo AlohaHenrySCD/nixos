@@ -34,6 +34,8 @@ in
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
     # opencode
+    antigravity
+    antigravity-cli
     chatgpt
     haruna
     vlc
