@@ -208,7 +208,7 @@
   };
 
   time = {
-    timeZone = "Asia/Macau";
+    timeZone = "Asia/Singapore";
   };
 
   networking = {
@@ -230,8 +230,10 @@
     # glfw
   ];
 
-  i18n.extraLocaleSettings.LANGUAGE = "en_US:en";
+  i18n.defaultLocale = "en_SG.UTF-8";
+  i18n.extraLocaleSettings.LANGUAGE = "en_SG:en";
   i18n.supportedLocales = [
+    "en_SG.UTF-8/UTF-8"
     "en_US.UTF-8/UTF-8"
     "zh_CN.UTF-8/UTF-8"
   ];

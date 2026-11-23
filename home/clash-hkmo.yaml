@@ -15,15 +15,6 @@ profile:
   store-selected: true
 
 dns:
-  default-nameserver:
-    - https://1.0.0.1/dns-query
-    - https://9.9.9.9/dns-query
-  nameserver:
-    - https://1.0.0.1/dns-query
-    - https://9.9.9.9/dns-query
-  proxy-server-nameserver:
-    - https://1.0.0.1/dns-query
-    - https://9.9.9.9/dns-query
   direct-nameserver: []
   nameserver-policy:
     'geosite:private': system
@@ -63,6 +54,16 @@ proxy-groups:
     exclude-filter: '(?i)IPV6|剩余|到期|重置|官网|教程'
     url: https://www.gstatic.com/generate_204
 
+  - name: Google
+    type: select
+    proxies:
+      - DIRECT
+    default-selected: 🇬🇧 英国 MT1
+    include-all: true
+    filter: '(MT1|M2)$'
+    exclude-filter: '(?i)IPV6'
+    url: https://www.gstatic.com/generate_204
+
   - name: 日本限定
     type: select
     default-selected: 🇯🇵 日本 MT1
@@ -83,6 +84,7 @@ proxy-groups:
 rules:
   - GEOSITE,private,DIRECT
   - GEOIP,private,DIRECT,no-resolve
+  - GEOSITE,google,Google
   - GEOSITE,anthropic,Claude
   - GEOSITE,category-ai-!cn,AI
   - GEOSITE,category-ai-cn,AI

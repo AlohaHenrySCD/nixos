@@ -26,10 +26,11 @@ let
   systemFonts = lib.findFirst (
     package: package.name == "X11-fonts"
   ) null osConfig.environment.systemPackages;
-  fontAccess = lib.concatMapStringsSep ";" (path: "${path}:ro") [
+  fontPaths = [
     "${systemFonts}/share/X11/fonts"
     "${config.gtk.font.package}/share/fonts"
   ];
+  fontAccess = lib.concatMapStringsSep ";" (path: "${path}:ro") fontPaths;
   fontRules = lib.filterAttrs (
     name: _: lib.hasPrefix "fontconfig/conf.d/" name && !lib.hasSuffix "10-hm-fonts.conf" name
   ) config.xdg.configFile;
@@ -114,9 +115,10 @@ in
     [Environment]
     GTK_DATA_PREFIX=${config.gtk.theme.package}
   '';
-  home.file.".local/share/flatpak/overrides/org.chromium.Chromium".text = ''
-    [Context]
-    filesystems=${fontAccess};
+  # KDE browser integration also updates Chromium's per-user override.
+  home.activation.flatpakChromiumFontAccess = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    run ${pkgs.flatpak}/bin/flatpak override --user \
+      ${lib.escapeShellArgs (map (path: "--filesystem=${path}:ro") fontPaths)} ${apps.chromium}
   '';
 
   home.file.".local/share/codex-browser/chromium-mcp.py" = {
