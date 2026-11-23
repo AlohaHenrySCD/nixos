@@ -300,7 +300,8 @@ in
       };
 
       disk = {
-        format = "${icon "󰋊"} {percentage_used}%";
+        format = "${icon "󰋊"} {specific_free:.0f}G";
+        unit = "GB";
         tooltip-format = "已用 {used} / {total}\n可用 {free}";
         on-click = systemMonitor;
       };

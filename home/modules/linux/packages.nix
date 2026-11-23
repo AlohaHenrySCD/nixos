@@ -29,7 +29,7 @@ in
   });
 
   home.packages = with pkgs; [
-    (callPackage ../../../packages/pomotroid.nix { })
+    # (callPackage ../../../packages/pomotroid.nix { })
     (callPackage ../../../packages/pigma.nix { })
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
