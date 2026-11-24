@@ -1,0 +1,7 @@
+keys:
+  - &user_alohahenry age15amc9ur5tapxrrfrqagcdw69z8mdqcpdccpzpr0zl7gre2wgyd7saw5dpk
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *user_alohahenry

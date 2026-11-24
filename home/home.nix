@@ -14,6 +14,8 @@
     ./modules/common/kitty.nix
     ./modules/common/helix.nix
     ./modules/common/codex.nix
+    ./modules/common/claude.nix
+    ./modules/common/sops.nix
   ];
 
   home.stateVersion = "26.05";

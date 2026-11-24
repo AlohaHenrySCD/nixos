@@ -29,6 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kde-everforest = {
       url = "github:Serge2702/KDE-Everforest";
       flake = false;
@@ -74,6 +78,7 @@
 
                 sharedModules = [
                   plasma-manager.homeModules.plasma-manager
+                  inputs.sops-nix.homeManagerModules.sops
                 ];
 
                 extraSpecialArgs = {
@@ -118,6 +123,9 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
               extraSpecialArgs = {
                 inherit inputs;
               };
