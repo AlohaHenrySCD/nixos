@@ -90,7 +90,11 @@
     '')
   ];
 
-  # services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+    extraSetFlags = [ "--operator=alohahenry" ];
+  };
 
   # swapDevices = [
   #   {
@@ -223,6 +227,7 @@
       "Mihomo"
       "Meta"
     ];
+    firewall.trustedInterfaces = [ "tailscale0" ];
   };
 
   programs.starship.enable = true;
