@@ -122,6 +122,8 @@ rules:
   - GEOSITE,tver,日本限定
   - DOMAIN-SUFFIX,animestore.docomo.ne.jp,日本限定
   - DOMAIN-SUFFIX,b-ch.com,日本限定
+  - DOMAIN-SUFFIX,tailscale.com,慢站代理
+  - DOMAIN-SUFFIX,tailscale.io,慢站代理
   # 慢站需按本地线路复测后添加，优先 GEOSITE；示例（当前不启用）：
   # - GEOSITE,github,慢站代理
   - MATCH,DIRECT

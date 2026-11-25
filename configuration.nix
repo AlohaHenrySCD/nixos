@@ -95,6 +95,11 @@
     openFirewall = true;
     extraSetFlags = [ "--operator=alohahenry" ];
   };
+  systemd.services.tailscaled.environment = {
+    HTTP_PROXY = "http://127.0.0.1:7897";
+    HTTPS_PROXY = "http://127.0.0.1:7897";
+    NO_PROXY = "localhost,127.0.0.1,::1,100.64.0.0/10,*.ts.net";
+  };
 
   # swapDevices = [
   #   {
