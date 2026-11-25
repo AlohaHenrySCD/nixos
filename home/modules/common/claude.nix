@@ -1,7 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   programs.claude-code = {
     enable = true;
+    package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
     mutableSettings = true;
     settings = {
       apiKeyHelper = "${pkgs.coreutils}/bin/cat ${config.sops.secrets.deepseek_api_key.path}";

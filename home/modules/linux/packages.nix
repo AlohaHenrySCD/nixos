@@ -1,10 +1,12 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
+  llmAgents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   bazecorDir = "${config.home.homeDirectory}/git/Bazecor";
   bazecorLauncher = pkgs.writeShellScript "bazecor-launch" ''
     cd ${lib.escapeShellArg bazecorDir}
@@ -34,9 +36,10 @@ in
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
     # opencode
-    antigravity-cli
-    opencode
-    t3code
+    llmAgents.antigravity-cli
+    llmAgents.opencode2
+    llmAgents.t3code
+    llmAgents.t3code-desktop
     chatgpt
     haruna
     vlc
