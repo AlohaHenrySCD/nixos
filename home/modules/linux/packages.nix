@@ -32,6 +32,7 @@ in
 
   home.packages = with pkgs; [
     # (callPackage ../../../packages/pomotroid.nix { })
+    (callPackage ../../../packages/deepseek-harness-uncensored.nix { })
     (callPackage ../../../packages/pigma.nix { })
     (callPackage ../../../packages/squirreldisk.nix { })
     # kdePackages.kdenlive
