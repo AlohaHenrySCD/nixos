@@ -54,6 +54,22 @@
     }:
     let
       constants = import ./constants.nix;
+      mkHomeMinimal =
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        in
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs constants;
+            theme = import ./theme.nix { inherit pkgs; };
+          };
+          modules = [ ./home-minimal ];
+        };
       sharedTheme =
         { pkgs, ... }:
         let
@@ -106,6 +122,12 @@
     in
     {
       overlays.default = import ./overlays;
+
+      homeConfigurations = {
+        minimal-aarch64-linux = mkHomeMinimal "aarch64-linux";
+        minimal-x86_64-linux = mkHomeMinimal "x86_64-linux";
+        minimal-aarch64-darwin = mkHomeMinimal "aarch64-darwin";
+      };
 
       packages = nixpkgs.lib.genAttrs [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ] (
         system:
