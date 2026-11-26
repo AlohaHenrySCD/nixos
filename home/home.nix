@@ -24,6 +24,7 @@
     ./modules/common/ssh.nix
     ./modules/common/starship.nix
     ./modules/common/yazi.nix
+    ./modules/common/zed.nix
   ];
 
   home.stateVersion = "26.05";

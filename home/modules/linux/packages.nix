@@ -26,7 +26,6 @@
       # 文件与开发工具
       gtrash # 在终端将文件移入回收站或还原
       qemu
-      zed-editor
 
       # 语言与构建工具链
       glib
