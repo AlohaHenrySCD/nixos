@@ -93,7 +93,10 @@
   services.tailscale = {
     enable = true;
     openFirewall = true;
-    extraSetFlags = [ "--operator=alohahenry" ];
+    extraSetFlags = [
+      "--operator=alohahenry"
+      "--accept-dns=false"
+    ];
   };
   systemd.services.tailscaled.environment = {
     HTTP_PROXY = "http://127.0.0.1:7897";

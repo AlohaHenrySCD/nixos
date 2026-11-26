@@ -30,10 +30,10 @@ dns:
     - '+.tailscale.io'
     - '+.ts.net'
   nameserver-policy:
+    '+.ts.net': 100.100.100.100
     'geosite:private': system
     '+.umac.mo': system
     '+.um.edu.mo': system
-    '+.ts.net': 100.100.100.100
   fallback: []
   fallback-filter:
     geoip: false
