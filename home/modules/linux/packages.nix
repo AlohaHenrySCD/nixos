@@ -31,10 +31,12 @@ in
   });
 
   home.packages = with pkgs; [
-    # (callPackage ../../../packages/pomotroid.nix { })
-    (callPackage ../../../packages/deepseek-harness-uncensored.nix { })
-    (callPackage ../../../packages/pigma.nix { })
-    (callPackage ../../../packages/squirreldisk.nix { })
+    bubblewrap # codex required
+    usbutils
+    wl-clipboard
+    deepseek-harness-uncensored
+    pigma
+    squirreldisk
     # kdePackages.kdenlive
     # opencode
     llmAgents.antigravity-cli

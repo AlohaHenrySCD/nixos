@@ -9,6 +9,8 @@
     ./hardware-configuration.nix
   ];
 
+  networking.hostName = lib.mkDefault "x86_64";
+
   environment.systemPackages = with pkgs; [
   ];
 
@@ -20,9 +22,6 @@
   # };
 
   boot = {
-    kernelParams = [
-      "appledrm.show_notch=1"
-    ];
     loader.efi.canTouchEfiVariables = true;
   };
 }

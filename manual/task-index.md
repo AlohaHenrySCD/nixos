@@ -26,7 +26,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | Completion, autosuggestion / 补全、自动建议 | [Completion](fish.md#history-and-completion) · [Accept suggestions](fish.md#move-through-text-and-directories) |
 | Delete word, undo, redo, kill, yank / 删词、撤销、恢复删除 | [Edit input](fish.md#edit-the-command-line) · [Restore text](fish.md#copy-and-restore-text) |
 | Multiline, external editor / 多行输入、外部编辑器 | [Input tools](fish.md#inspect-cancel-and-use-tools) · [Useful sequences](fish.md#useful-sequences) |
-| Abbreviation, alias, add, dis, bd, gbd / 缩写、别名、重建 | [Typed helpers](fish.md#abbreviations-and-typed-helpers) |
+| Abbreviation, alias, add, dis, bd, bd-debug / 缩写、别名、重建 | [Typed helpers](fish.md#abbreviations-and-typed-helpers) |
 | zoxide, z, zi, cd, directory history / 跳目录、目录历史 | [zoxide](utilities.md#jump-between-directories--zoxide) · [Fish directory keys](fish.md#move-through-text-and-directories) |
 | rg, grep, fd, filename, hidden / 搜文件、搜内容、隐藏文件 | [Find files and text](utilities.md#find-files-and-text) |
 | fzf, fuzzy, picker, exclusion / 模糊查找、筛选、排除 | [Query syntax](fzf.md#match-exactly-what-you-want) · [Choose results](fzf.md#choose-results) |

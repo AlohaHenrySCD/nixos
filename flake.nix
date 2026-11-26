@@ -13,9 +13,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nirimod = {
-      url = "github:srinivasr/nirimod";
-    };
     nixos-apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon/5de1c7ae865d645a3ebcc7d2ba5a13b9b50c0c16";
       inputs.nixpkgs.follows = "nixpkgs-kernel";
@@ -49,7 +46,6 @@
     inputs@{
       self,
       nixpkgs,
-      nirimod,
       home-manager,
       nix-darwin,
       plasma-manager,
@@ -57,20 +53,33 @@
       ...
     }:
     let
+      constants = import ./constants.nix;
+      sharedTheme =
+        { pkgs, ... }:
+        let
+          theme = import ./theme.nix { inherit pkgs; };
+        in
+        {
+          nixpkgs.overlays = [ self.overlays.default ];
+          _module.args.theme = theme;
+          home-manager.extraSpecialArgs.theme = theme;
+        };
       mkNixos =
         {
           system,
           hostModules,
+          hostHomeModules ? [ ],
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = {
-            inherit inputs;
+            inherit inputs constants;
           };
 
           modules = [
             hostModules
+            sharedTheme
             home-manager.nixosModules.default
             {
               home-manager = {
@@ -83,27 +92,43 @@
                 ];
 
                 extraSpecialArgs = {
-                  inherit inputs;
+                  inherit inputs constants;
                 };
-                users.alohahenry.imports = [
+                users.${constants.username}.imports = [
                   ./home/home.nix
                   ./home/linux.nix
-                ];
+                ]
+                ++ hostHomeModules;
               };
             }
           ];
         };
     in
     {
+      overlays.default = import ./overlays;
+
+      packages = nixpkgs.lib.genAttrs [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ] (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfreePredicate = pkg: nixpkgs.lib.getName pkg == "jetbrains-sans";
+          };
+        in
+        self.overlays.default (pkgs.extend self.overlays.default) pkgs
+      );
+
       nixosConfigurations = {
         asahi = mkNixos {
           system = "aarch64-linux";
           hostModules = ./hosts/asahi;
+          hostHomeModules = [ ./hosts/asahi/home.nix ];
         };
 
         asahi-debug = mkNixos {
           system = "aarch64-linux";
           hostModules = ./hosts/asahi-debug;
+          hostHomeModules = [ ./hosts/asahi/home.nix ];
         };
 
         x86_64 = mkNixos {
@@ -115,9 +140,10 @@
       # macbook here is host name NEED MODIFY
       darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs constants;
         };
         modules = [
+          sharedTheme
           ./darwin-configuration.nix
           home-manager.darwinModules.home-manager
           {
@@ -128,9 +154,9 @@
                 inputs.sops-nix.homeManagerModules.sops
               ];
               extraSpecialArgs = {
-                inherit inputs;
+                inherit inputs constants;
               };
-              users.alohahenry = {
+              users.${constants.username} = {
                 imports = [
                   ./home/home.nix
                   ./home/darwin.nix

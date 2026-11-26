@@ -151,24 +151,6 @@
         "type": "github"
       }
     },
-    "nirimod": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1794589920,
-        "narHash": "sha256-L0QZoMtwhpEXYtKU4N5tQgtBWSqzyo6U0D0FrJmZcgQ=",
-        "owner": "srinivasr",
-        "repo": "nirimod",
-        "rev": "cacb543eabeb09f5a43a48cc764001294e3903b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srinivasr",
-        "repo": "nirimod",
-        "type": "github"
-      }
-    },
     "nirinit": {
       "inputs": {
         "fenix": "fenix",
@@ -267,22 +249,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1776548001,
-        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1795234589,
         "narHash": "sha256-f/VVvxf5RsQgWVhUtefoca5ktVg0DA2bnkMOcmSnozo=",
         "owner": "nixos",
@@ -325,11 +291,10 @@
         "home-manager": "home-manager",
         "kde-everforest": "kde-everforest",
         "llm-agents": "llm-agents",
-        "nirimod": "nirimod",
         "nirinit": "nirinit",
         "nix-darwin": "nix-darwin",
         "nixos-apple-silicon": "nixos-apple-silicon",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-kernel": "nixpkgs-kernel",
         "plasma-manager": "plasma-manager",
         "sops-nix": "sops-nix",

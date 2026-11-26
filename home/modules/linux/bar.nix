@@ -10,68 +10,6 @@ let
   icon = glyph: "<span font_family=\"${fontSettings.iconFamily}\">${glyph}</span>";
   systemMonitor = "${pkgs.kitty}/bin/kitty --title 'System Monitor' -e ${pkgs.btop}/bin/btop";
 
-  gtkBindings = pkgs.fetchurl {
-    name = "gotk3-ff349ae13f56.tar.gz";
-    url = "https://codeload.github.com/gotk3/gotk3/tar.gz/ff349ae13f56";
-    hash = "sha256-43CFmFJIxpqLQp436y6+4xorD2u9gxDcFUBQmF/MawQ=";
-  };
-
-  niriWindows = pkgs.stdenv.mkDerivation {
-    pname = "waybar-niri-windows";
-    version = "2.3.1";
-
-    src = pkgs.fetchurl {
-      name = "waybar-niri-windows-2.3.1.tar.gz";
-      url = "https://codeload.github.com/calico32/waybar-niri-windows/tar.gz/refs/tags/v2.3.1";
-      hash = "sha256-C/GA8iuKfHbgvHJw5r9fS/Ru4QHvKnYGuOzk7AfYzN8=";
-    };
-
-    nativeBuildInputs = [
-      pkgs.go
-      pkgs.pkg-config
-    ];
-    buildInputs = [ pkgs.gtk3 ];
-    strictDeps = true;
-
-    env = {
-      CGO_ENABLED = "1";
-      GOTOOLCHAIN = "local";
-      GOPROXY = "off";
-      GOSUMDB = "off";
-    };
-
-    postPatch = ''
-      substituteInPlace module/module.go \
-        --replace-fail \
-        'i.calculateWindowSizes(column, scale, maxHeight-i.config.ColumnBorders)' \
-        'i.calculateWindowSizes(column, scale*1.5, maxHeight-i.config.ColumnBorders)'
-    '';
-
-    buildPhase = ''
-      runHook preBuild
-      export GOCACHE="$TMPDIR/go-cache"
-      export GOPATH="$TMPDIR/go"
-      mkdir -p .deps/gotk3
-      tar -xf ${gtkBindings} --strip-components=1 -C .deps/gotk3
-      go mod edit -replace github.com/gotk3/gotk3=./.deps/gotk3
-      go build -trimpath -ldflags="-s -w -buildid=" \
-        -buildmode=c-shared -o waybar-niri-windows.so ./main
-      runHook postBuild
-    '';
-
-    installPhase = ''
-      runHook preInstall
-      install -Dm755 waybar-niri-windows.so "$out/lib/waybar-niri-windows.so"
-      runHook postInstall
-    '';
-
-    meta = {
-      description = "Niri window minimap for Waybar";
-      homepage = "https://github.com/calico32/waybar-niri-windows";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.linux;
-    };
-  };
 
   inputMethod = pkgs.writeShellScript "waybar-input-method" ''
     state=$(${pkgs.fcitx5}/bin/fcitx5-remote --check 2>/dev/null || true)
@@ -99,7 +37,6 @@ let
   '';
 in
 {
-  home.packages = [ niriWindows ];
   services.playerctld.enable = true;
 
   systemd.user.services.xembed-sni-proxy = {
@@ -194,8 +131,10 @@ in
         icon-size = iconSize;
         spacing = 8;
         icons = {
+          obsidian_status_icon_1 = "${config.xdg.dataHome}/flatpak/exports/share/icons/hicolor/512x512/apps/md.obsidian.Obsidian.png";
+        }
+        // lib.optionalAttrs (pkgs ? steam-asahi) {
           Steam = "${pkgs.steam-asahi}/share/icons/hicolor/48x48/apps/steam.png";
-          obsidian_status_icon_1 = "${config.home.homeDirectory}/.local/share/flatpak/exports/share/icons/hicolor/512x512/apps/md.obsidian.Obsidian.png";
         };
       };
 
@@ -204,7 +143,7 @@ in
       };
 
       "cffi/niri-windows" = {
-        module_path = "${niriWindows}/lib/waybar-niri-windows.so";
+        module_path = "${pkgs.waybar-niri-windows}/lib/waybar-niri-windows.so";
         options = {
           mode = "graphical";
           show-floating = "auto";

@@ -1,5 +1,34 @@
+{ config, lib, ... }:
+let
+  ids = config.my.keyd.keymapIds;
+  mediaRow = {
+    "1" = "brightnessdown";
+    "2" = "brightnessup";
+    "3" = "previoussong";
+    "4" = "playpause";
+    "5" = "nextsong";
+    "6" = "sleep";
+    "7" = "noop";
+    "8" = "mute";
+    "9" = "volumedown";
+    "0" = "volumeup";
+  };
+  layerKeys = lib.stringToCharacters "qwertyuiopasdfghjklzxcvbnm" ++ [
+    "semicolon"
+    "comma"
+    "dot"
+    "slash"
+  ];
+  mkNoopLayer = bindings: mediaRow // lib.genAttrs layerKeys (_: "noop") // bindings;
+in
 {
-  services.keyd = {
+  options.my.keyd.keymapIds = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [ ];
+    description = "Keyboard device IDs that use the layered home-row keymap.";
+  };
+
+  config.services.keyd = {
     enable = true;
     keyboards = {
       default = {
@@ -19,204 +48,126 @@
           };
         };
       };
-      internal =
-        let
-          mediaRow = {
-            "1" = "brightnessdown";
-            "2" = "brightnessup";
-            "3" = "previoussong";
-            "4" = "playpause";
-            "5" = "nextsong";
-            "6" = "sleep";
-            "7" = "noop";
+      internal = lib.mkIf (ids != [ ]) {
+        inherit ids;
+        settings = {
+          main = {
+            "1" = "C-S-c";
+            "2" = "C-S-v";
+            "3" = "C-c";
+            "4" = "C-v";
+            "5" = "C-x";
+            "6" = "brightnessdown";
+            "7" = "brightnessup";
             "8" = "mute";
             "9" = "volumedown";
             "0" = "volumeup";
+            capslock = "backspace";
+            backspace = "C-S-f12";
+            esc = "esc";
+            leftshift = "delete";
+            # rightshift = "noop";
+            leftcontrol = "layer(num)";
+            leftalt = "capslock";
+            leftmeta = "esc";
+            rightmeta = "layer(plain)";
+            rightalt = "layer(nav)";
+            a = "overloadt(alt, a, 130)";
+            s = "overloadt(meta, s, 130)";
+            d = "overloadt(shift, d, 130)";
+            f = "overloadt(nav, f, 130)";
+            j = "overloadt(num, j, 130)";
+            k = "overloadt(shift, k, 130)";
+            l = "overloadt(meta, l, 130)";
+            semicolon = "overloadt(altgr, semicolon, 130)";
+            v = "overloadt(control, v, 130)";
+            m = "overloadt(control, m, 130)";
+            c = "overloadt(symbol, c, 130)";
+            comma = "overloadt(symbol, comma, 130)";
           };
-        in
-        {
-          ids = [ "05ac:0342:89b7fedc" ];
-          settings = {
-            main = {
-              "1" = "C-S-c";
-              "2" = "C-S-v";
-              "3" = "C-c";
-              "4" = "C-v";
-              "5" = "C-x";
-              "6" = "brightnessdown";
-              "7" = "brightnessup";
-              "8" = "mute";
-              "9" = "volumedown";
-              "0" = "volumeup";
-              capslock = "backspace";
-              backspace = "C-S-f12";
-              esc = "esc";
-              leftshift = "delete";
-              # rightshift = "noop";
-              leftcontrol = "layer(num)";
-              leftalt = "capslock";
-              leftmeta = "esc";
-              rightmeta = "layer(plain)";
-              rightalt = "layer(nav)";
-              a = "overloadt(alt, a, 130)";
-              s = "overloadt(meta, s, 130)";
-              d = "overloadt(shift, d, 130)";
-              f = "overloadt(nav, f, 130)";
-              j = "overloadt(num, j, 130)";
-              k = "overloadt(shift, k, 130)";
-              l = "overloadt(meta, l, 130)";
-              semicolon = "overloadt(altgr, semicolon, 130)";
-              v = "overloadt(control, v, 130)";
-              m = "overloadt(control, m, 130)";
-              c = "overloadt(symbol, c, 130)";
-              comma = "overloadt(symbol, comma, 130)";
-            };
 
-            plain = {
-              "1" = "1";
-              "2" = "2";
-              "3" = "3";
-              "4" = "4";
-              "5" = "5";
-              "6" = "6";
-              "7" = "7";
-              "8" = "8";
-              "9" = "9";
-              "0" = "0";
-              q = "q";
-              w = "w";
-              e = "e";
-              r = "r";
-              t = "t";
-              y = "y";
-              u = "u";
-              i = "i";
-              o = "o";
-              p = "p";
-              a = "a";
-              s = "s";
-              d = "d";
-              f = "f";
-              g = "g";
-              h = "h";
-              j = "j";
-              k = "k";
-              l = "l";
-              semicolon = "semicolon";
-              z = "z";
-              x = "x";
-              c = "c";
-              v = "v";
-              b = "b";
-              n = "n";
-              m = "m";
-              comma = "comma";
-              dot = "dot";
-              slash = "slash";
-            };
+          plain = lib.genAttrs (lib.stringToCharacters "1234567890" ++ layerKeys) lib.id;
 
-            symbol = mediaRow // {
-              q = "`";
-              w = "<";
-              e = ">";
-              r = "-";
-              t = "$";
-              y = "^";
-              u = "{";
-              i = "}";
-              o = "|";
-              p = "'";
-              a = "!";
-              s = ":";
-              d = "_";
-              f = "=";
-              g = "&";
-              h = "#";
-              j = "(";
-              k = ")";
-              l = "\"";
-              semicolon = ";";
-              z = "~";
-              x = "?";
-              c = "[";
-              v = "]";
-              b = "+";
-              n = "\\";
-              m = "*";
-              comma = ",";
-              dot = ".";
-              slash = "/";
-              leftalt = "%";
-              rightalt = "@";
-            };
+          symbol = mediaRow // {
+            q = "`";
+            w = "<";
+            e = ">";
+            r = "-";
+            t = "$";
+            y = "^";
+            u = "{";
+            i = "}";
+            o = "|";
+            p = "'";
+            a = "!";
+            s = ":";
+            d = "_";
+            f = "=";
+            g = "&";
+            h = "#";
+            j = "(";
+            k = ")";
+            l = "\"";
+            semicolon = ";";
+            z = "~";
+            x = "?";
+            c = "[";
+            v = "]";
+            b = "+";
+            n = "\\";
+            m = "*";
+            comma = ",";
+            dot = ".";
+            slash = "/";
+            leftalt = "%";
+            rightalt = "@";
+          };
 
-            nav = mediaRow // {
-              q = "noop";
-              w = "C-S-u";
-              e = "C-S-d";
-              r = "noop";
-              t = "noop";
-              y = "noop";
-              u = "h";
-              i = "j";
-              o = "k";
-              p = "l";
-              a = "noop";
-              s = "pageup";
-              d = "pagedown";
-              f = "noop";
-              g = "noop";
-              h = "noop";
-              j = "left";
-              k = "down";
-              l = "up";
-              semicolon = "right";
-              z = "noop";
-              x = "C-u";
-              c = "C-d";
-              v = "noop";
-              b = "noop";
-              n = "noop";
-              m = "home";
-              comma = "noop";
-              dot = "noop";
-              slash = "end";
-            };
+          nav = mkNoopLayer {
+            w = "C-S-u";
+            e = "C-S-d";
+            u = "h";
+            i = "j";
+            o = "k";
+            p = "l";
+            s = "pageup";
+            d = "pagedown";
+            j = "left";
+            k = "down";
+            l = "up";
+            semicolon = "right";
+            x = "C-u";
+            c = "C-d";
+            m = "home";
+            slash = "end";
+          };
 
-            num = mediaRow // {
-              q = "noop";
-              w = "9";
-              e = "8";
-              r = "7";
-              t = "f12";
-              y = "noop";
-              u = "noop";
-              i = "f7";
-              o = "f8";
-              p = "f9";
-              a = "3";
-              s = "2";
-              d = "1";
-              f = "0";
-              g = "f10";
-              h = "noop";
-              j = "noop";
-              k = "f1";
-              l = "f2";
-              semicolon = "f3";
-              z = "noop";
-              x = "6";
-              c = "5";
-              v = "4";
-              b = "f11";
-              n = "noop";
-              m = "noop";
-              comma = "f4";
-              dot = "f5";
-              slash = "f6";
-            };
+          num = mkNoopLayer {
+            w = "9";
+            e = "8";
+            r = "7";
+            t = "f12";
+            i = "f7";
+            o = "f8";
+            p = "f9";
+            a = "3";
+            s = "2";
+            d = "1";
+            f = "0";
+            g = "f10";
+            k = "f1";
+            l = "f2";
+            semicolon = "f3";
+            x = "6";
+            c = "5";
+            v = "4";
+            b = "f11";
+            comma = "f4";
+            dot = "f5";
+            slash = "f6";
           };
         };
+      };
     };
   };
 }

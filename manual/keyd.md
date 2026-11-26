@@ -1,6 +1,6 @@
 # keyd — physical keys
 
-The internal layout matches device `05ac:0342:89b7fedc`. The default device group excludes `1d50:615e` (pskeeb5, which has its own ZMK layout); it also explicitly includes the three mouse IDs listed in the source.
+The Asahi host selects the shared layout with `my.keyd.keymapIds` for device `05ac:0342:89b7fedc`. The default device group excludes `1d50:615e` (pskeeb5, which has its own ZMK layout); it also explicitly includes the three mouse IDs listed in the source.
 
 ## On this page
 
@@ -28,7 +28,7 @@ All keys in this section are **physical** keys.
 | Right Alt | Hold the `nav` layer |
 | Mouse back / forward button | Hold Ctrl / Meta (default device group) |
 
-These home-row keys use `overloadt(..., 185)`: tap for the character, hold for the modifier/layer, with a 185 ms timeout.
+These home-row keys use `overloadt(..., 130)`: tap for the character, hold for the modifier/layer, with a 130 ms timeout.
 
 | Physical key | Hold action |
 | --- | --- |
@@ -107,4 +107,4 @@ Unlisted keys keep their inherited behavior. In the plain layer letters, digits 
 
 ---
 
-[Configuration](../modules/keyd.nix) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Asahi device selection](../hosts/asahi/default.nix) · [Shared keymap and mouse rules](../modules/keyd.nix) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)

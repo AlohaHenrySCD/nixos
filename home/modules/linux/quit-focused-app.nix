@@ -1,7 +1,7 @@
 { pkgs, osConfig, ... }:
 {
   home.packages = [
-    (pkgs.callPackage ../../../packages/quit-focused-app {
+    (pkgs.quit-focused-app.override {
       niri = osConfig.programs.niri.package;
     })
   ];

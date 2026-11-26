@@ -6,20 +6,6 @@
 }:
 let
   dictionariesDir = "${config.xdg.dataHome}/goldendict/dictionaries";
-  ecdict = pkgs.stdenvNoCC.mkDerivation {
-    pname = "ecdict-stardict";
-    version = "1.0.28";
-    src = pkgs.fetchurl {
-      url = "https://github.com/skywind3000/ECDICT/releases/download/1.0.28/ecdict-stardict-28.zip";
-      hash = "sha256-xwfQ897W7Hm5ZGbaShV04HRwPaWvnBIPutl/nLCMbyw=";
-    };
-    nativeBuildInputs = [ pkgs.unzip ];
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p "$out"
-      unzip -q "$src" -d "$out"
-    '';
-  };
   configure = pkgs.writeText "configure-goldendict.py" ''
     from pathlib import Path
     import xml.etree.ElementTree as ET
@@ -41,7 +27,7 @@ in
 {
   home.packages = [ pkgs.goldendict-ng ];
 
-  xdg.dataFile."goldendict/dictionaries/ecdict".source = ecdict;
+  xdg.dataFile."goldendict/dictionaries/ecdict".source = pkgs.ecdict-stardict;
 
   home.activation.goldendict = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     run ${pkgs.python3}/bin/python3 ${configure}

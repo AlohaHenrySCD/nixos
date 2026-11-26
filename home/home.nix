@@ -1,5 +1,6 @@
 {
   config,
+  constants,
   lib,
   pkgs,
   ...
@@ -20,7 +21,7 @@
 
   home.stateVersion = "26.05";
   home.enableNixpkgsReleaseCheck = false;
-  home.username = "alohahenry";
+  home.username = constants.username;
   home.sessionVariables = {
     EDITOR = "ms";
     VISUAL = "ms";

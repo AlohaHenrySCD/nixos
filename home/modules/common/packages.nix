@@ -5,12 +5,10 @@
 }:
 {
   home.packages = with pkgs; [
-    bubblewrap # codex required
     glow
     ffmpeg
     yazi
     jujutsu
-    usbutils
     tree
     halloy
     ansifilter
@@ -18,7 +16,6 @@
     eza
     ripgrep
     jq
-    wl-clipboard
     resvg
     poppler
     imagemagick

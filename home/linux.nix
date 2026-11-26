@@ -1,5 +1,6 @@
 {
   config,
+  constants,
   lib,
   pkgs,
   inputs,
@@ -74,8 +75,8 @@ in
     ./modules/linux/kitty-session.nix
   ];
 
-  home.homeDirectory = "/home/alohahenry";
-  home.sessionPath = [ "/home/alohahenry/.cargo/bin" ];
+  home.homeDirectory = "/home/${constants.username}";
+  home.sessionPath = [ "${config.home.homeDirectory}/.cargo/bin" ];
 
   home.activation.obsidianVaultFiles = lib.hm.dag.entryAfter [ "linkGeneration" ] (
     lib.concatStringsSep "\n" (
@@ -121,14 +122,10 @@ in
 
   programs.fish = {
     shellAliases = {
-      bd = "sudo nixos-rebuild switch -L --flake /etc/nixos#asahi";
-      bd-debug = "sudo nixos-rebuild switch -L --impure --flake /etc/nixos#asahi-debug";
+      bd = "sudo nixos-rebuild switch -L --flake /etc/nixos#${osConfig.networking.hostName}";
     };
     shellAbbrs = {
       nix-clean = "nix-collect-garbage && sudo nix-collect-garbage && sudo journalctl --vacuum-size=300M";
-    };
-    functions = {
-      gbd = "git add /etc/nixos/ && git commit --message $argv[1] && git push && sudo nixos-rebuild switch -L --flake /etc/nixos#asahi ";
     };
   };
 

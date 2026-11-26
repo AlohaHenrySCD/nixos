@@ -113,11 +113,8 @@ Abbreviations expand when followed by a space. These are typed commands, not sim
 | `y` | Open Yazi and change Fish's directory to the directory selected on exit |
 | `mkcd DIR` | Create a directory and enter it |
 | `manrg COMMAND PATTERN` | Search a man page with three lines of context |
-| `bd` | Rebuild/switch `asahi` on Linux; switch `macbook` from `~/my-nix` on Darwin |
-| `bd-debug` | Rebuild/switch `asahi-debug` with `--impure` (Linux) |
-| `gbd MESSAGE` | Stage `/etc/nixos`, commit, push, then rebuild/switch `asahi` (Linux) |
-
-`gbd` includes a Git push and a system switch; it is not just a build helper. The Linux `bd` and `gbd` commands target `asahi` even though this module is shared with other Linux hosts.
+| `bd` | Rebuild/switch the current Linux host, or switch `macbook` from `~/my-nix` on Darwin |
+| `bd-debug` | Rebuild/switch `asahi-debug` with `--impure` (Asahi only) |
 
 
 For [directory jumping, clipboard, trash recovery and command examples](utilities.md), use the smaller-tool guide. For long output, use [ov](ov.md).

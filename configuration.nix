@@ -1,19 +1,21 @@
 {
   lib,
   pkgs,
+  constants,
   ...
 }:
 {
   imports = [
+    ./modules/common/nix.nix
     ./modules/flatpak.nix
     ./modules/keyd.nix
     ./modules/nirinit.nix
   ];
 
-  nixpkgs.config.allowUnsupportedSystem = true;
-  users.users.alohahenry = {
+  users.users.${constants.username} = {
     isNormalUser = true;
-    home = "/home/alohahenry";
+    shell = pkgs.fish;
+    home = "/home/${constants.username}";
     extraGroups = [
       "video"
       "input"
@@ -22,7 +24,6 @@
       "openrazer"
     ];
   };
-  nixpkgs.config.allowUnfree = true;
 
   i18n.inputMethod = {
     enable = true;
@@ -94,15 +95,19 @@
     enable = true;
     openFirewall = true;
     extraSetFlags = [
-      "--operator=alohahenry"
+      "--operator=${constants.username}"
       "--accept-dns=false"
     ];
   };
-  systemd.services.tailscaled.environment = {
-    HTTP_PROXY = "http://127.0.0.1:7897";
-    HTTPS_PROXY = "http://127.0.0.1:7897";
-    NO_PROXY = "localhost,127.0.0.1,::1,100.64.0.0/10,*.ts.net";
-  };
+  systemd.services.tailscaled.environment =
+    let
+      proxyUrl = "http://${constants.proxy.host}:${toString constants.proxy.port}";
+    in
+    {
+      HTTP_PROXY = proxyUrl;
+      HTTPS_PROXY = proxyUrl;
+      NO_PROXY = "localhost,127.0.0.1,::1,100.64.0.0/10,*.ts.net";
+    };
 
   # swapDevices = [
   #   {
@@ -110,8 +115,6 @@
   #     size = 4*1024;
   #   }
   # ];
-
-  fonts.packages = (import ./fonts.nix { inherit pkgs; }).packages;
 
   programs.niri.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -149,8 +152,6 @@
     config.common.default = "*";
   };
 
-  programs.fish.enable = true;
-
   programs.chromium = {
     enable = true;
     extensions = [
@@ -169,10 +170,6 @@
       "RestoreOnStartup" = 1;
       "BackgroundModeEnabled" = false;
     };
-  };
-
-  users.extraUsers.alohahenry = {
-    shell = pkgs.fish;
   };
 
   security.sudo = {
@@ -208,23 +205,6 @@
 
   nix.channel.enable = false;
 
-  nix.settings = {
-    max-jobs = 16;
-    substituters = [
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store?priority=30"
-    ];
-    extra-substituters = [
-      "https://cache.numtide.com"
-    ];
-    extra-trusted-public-keys = [
-      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-    ];
-    experimental-features = [
-      "flakes"
-      "nix-command"
-    ];
-  };
-
   time = {
     timeZone = "Asia/Singapore";
   };
@@ -257,11 +237,7 @@
     "zh_CN.UTF-8/UTF-8"
   ];
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
+  nix.gc.dates = "weekly";
 
   system.stateVersion = "25.05";
 }

@@ -1,5 +1,6 @@
 {
   config,
+  constants,
   inputs,
   lib,
   pkgs,
@@ -13,6 +14,10 @@
     ./hardware-configuration.nix
     ./kernel.nix
   ];
+
+  my.keyd.keymapIds = [ "05ac:0342:89b7fedc" ];
+  services.btrfs.autoScrub.enable = true;
+  networking.hostName = lib.mkDefault "asahi";
 
   environment.systemPackages = with pkgs; [
     # utm
@@ -34,11 +39,6 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   programs.steam-asahi.enable = true;
-
-  home-manager.users.alohahenry.xdg.configFile."fex-emu/Config.json".text =
-    builtins.toJSON {
-      Config.RootFS = "/home/alohahenry/.local/share/fex-emu/RootFS/Fedora_44.ero";
-    };
 
   nixpkgs.overlays = lib.mkAfter [
     (final: prev: {
@@ -63,7 +63,7 @@
   ];
 
   # Allow libvirt guests to use the host's Clash proxy.
-  networking.firewall.interfaces.virbr0.allowedTCPPorts = [ 7897 ];
+  networking.firewall.interfaces.virbr0.allowedTCPPorts = [ constants.proxy.port ];
 
   # Ensure the default NAT network is available after boot and nixos-rebuild.
   systemd.services.libvirt-default-network = {
@@ -90,10 +90,10 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /.Trash-1000 0700 alohahenry users - -"
+    "d /.Trash-1000 0700 ${constants.username} users - -"
   ];
 
-  users.users.alohahenry.extraGroups = [
+  users.users.${constants.username}.extraGroups = [
     "dialout"
     "libvirtd"
     "kvm"

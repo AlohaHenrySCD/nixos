@@ -1,6 +1,6 @@
-{ ... }:
+{ constants, pkgs, ... }:
 {
-  home.homeDirectory = "/Users/alohahenry";
+  home.homeDirectory = "/Users/${constants.username}";
   targets.darwin.copyApps.enable = true;
   programs.fish = {
     shellAliases = {
