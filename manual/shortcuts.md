@@ -26,6 +26,7 @@
 | [Fcitx5 / Rime](fcitx5-rime.md) | Language switching, candidates, composition, punctuation |
 | [Vimium C](vimium-c.md) | Browser navigation, links, tabs, finding text |
 | [Euporie](euporie.md) | Notebook cells, execution, text editing, output |
+| [系统迁移与重装](migration.md) | 换机备份清单、`home-minimal` 引导、Linux / Asahi / macOS 切换与常见坑 |
 
 ## Search the manual
 

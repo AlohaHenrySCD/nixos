@@ -36,6 +36,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | rm, trash, undelete, restore / 回收站、误删、恢复 | [Trash and recovery](utilities.md#trash-and-recovery) |
 | tldr, tlrc, navi, manrg, examples / 命令示例、帮助、手册 | [Command examples](utilities.md#command-examples) |
 | Glow, Markdown, btop, lazygit, jlog / 阅读、监控、进程、日志 | [Read and monitor](utilities.md#read-markdown-and-monitor-work) |
+| Migrate, reinstall, bootstrap, home-minimal, sops keys / 迁移系统、换机、重装、新机器、密钥备份 | [旧机备份](migration.md#1-旧机先带走什么) · [临时环境](migration.md#2-新机先起临时环境home-minimal) · [切完整系统](migration.md#3-切到完整系统) · [收尾排坑](migration.md#4-切完收尾与常见坑) |
 
 ## Desktop and input · 桌面、输入法、键盘
 
