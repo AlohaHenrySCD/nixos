@@ -1,8 +1,12 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }:
+let
+  llmAgents = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   home.packages = with pkgs; [
     glow
@@ -23,6 +27,10 @@
     hugo
     fd
     trash-cli
+
+    llmAgents.antigravity-cli
+    llmAgents.opencode2
+    llmAgents.t3code
 
     pkg-config
 

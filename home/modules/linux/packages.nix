@@ -21,10 +21,6 @@ in
     pigma
     squirreldisk
     # kdePackages.kdenlive
-    # opencode
-    llmAgents.antigravity-cli
-    llmAgents.opencode2
-    llmAgents.t3code
     llmAgents.t3code-desktop
     chatgpt
     gtrash

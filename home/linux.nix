@@ -72,7 +72,6 @@ in
     ./modules/linux/flatpak.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
-    ./modules/linux/clash-hkmo.nix
     ./modules/linux/quit-focused-app.nix
     ./modules/linux/kitty-session.nix
   ];

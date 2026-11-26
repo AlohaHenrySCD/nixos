@@ -5,7 +5,12 @@
   ...
 }:
 let
-  profileDirectory = "${config.xdg.dataHome}/io.github.clash-verge-rev.clash-verge-rev/profiles";
+  dataDirectory =
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      "${config.home.homeDirectory}/Library/Application Support"
+    else
+      config.xdg.dataHome;
+  profileDirectory = "${dataDirectory}/io.github.clash-verge-rev.clash-verge-rev/profiles";
   target = "${profileDirectory}/mqb9QlfTenXO.yaml";
 in
 {

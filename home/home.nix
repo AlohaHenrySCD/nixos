@@ -9,6 +9,7 @@
 {
   imports = [
     ./modules/common/packages.nix
+    ./modules/common/clash-hkmo.nix
     ./modules/common/qbittorrent.nix
     ./modules/common/btop.nix
     ./modules/common/broot.nix

@@ -27,10 +27,23 @@
     reattach = true;
   };
 
+  services.tailscale.enable = true;
+  launchd.daemons.tailscaled.environment =
+    let
+      proxyUrl = "http://${constants.proxy.host}:${toString constants.proxy.port}";
+    in
+    {
+      HTTP_PROXY = proxyUrl;
+      HTTPS_PROXY = proxyUrl;
+      NO_PROXY = "localhost,127.0.0.1,::1,100.64.0.0/10,*.ts.net";
+    };
+
   homebrew = {
     enable = true;
     enableFishIntegration = true;
 
+    taps = [ "akirco/pigma" ];
+    brews = [ "akirco/pigma/pigma" ];
     casks = [
       "google-chrome"
       "obs"
@@ -41,6 +54,14 @@
       # "neteasemusic"
       "obsidian"
       "clash-verge-rev"
+      "zed"
+      "linearmouse"
+      "bazecor"
+      "iina"
+      "prismlauncher"
+      "monitorcontrol"
+      "raycast"
+      "background-music"
     ];
   };
 
