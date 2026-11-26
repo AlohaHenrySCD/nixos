@@ -16,7 +16,7 @@
 
 | Guide | Find help for |
 | --- | --- |
-| [Desktop helpers](desktop-tools.md) | Fuzzel launcher, Waybar clicks, Mako notifications, GoldenDict |
+| [Desktop helpers](desktop-tools.md) | Fuzzel launcher, clipboard history, Waybar clicks, Mako notifications, GoldenDict |
 | [Small terminal tools](utilities.md) | rg/fd, eza/bat/jq, zoxide, clipboard, trash recovery, tldr/navi, Glow, monitoring |
 | [ov](ov.md) | Long output, logs, following, filtering, wrapping, columns |
 | [fzf](fzf.md) | Fuzzy search, query syntax, result selection, query editing |

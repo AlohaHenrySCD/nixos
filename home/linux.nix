@@ -69,6 +69,7 @@ in
     ./modules/linux/goldendict.nix
     ./modules/linux/qbittorrent.nix
     ./modules/linux/fuzzel.nix
+    ./modules/linux/clipboard.nix
     ./modules/linux/flatpak.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix

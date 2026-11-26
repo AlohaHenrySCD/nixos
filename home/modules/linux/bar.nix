@@ -108,6 +108,7 @@ in
       modules-right = [
         "mpris"
         "custom/input-method"
+        "custom/clipboard"
         "network"
         "bluetooth"
         "custom/app-audio"
@@ -226,6 +227,16 @@ in
         escape = true;
         on-click = "${pkgs.fcitx5}/bin/fcitx5-remote --check -t";
         on-click-right = "${pkgs.qt6Packages.fcitx5-configtool}/bin/fcitx5-configtool";
+      };
+
+      "custom/clipboard" = {
+        exec = "clipboard-history status";
+        return-type = "json";
+        interval = 5;
+        signal = 9;
+        escape = true;
+        on-click = "clipboard-history pick";
+        on-click-right = "clipboard-history menu";
       };
 
       "group/system" = {
@@ -409,7 +420,7 @@ in
       #workspaces button.focused { background: @green; color: @bg; }
       #workspaces button.urgent { background: @red; color: @bg; }
 
-      #mpris, #custom-input-method, #custom-system, #disk, #memory,
+      #mpris, #custom-input-method, #custom-clipboard, #custom-system, #disk, #memory,
       #cpu, #network, #bluetooth, #custom-app-audio, #pulseaudio, #upower, #clock {
         padding: 0 8px;
         margin: 1px 0;
@@ -431,6 +442,8 @@ in
       #custom-input-method { color: @yellow; }
       #custom-input-method.active { color: @green; }
       #custom-input-method.offline { color: @muted; }
+      #custom-clipboard { font-family: "${fontSettings.iconFamily}"; color: @aqua; }
+      #custom-clipboard.empty { color: @muted; }
       #system { border-radius: 5px; margin: 1px 0; }
       #system #custom-system, #system #disk, #system #memory, #system #cpu { margin: 0; }
       #custom-system, #memory { color: @aqua; }

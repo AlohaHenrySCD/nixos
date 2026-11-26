@@ -330,6 +330,7 @@ binds {
 
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Y hotkey-overlay-title="Clipboard History" { spawn "clipboard-history" "pick"; }
     Mod+Ctrl+D hotkey-overlay-title="Look Up Selected Text: GoldenDict" {
         spawn-sh "text=$(wl-paste --primary --no-newline 2>/dev/null); [ -n \"$text\" ] || text=$(wl-paste --no-newline); [ -n \"$text\" ] && exec goldendict -- \"$text\"";
     }

@@ -32,6 +32,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | fzf, fuzzy, picker, exclusion, Fish history / 模糊查找、筛选、排除、命令历史 | [Start a search](fzf.md#start-a-search) · [Query syntax](fzf.md#match-exactly-what-you-want) · [Choose results](fzf.md#choose-results) |
 | eza, ls, bat, jq, PDF / 列表、预览、JSON、PDF文本 | [List and inspect](utilities.md#list-and-inspect-files) |
 | wl-copy, wl-paste, primary selection / 剪贴板、主选择区 | [Clipboard commands](utilities.md#copy-terminal-data--wl-clipboard) |
+| Clipboard history, cliphist / 剪贴板历史、恢复复制内容、清空历史 | [Niri shortcut](niri.md#open-apps-and-find-help) · [Waybar clipboard controls](desktop-tools.md#use-the-top-bar--waybar) |
 | rm, trash, undelete, restore / 回收站、误删、恢复 | [Trash and recovery](utilities.md#trash-and-recovery) |
 | tldr, tlrc, navi, manrg, examples / 命令示例、帮助、手册 | [Command examples](utilities.md#command-examples) |
 | Glow, Markdown, btop, lazygit, jlog / 阅读、监控、进程、日志 | [Read and monitor](utilities.md#read-markdown-and-monitor-work) |

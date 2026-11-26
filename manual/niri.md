@@ -6,7 +6,7 @@
 
 | Task | 用途检索 |
 | --- | --- |
-| [Open apps and find help](#open-apps-and-find-help) | 启动应用、帮助 |
+| [Open apps and find help](#open-apps-and-find-help) | 启动应用、剪贴板历史、帮助 |
 | [Screenshots and session](#screenshots-and-session) | 截图、锁屏、注销 |
 | [Arrange and resize](#arrange-and-resize) | 布局、宽高 |
 | [Focus and move windows](#focus-and-move-windows) | 聚焦、移动窗口 |
@@ -21,6 +21,7 @@
 | `Mod+Shift+/` | Show Niri's shortcut overlay |
 | `Mod+T` | Launch Kitty |
 | `Mod+D` | Launch Fuzzel |
+| `Mod+Y` | Open clipboard history in Fuzzel and copy a saved text or image entry from cliphist |
 | `Mod+Ctrl+D` | Look up primary selected text in GoldenDict; fall back to clipboard text |
 | `Mod+B` | Launch Chromium |
 | `Mod+G` | Launch Kazumi |

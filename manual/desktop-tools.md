@@ -52,6 +52,8 @@ Open with **Mod+D**. Fuzzel 1.15.0 lists desktop applications; executable names 
 | Tray arrow: hover | Reveal app tray icons |
 | EN / 中 / あ: click | Toggle Fcitx5 |
 | EN / 中 / あ: right-click | Open input-method settings |
+| Clipboard: left-click or `Mod+Y` | Select a saved text or image entry in Fuzzel to copy it again, then paste in the destination app |
+| Clipboard: right-click | Choose **删除单条记录** to delete one entry, or **清空全部历史** → **确认清空** to clear cliphist |
 | Wi-Fi: click | Open nmtui in Kitty |
 | Wi-Fi: right-click | Open graphical connection editor |
 | Bluetooth: click | Open Bluetooth manager |
