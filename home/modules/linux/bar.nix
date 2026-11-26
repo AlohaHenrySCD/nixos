@@ -12,6 +12,12 @@ let
   icon = glyph: "<span font_family=\"${fontSettings.iconFamily}\">${glyph}</span>";
   systemMonitor = "${pkgs.kitty}/bin/kitty --title 'System Monitor' -e ${pkgs.btop}/bin/btop";
 
+  appAudio = pkgs.writeShellScript "waybar-app-audio" ''
+    export PATH=${lib.makeBinPath (with pkgs; [
+      pipewire wireplumber niri fuzzel kitty wiremix pavucontrol procps
+    ])}:$PATH
+    exec ${pkgs.python3}/bin/python3 ${./waybar-app-audio.py} "$@"
+  '';
 
   inputMethod = pkgs.writeShellScript "waybar-input-method" ''
     state=$(${pkgs.fcitx5}/bin/fcitx5-remote --check 2>/dev/null || true)
@@ -104,6 +110,7 @@ in
         "custom/input-method"
         "network"
         "bluetooth"
+        "custom/app-audio"
         "pulseaudio"
         "upower"
         "group/tray"
@@ -301,6 +308,19 @@ in
         on-click = "${pkgs.blueman}/bin/blueman-manager";
       };
 
+      "custom/app-audio" = {
+        exec = "${appAudio} status";
+        return-type = "json";
+        interval = 2;
+        signal = 8;
+        escape = true;
+        on-click = "${appAudio} menu";
+        on-click-right = "${appAudio} mute";
+        on-click-middle = "${appAudio} mixer";
+        on-scroll-up = "${appAudio} volume up";
+        on-scroll-down = "${appAudio} volume down";
+      };
+
       pulseaudio = {
         format = "${icon "{icon}"} {volume}%";
         format-muted = "${icon "󰝟"}";
@@ -315,7 +335,8 @@ in
         };
         scroll-step = 2;
         tooltip-format = "{desc}";
-        on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+        on-click = "${appAudio} mixer";
+        on-click-middle = "${pkgs.pavucontrol}/bin/pavucontrol";
         on-click-right = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       };
 
@@ -389,7 +410,7 @@ in
       #workspaces button.urgent { background: @red; color: @bg; }
 
       #mpris, #custom-input-method, #custom-system, #disk, #memory,
-      #cpu, #network, #bluetooth, #pulseaudio, #upower, #clock {
+      #cpu, #network, #bluetooth, #custom-app-audio, #pulseaudio, #upower, #clock {
         padding: 0 8px;
         margin: 1px 0;
         border-radius: 5px;
@@ -415,6 +436,9 @@ in
       #custom-system, #memory { color: @aqua; }
       #disk, #upower { color: @green; }
       #upower image { margin-right: 4px; }
+      #custom-app-audio { color: @aqua; }
+      #custom-app-audio.muted { color: @muted; }
+      #custom-app-audio.empty { padding: 0; margin: 0; }
       #cpu, #pulseaudio { color: @yellow; }
       #network, #bluetooth { color: @blue; }
       #clock { color: @fg; background: @bg_alt; }

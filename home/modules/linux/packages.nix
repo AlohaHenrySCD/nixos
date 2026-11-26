@@ -55,6 +55,7 @@ in
     glib
     gcc
     gtk4
+    wiremix
     pavucontrol
     zathura
     libnotify

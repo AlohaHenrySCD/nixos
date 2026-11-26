@@ -46,7 +46,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | Screenshot, lock, logout, screen off / 截图、锁屏、注销、息屏 | [Screenshots and session](niri.md#screenshots-and-session) |
 | Fuzzel, launcher, start app / 启动器、打开应用 | [Launch apps](desktop-tools.md#launch-applications--fuzzel) |
 | Waybar, tray, Wi-Fi, Bluetooth / 状态栏、托盘、网络、蓝牙 | [Top bar controls](desktop-tools.md#use-the-top-bar--waybar) |
-| Volume, mute, microphone, playback, brightness / 音量、静音、麦克风、播放、亮度 | [Media keys](niri.md#audio-and-brightness) · [Audio devices](desktop-tools.md#use-the-top-bar--waybar) |
+| Per-app and window volume, wiremix, mute, microphone, playback, brightness / 应用音量、窗口音量、静音、麦克风、播放、亮度 | [Media keys](niri.md#audio-and-brightness) · [Volume controls and audio devices](desktop-tools.md#use-the-top-bar--waybar) |
 | Mako, notification, dismiss, recover / 通知、关闭通知、找回通知 | [Notifications](desktop-tools.md#read-and-recover-notifications--mako) |
 | GoldenDict, ECDICT, dictionary / 查词、词典、划词翻译 | [Word lookup](desktop-tools.md#look-up-a-word--goldendict) |
 | Fcitx5, Rime, language, punctuation, symbols, commit raw text / 中英文切换、输入法、标点、符号、原文上屏 | [Language and punctuation](fcitx5-rime.md#switch-language-and-punctuation) |

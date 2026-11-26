@@ -55,13 +55,17 @@ Open with **Mod+D**. Fuzzel 1.15.0 lists desktop applications; executable names 
 | Wi-Fi: click | Open nmtui in Kitty |
 | Wi-Fi: right-click | Open graphical connection editor |
 | Bluetooth: click | Open Bluetooth manager |
-| Volume: click | Open pavucontrol; choose devices and adjust per-app audio |
+| App volume: hover | See the target and all playback streams. Auto follows focus, then falls back to a running stream or the newest available stream |
+| App volume: click | Pin a playback stream or resume following focus |
+| App volume: wheel / right-click | Adjust the target in 2% steps / toggle its mute |
+| App volume: middle-click or Volume: click | Toggle floating wiremix (Playback tab; closes on blur) |
+| Volume: middle-click | Open full audio settings in pavucontrol |
 | Volume: right-click | Mute/unmute output |
 | Volume: wheel | Adjust in 2% steps |
 | Clock: hover | Show calendar |
 | Network, battery, media title: hover | Show connection, battery or track details |
 
-**Fix the wrong audio device:** click volume → select the desired output in pavucontrol. **Connect Wi-Fi:** click Wi-Fi → choose Activate a connection in nmtui; arrows/Tab move, Enter selects, Esc goes back.
+**Fix the wrong audio device:** middle-click Volume → select the desired output in pavucontrol. **Connect Wi-Fi:** click Wi-Fi → choose Activate a connection in nmtui; arrows/Tab move, Enter selects, Esc goes back.
 
 ## Read and recover notifications — Mako
 
@@ -96,4 +100,4 @@ An older primary selection takes precedence over newer clipboard text. For a pre
 
 ---
 
-[Bar controls](../home/modules/linux/bar.nix) · [Notification settings](../home/linux.nix) · [Dictionary](../home/modules/linux/goldendict.nix) · [Launchers](../home/modules/linux/packages.nix) · defaults checked with installed `man fuzzel.ini`, `man mako`, `man makoctl` · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Bar controls](../home/modules/linux/bar.nix) · [App volume helper](../home/modules/linux/waybar-app-audio.py) · [Notification settings](../home/linux.nix) · [Dictionary](../home/modules/linux/goldendict.nix) · [Launchers](../home/modules/linux/packages.nix) · defaults checked with installed `man fuzzel.ini`, `man mako`, `man makoctl` · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
