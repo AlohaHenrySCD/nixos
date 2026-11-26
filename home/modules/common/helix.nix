@@ -5,6 +5,14 @@
   ...
 }:
 let
+  commonKeys = {
+    "*" = "search_selection";
+    "A-*" = "search_selection_detect_word_boundaries";
+    h = "collapse_selection";
+    "A-h" = "flip_selections";
+    x = "select_line_below";
+    X = "select_line_above";
+  };
   toml = pkgs.formats.toml { };
   mitosSettings = lib.recursiveUpdate config.programs.helix.settings {
     editor.cursor.block-rendering = "native";
@@ -26,9 +34,95 @@ in
     "ui.highlight" = { underline = { style = "curl" } }
   '';
 
-  xdg.configFile."helix/languages.toml".source = ./helix-languages.toml;
   programs.helix = {
     enable = true;
+
+    languages = {
+      language = [
+        {
+          name = "nix";
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          auto-format = true;
+        }
+        {
+          name = "rust";
+          indent = {
+            tab-width = 4;
+            unit = "\t";
+          };
+          auto-format = true;
+        }
+        {
+          name = "toml";
+          indent = {
+            tab-width = 4;
+            unit = "\t";
+          };
+        }
+        {
+          name = "python";
+          indent = {
+            tab-width = 4;
+            unit = "\t";
+          };
+          auto-format = true;
+          formatter = {
+            command = "black";
+            args = [
+              "-"
+              "-q"
+            ];
+          };
+        }
+        {
+          name = "markdown";
+          indent = {
+            tab-width = 2;
+            unit = "\t";
+          };
+        }
+      ];
+      language-server = {
+        rust-analyzer.config = {
+          check.command = "clippy";
+          rustfmt.rangeFormatting.enable = true;
+        };
+        texlab.config.texlab = {
+          chktex = {
+            onOpenAndSave = true;
+            onEdit = true;
+          };
+          forwardSearch = {
+            executable = "zathura";
+            args = [
+              "--synctex-forward"
+              "%l:%c:%f"
+              "%p"
+            ];
+          };
+          build = {
+            auxDirectory = "build";
+            logDirectory = "build";
+            pdfDirectory = "build";
+            forwardSearchAfter = true;
+            onSave = true;
+            executable = "tectonic";
+            args = [
+              "-X"
+              "compile"
+              "--synctex"
+              "--keep-logs"
+              "--keep-intermediates"
+              "--outdir=build"
+              "%f"
+            ];
+          };
+        };
+      };
+    };
 
     settings = {
       theme = "everforest_dark";
@@ -66,11 +160,7 @@ in
         indent-guides.render = true;
         indent-guides.skip-levels = 1;
       };
-      keys.normal = {
-        "*" = "search_selection";
-        "A-*" = "search_selection_detect_word_boundaries";
-        h = "collapse_selection";
-        "A-h" = "flip_selections";
+      keys.normal = commonKeys // {
         w = "@miwvwv";
         C-j = "jump_view_left";
         C-k = "jump_view_down";
@@ -80,8 +170,6 @@ in
         k = "move_line_down";
         l = "move_line_up";
         ";" = "move_char_right";
-        x = "select_line_below";
-        X = "select_line_above";
         space = {
           q = ":q";
           Q = ":q!";
@@ -91,17 +179,11 @@ in
           c = ":bc";
         };
       };
-      keys.select = {
-        "*" = "search_selection";
-        "A-*" = "search_selection_detect_word_boundaries";
-        h = "collapse_selection";
-        "A-h" = "flip_selections";
+      keys.select = commonKeys // {
         j = "extend_char_left";
         k = "extend_line_down";
         l = "extend_line_up";
         ";" = "extend_char_right";
-        x = "select_line_below";
-        X = "select_line_above";
       };
 
     };

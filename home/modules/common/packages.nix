@@ -7,7 +7,6 @@
   home.packages = with pkgs; [
     glow
     ffmpeg
-    yazi
     jujutsu
     tree
     halloy
@@ -19,10 +18,8 @@
     resvg
     poppler
     imagemagick
-    bat
     ov
     # animeko
-    fzf
     tlrc
     navi
     hugo
@@ -59,6 +56,7 @@
     typescript-language-server
     vscode-json-languageserver
     texlab
+    tectonic
     marksman
     nil
     ty

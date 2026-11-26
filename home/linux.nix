@@ -104,12 +104,24 @@ in
     QT_QPA_PLATFORMTHEME = "kde";
   };
 
-  systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "kde";
+  services.mako = {
+    enable = true;
+    settings = {
+      anchor = "top-right";
+      default-timeout = 5000;
+      ignore-timeout = false;
+      max-visible = 5;
+      layer = "overlay";
+      font = "${fonts.gtk.name} 10";
+      background-color = palette.bg0;
+      text-color = palette.fg;
+      border-color = palette.green;
+    };
+  };
 
   programs.obs-studio = {
     enable = true;
   };
-  programs.alacritty.enable = true;
 
   fonts.fontconfig = fonts.fontconfig;
 
@@ -127,26 +139,10 @@ in
       bd = "sudo nixos-rebuild switch -L --flake /etc/nixos#${osConfig.networking.hostName}";
     };
     shellAbbrs = {
+      jlog = "journalctl -b -x --all --no-pager";
       nix-clean = "nix-collect-garbage && sudo nix-collect-garbage && sudo journalctl --vacuum-size=300M";
     };
   };
-
-  # Migrated to configuration.nix.
-  /* i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-mozc
-      fcitx5-gtk
-      fcitx5-fluent
-      (fcitx5-rime.override {
-        rimeDataPkgs = [
-          pkgs.rime-ice
-        ];
-      })
-    ];
-  }; */
 
   systemd.user.services.fcitx5-daemon = {
     Unit = {
@@ -209,7 +205,6 @@ in
   '';
   home.file.".local/share/fcitx5/rime/lua/raw_on_symbol.lua".source = ./raw_on_symbol.lua;
 
-  xdg.configFile."mako/config".source = ./mako;
   xdg.configFile."fcitx5/config".source = ./fcitx5;
   # Leave Ctrl+Shift+U available for Kitty scrollback.
   xdg.configFile."fcitx5/conf/unicode.conf".text = ''

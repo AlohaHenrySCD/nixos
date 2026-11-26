@@ -3,7 +3,6 @@ let
   inherit (theme) palette;
 in
 {
-  xdg.configFile."kitty/hotkeys-overlay.fish".source = ./hotkeys-overlay.fish;
   xdg.configFile."kitty/Everforest.conf".text = ''
     # vim:ft=kitty
     ## name: Everforest Dark Medium
@@ -81,17 +80,17 @@ in
     enable = true;
     # mouse_map = "mouse_map left release ungrabbed mouse_handle_click selection link";
     keybindings = {
+      "alt+r" = "show_scrollback";
       "ctrl+shift+d" = "remote_control scroll-window 0.5p";
       "ctrl+shift+u" = "remote_control scroll-window 0.5p-";
       "ctrl+shift+q" = "no_op";
       "ctrl+shift+enter" = "no_op";
-      "ctrl+shift+/" =
-        "launch --type=overlay --title=Hotkeys fish -i ~/.config/kitty/hotkeys-overlay.fish";
     };
     settings = {
       shell = "${pkgs.fish}/bin/fish";
 
       confirm_os_window_close = 0;
+      restore_session_after_logout = true;
       include = "Everforest.conf";
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
@@ -105,8 +104,7 @@ in
       cursor_trail_start_threshold = 0;
       cursor_blink_interval = "0.5 ease-in-out";
 
-      scrollback_pager = "sh -c 'cat > /tmp/kitty-scrollback.txt && ansifilter --ignore-csi -i /tmp/kitty-scrollback.txt -o /tmp/kitty-scrollback-filtered.txt && ms -c ~/.config/mitos/scrollback.toml + /tmp/kitty-scrollback-filtered.txt'";
-      "map alt+r" = "show_scrollback";
+      scrollback_pager = "${pkgs.fish}/bin/fish --no-config -c 'ms -c ~/.config/mitos/scrollback.toml + (ansifilter --ignore-csi | psub -f)'";
     }
     // theme.fonts.kitty;
   };

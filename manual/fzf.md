@@ -12,6 +12,8 @@ fzf 0.75.0 · Search words: fuzzy, chooser, picker, filter / 模糊查找、选�
 
 | Entry | Use |
 | --- | --- |
+| Fish `Ctrl+R` | Search the shell history and recall a command |
+| Fish `Ctrl+T` / `Alt+C` | Insert selected paths / change to the selected directory |
 | `fzf` | Find a file below the current directory |
 | `rg --files \| fzf` | Choose from ripgrep's file list |
 | `fd -t d \| fzf` | Choose a directory |
@@ -19,7 +21,7 @@ fzf 0.75.0 · Search words: fuzzy, chooser, picker, filter / 模糊查找、选�
 | `fzf --multi` | Allow selection of several entries |
 | `fzf --preview 'bat --color=always -- {}'` | Preview the file under the cursor |
 
-Choosing normally prints the selected line; it does not automatically open it. The program that launched fzf may use the result. Kitty's shortcut overlay uses fzf for **reference only**. Fish's Ctrl+R is Fish history; fzf shell widgets are not configured here.
+Choosing normally prints the selected line; it does not automatically open it. The program that launched fzf may use the result.
 
 ## Match exactly what you want
 
@@ -78,4 +80,4 @@ Choosing normally prints the selected line; it does not automatically open it. T
 
 ---
 
-Sources: installed `man fzf` (default keys and extended-search sections); [overlay](../home/modules/common/hotkeys-overlay.fish) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+Sources: installed `man fzf` (default keys and extended-search sections); [Fish integration](../home/modules/common/fish.nix) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)

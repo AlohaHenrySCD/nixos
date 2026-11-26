@@ -43,7 +43,6 @@ A **pane** is a terminal inside a tab; an **OS window** is a separate desktop wi
 
 | Shortcut | Use |
 | --- | --- |
-| `Ctrl+Shift+/` | Open searchable Kitty/Fish reference overlay |
 | `Ctrl+Shift+Enter` / `Ctrl+Shift+q` | Disabled; no action |
 | `Ctrl+Shift+F1` | Show documentation |
 | `Ctrl+Shift+F3` | Command palette |
@@ -118,9 +117,8 @@ A **pane** is a terminal inside a tab; an **OS window** is a separate desktop wi
 | `Ctrl+Shift+E → hint` | Open a URL shown in terminal output |
 | `Ctrl+Shift+R` | Resize; use the on-screen keys. 1/2 selects strategy, M modifier, F fraction, R resets |
 | `Ctrl+Shift+F5` | Save this instance; Niri logout saves all instances |
-| `Ctrl+Shift+/ → keyword → Esc` | Look up a shortcut and return |
 
-For log files and live output, see [ov](ov.md); for the reference overlay's search controls, see [fzf](fzf.md).
+For log files and live output, see [ov](ov.md).
 
 `Ctrl+Shift+Q` and `Ctrl+Shift+Enter` are disabled. `Ctrl+Shift+U` scrolls rather than opening Unicode input; `Ctrl+Shift+F5` saves rather than reloading settings. Other actions remain available in the command palette. Opacity controls need dynamic opacity enabled, which this configuration does not enable.
 

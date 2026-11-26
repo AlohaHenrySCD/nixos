@@ -56,7 +56,6 @@ Each guide has a section directory at the top. [The task index](task-index.md) l
 
 | Task | Sequence |
 | --- | --- |
-| Find a terminal shortcut | Kitty `Ctrl+Shift+/ → keyword → Esc` |
 | Inspect old terminal output | Kitty `Alt+R` → [Mitos](mitos.md) navigation → `Space → q` |
 | Find errors in logs | Fish `jlog \| ov` → `/ → error → Enter → n` |
 | Enter a project directory | Fish `y` → [Yazi](yazi.md) navigation → `q`; or `zi project` |

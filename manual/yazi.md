@@ -234,4 +234,4 @@ Yazi 26.9.1 · Default layout. `h j k l` = parent/down/up/enter; these are **not
 
 ---
 
-[Theme](../home/yazi/theme.toml) · [Fish wrapper](../home/modules/common/fish.nix) · [Versioned defaults](https://github.com/sxyazi/yazi/blob/v26.9.1/yazi-config/preset/keymap-default.toml) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Theme and Fish wrapper](../home/modules/common/yazi.nix) · [Versioned defaults](https://github.com/sxyazi/yazi/blob/v26.9.1/yazi-config/preset/keymap-default.toml) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)

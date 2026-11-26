@@ -214,7 +214,6 @@ layout {
     struts 
 }
 // spawn-at-startup "fcitx5"
-spawn-at-startup "mako"
 spawn-at-startup "kitty"
 
 
@@ -321,7 +320,7 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Ctrl+D hotkey-overlay-title="Look Up Selected Text: GoldenDict" {
         spawn-sh "text=$(wl-paste --primary --no-newline 2>/dev/null); [ -n \"$text\" ] || text=$(wl-paste --no-newline); [ -n \"$text\" ] && exec goldendict -- \"$text\"";
@@ -583,10 +582,6 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-// Load KDE palettes and icons for Qt applications outside Plasma.
-environment {
-    QT_QPA_PLATFORMTHEME "kde"
-}
 cursor {
     xcursor-size @cursorSize@
     xcursor-theme "@cursorName@"

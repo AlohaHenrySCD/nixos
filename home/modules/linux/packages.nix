@@ -56,7 +56,7 @@ in
     gcc
     gtk4
     pavucontrol
-    mako
+    zathura
     libnotify
     papers
     # osu-lazer

@@ -218,8 +218,6 @@
     firewall.trustedInterfaces = [ "tailscale0" ];
   };
 
-  programs.starship.enable = true;
-
   environment.systemPackages = with pkgs; [
     # mesa
     gtk4.dev

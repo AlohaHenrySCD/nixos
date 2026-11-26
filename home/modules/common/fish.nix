@@ -3,25 +3,43 @@
   # Let nix-shell find Bash without requiring <nixpkgs> in NIX_PATH.
   home.sessionVariables.NIX_BUILD_SHELL = "${pkgs.bashInteractive}/bin/bash";
 
+  programs.bat = {
+    enable = true;
+    config.theme = "ansi";
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+    colors = {
+      inherit (theme.palette) fg;
+      bg = theme.palette.bg0;
+      "bg+" = theme.palette.bg2;
+      "fg+" = theme.palette.fg;
+      hl = theme.palette.green;
+      "hl+" = theme.palette.green;
+      prompt = theme.palette.aqua;
+      pointer = theme.palette.yellow;
+      marker = theme.palette.orange;
+    };
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set -g fish_greeting "Hello! AlohaHenry"
       set -g fish_cursor_default block
       bind alt-u backward-kill-line
-      abbr --add add --set-cursor='%' 'nix shell nixpkgs#%'
-      abbr --add dis --set-cursor='%' '% & disown'
-      # abbr --add fd --set-cursor='%' 'find . -iname "*%*" 2>/dev/null'
-      function y
-      	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-      	command yazi $argv --cwd-file="$tmp"
-      	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
-      		builtin cd -- "$cwd"
-      	end
-      	command rm -f -- "$tmp"
-      end
     '';
     shellAbbrs = {
+      add = {
+        setCursor = "%";
+        expansion = "nix shell nixpkgs#%";
+      };
+      dis = {
+        setCursor = "%";
+        expansion = "% & disown";
+      };
       ls = "eza";
       la = "eza -a";
       ll = "eza -al";
@@ -30,7 +48,6 @@
       ove = "ov --exec --";
       ns = "nix-shell --run fish";
       ur = "uv run";
-      jlog = "journalctl -b -x --all --no-pager";
       rm = "trash-put";
       cr = "codex resume";
       co = "codex";

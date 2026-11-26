@@ -23,7 +23,6 @@ in
 
   programs.kitty = {
     settings = {
-      restore_session_after_logout = true;
       allow_remote_control = "socket-only";
       listen_on = "unix:\${XDG_RUNTIME_DIR}/kitty-session-{kitty_pid}.sock";
     };

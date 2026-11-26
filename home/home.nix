@@ -11,9 +11,12 @@
     ./modules/common/packages.nix
     ./modules/common/btop.nix
     ./modules/common/broot.nix
+    ./modules/common/yazi.nix
     ./modules/common/fish.nix
+    ./modules/common/git.nix
     ./modules/common/lazygit.nix
     ./modules/common/ssh.nix
+    ./modules/common/starship.nix
     ./modules/common/kitty.nix
     ./modules/common/helix.nix
     ./modules/common/codex.nix
@@ -33,8 +36,7 @@
     RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
   };
 
-  xdg.configFile."tlrc/config/toml".source = ./tlrc.toml;
-  xdg.configFile."yazi/theme.toml".source = ./yazi/theme.toml;
+  xdg.configFile."tlrc/config.toml".source = ./tlrc.toml;
 
   # Euporie writes settings and recent files back to this file. Keep a writable
   # copy and reset it to the declarative template on each activation.
@@ -44,18 +46,6 @@
   '';
 
   programs.zoxide.enable = true;
-
-  programs.git = {
-    enable = true;
-    settings = {
-      init.defaultBranch = "main";
-      user.name = "AlohaHenry";
-      user.email = "aloha.henry.2018@gmail.com";
-    };
-  };
-
-  xdg.configFile."starship.toml".source = ./starship.toml;
-  programs.starship.enable = true;
 
   programs.bash = {
     enable = true;

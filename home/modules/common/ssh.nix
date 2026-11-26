@@ -1,4 +1,11 @@
 { ... }:
+let
+  mkGithubHost = key: {
+    hostname = "github.com";
+    user = "git";
+    identityFile = "~/.ssh/${key}";
+  };
+in
 {
   programs.ssh = {
     enable = true;
@@ -15,23 +22,9 @@
         ControlMaster = "no";
         ControlPersist = "no";
       };
-      blog = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519_blog";
-      };
-
-      my-nix = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
-      };
-
-      nixpkgs = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519_nixpkgs";
-      };
+      blog = mkGithubHost "id_ed25519_blog";
+      my-nix = mkGithubHost "id_ed25519";
+      nixpkgs = mkGithubHost "id_ed25519_nixpkgs";
     };
   };
 }

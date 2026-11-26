@@ -96,4 +96,4 @@ An older primary selection takes precedence over newer clipboard text. For a pre
 
 ---
 
-[Bar controls](../home/modules/linux/bar.nix) · [Notification settings](../home/mako) · [Dictionary](../home/modules/linux/goldendict.nix) · [Launchers](../home/modules/linux/packages.nix) · defaults checked with installed `man fuzzel.ini`, `man mako`, `man makoctl` · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Bar controls](../home/modules/linux/bar.nix) · [Notification settings](../home/linux.nix) · [Dictionary](../home/modules/linux/goldendict.nix) · [Launchers](../home/modules/linux/packages.nix) · defaults checked with installed `man fuzzel.ini`, `man mako`, `man makoctl` · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)

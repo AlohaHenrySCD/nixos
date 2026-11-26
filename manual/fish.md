@@ -49,7 +49,8 @@ Fish 4.9.3 · Keys act at the shell prompt. Foreground programs handle their own
 | `Shift+Enter` / `Alt+Enter` | Insert a newline without executing; expand abbreviations |
 | `Ctrl+Space` | Insert a literal space on a nonempty command line, without expanding abbreviations |
 | `Shift+Space` | Insert a space and expand abbreviations |
-| `Ctrl+r` | Open searchable command history |
+| `Ctrl+r` | Search command history with fzf |
+| `Ctrl+t` / `Alt+c` | Insert selected paths / change to the selected directory with fzf |
 
 ## Inspect, cancel and use tools
 
@@ -77,10 +78,8 @@ Fish 4.9.3 · Keys act at the shell prompt. Foreground programs handle their own
 | `Ctrl+d` | Delete at cursor; exit only when command line is empty |
 | `Delete` | Delete character under cursor |
 | `Backspace` / `Shift+Backspace` / `Ctrl+h` | Delete previous character |
-| `Ctrl+t` | Swap adjacent characters |
 | `Ctrl+/` / `Ctrl+_` / `Ctrl+z`; `Ctrl+Shift+z` / `Alt+/` | Undo / redo command-line editing |
 | `Alt+t` | Swap adjacent words |
-| `Alt+c` | Capitalize the current word |
 | `Alt+Backspace` / `Ctrl+Alt+h`; `Alt+Delete` | Kill previous / next word |
 | `Ctrl+Backspace`; `Ctrl+Delete` | Kill previous / next shell token |
 
@@ -104,12 +103,12 @@ Abbreviations expand when followed by a space. These are typed commands, not sim
 | `ove` | `ov --exec --` |
 | `ns` | `nix-shell --run fish` |
 | `ur` | `uv run` |
-| `jlog` | `journalctl -b -x --all --no-pager` |
+| `jlog` | `journalctl -b -x --all --no-pager` (full Linux configuration only) |
 | `rm` | `trash-put` |
 | `cr`, `co` | `codex resume`, `codex` |
 | `lg` | `lazygit` |
 | `add` | `nix shell nixpkgs#`, with cursor at the package name |
-| `dis` | ` & disown`, with cursor before the command suffix |
+| `dis` | `& disown`, with cursor at the command before `& disown` |
 | `nix-clean` | Garbage-collect user and root Nix stores; also vacuum the journal to 300 MB on Linux |
 | `y` | Open Yazi and change Fish's directory to the directory selected on exit |
 | `mkcd DIR` | Create a directory and enter it |
@@ -132,7 +131,6 @@ For [directory jumping, clipboard, trash recovery and command examples](utilitie
 | `Alt+E → edit in ms → save and quit` | Return the edited command to Fish |
 | `Alt+Left / Alt+Right` on an empty line | Move through directory history |
 | `add → Space → jq → Enter` | Start a Nix shell with jq |
-| `dis → Space → program → Enter` | Run the inserted program with `& disown` |
 | `y → choose directory → q` | Return from Yazi with Fish in that directory |
 
 Niri intercepts F1 for screenshots; use Alt+H for command help.
