@@ -38,6 +38,7 @@
     RUSTUP_UPDATE_ROOT = "https://rsproxy.cn/rustup";
   };
 
+  home.file.".gemini/config/AGENTS.md".source = ./antigravity-agents.md;
   xdg.configFile."tlrc/config.toml".source = ./tlrc.toml;
 
   # Euporie writes settings and recent files back to this file. Keep a writable
