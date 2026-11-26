@@ -3,6 +3,7 @@
   constants,
   lib,
   pkgs,
+  theme,
   ...
 }:
 {
@@ -11,6 +12,7 @@
     ./modules/common/btop.nix
     ./modules/common/broot.nix
     ./modules/common/fish.nix
+    ./modules/common/lazygit.nix
     ./modules/common/ssh.nix
     ./modules/common/kitty.nix
     ./modules/common/helix.nix

@@ -5,10 +5,11 @@
   pkgs,
   inputs,
   osConfig,
+  theme,
   ...
 }:
 let
-  fontSettings = import ../fonts.nix { inherit pkgs; };
+  inherit (theme) fonts palette;
   obsidianVaultFiles = {
     "community-plugins.json" = pkgs.writeText "obsidian-community-plugins.json" (builtins.toJSON [
       "background-tray"
@@ -67,6 +68,7 @@ in
     ./modules/linux/packages.nix
     ./modules/linux/goldendict.nix
     ./modules/linux/qbittorrent.nix
+    ./modules/linux/fuzzel.nix
     ./modules/linux/flatpak.nix
     ./modules/linux/bar.nix
     ./modules/linux/gtk.nix
@@ -109,7 +111,7 @@ in
   };
   programs.alacritty.enable = true;
 
-  fonts.fontconfig = fontSettings.fontconfig;
+  fonts.fontconfig = fonts.fontconfig;
 
   programs.kitty = {
     # Compensate for Niri's touchpad scroll-factor 0.2 inside the terminal.
@@ -161,7 +163,7 @@ in
   programs.plasma = {
     enable = true;
 
-    fonts = fontSettings.plasma;
+    fonts = fonts.plasma;
 
     configFile."plasma-localerc" = {
       Formats.LANG = "en_US.UTF-8";
@@ -198,7 +200,7 @@ in
     ];
   };
 
-  xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  xdg.configFile."niri/config.kdl".text = theme.render ./config.kdl;
   home.file.".local/share/fcitx5/rime/default.custom.yaml".source = ./default.custom.yaml;
   home.file.".local/share/fcitx5/rime/rime_ice.custom.yaml".text = ''
     patch:
@@ -214,7 +216,7 @@ in
     DirectUnicodeMode=
   '';
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
-    Font=${fontSettings.fcitx}
+    Font=${fonts.fcitx}
     Theme=everforest
     DarkTheme=everforest
     UseDarkTheme=False
@@ -230,15 +232,15 @@ in
     ScaleWithDPI=True
 
     [InputPanel]
-    NormalColor=#d3c6aa
-    HighlightColor=#a7c080
-    HighlightCandidateColor=#2d353b
-    HighlightBackgroundColor=#3d484d
+    NormalColor=${palette.fg}
+    HighlightColor=${palette.green}
+    HighlightCandidateColor=${palette.bg0}
+    HighlightBackgroundColor=${palette.bg2}
     PageButtonAlignment=Last Candidate
 
     [InputPanel/Background]
-    Color=#2d353b
-    BorderColor=#859289
+    Color=${palette.bg0}
+    BorderColor=${palette.grey1}
     BorderWidth=1
 
     [InputPanel/Background/Margin]
@@ -260,7 +262,7 @@ in
     Bottom=5
 
     [InputPanel/Highlight]
-    Color=#a7c080
+    Color=${palette.green}
 
     [InputPanel/Highlight/Margin]
     Left=4
@@ -269,12 +271,12 @@ in
     Bottom=3
 
     [Menu]
-    NormalColor=#d3c6aa
-    SelectedItemColor=#2d353b
+    NormalColor=${palette.fg}
+    SelectedItemColor=${palette.bg0}
 
     [Menu/Background]
-    Color=#2d353b
-    BorderColor=#859289
+    Color=${palette.bg0}
+    BorderColor=${palette.grey1}
     BorderWidth=1
 
     [Menu/Background/Margin]
@@ -296,10 +298,10 @@ in
     Bottom=5
 
     [Menu/Highlight]
-    Color=#a7c080
+    Color=${palette.green}
 
     [Menu/Separator]
-    Color=#475258
+    Color=${palette.bg3}
   '';
   xdg.configFile."fcitx5/conf/rime.conf".text = ''
     # Commit the typed pinyin when switching away from Rime.
@@ -308,14 +310,8 @@ in
 
   home.pointerCursor = {
     enable = true;
-    # package = pkgs.bibata-cursors;
     package = pkgs.everforest-cursors;
-    # package = pkgs.phinger-cursors;
-    # name = "Bibata-Modern-Ice";
-    name = "everforest-cursors";
-    # name = "phinger-cursors-light";
-    size = 32;
-
+    inherit (theme.cursor) name size;
     gtk.enable = true;
     x11.enable = true;
   };

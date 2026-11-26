@@ -6,7 +6,6 @@
   ...
 }:
 let
-  flatpakDataDirs = "${config.xdg.dataHome}/flatpak/exports/share:/var/lib/flatpak/exports/share";
   cursor = config.home.pointerCursor;
   cursorIcons = "${cursor.package}/share/icons";
   apps = {
@@ -45,17 +44,7 @@ let
   '';
 in
 {
-  home.packages = [
-    (pkgs.symlinkJoin {
-      name = "fuzzel-flatpak";
-      paths = [ pkgs.fuzzel ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram "$out/bin/fuzzel" \
-          --prefix XDG_DATA_DIRS : ${lib.escapeShellArg flatpakDataDirs}
-      '';
-    })
-  ] ++ lib.mapAttrsToList (
+  home.packages = lib.mapAttrsToList (
     name: app:
     pkgs.writeShellScriptBin name ''
       exec ${pkgs.flatpak}/bin/flatpak run --user ${app} "$@"

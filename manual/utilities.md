@@ -108,8 +108,11 @@ navi's chooser uses [fzf controls](fzf.md). No Fish navi shortcut widget is conf
 | `glow -s ascii FILE.md` | Render without colored styling |
 | `btop` | Inspect CPU, memory and processes; also available by clicking Waybar's system metrics |
 | `btop --filter NAME` | Start with a process filter |
-| `lazygit --path REPO` | Open Git's terminal interface in a repository |
+| `lg` in Fish / `lazygit --path REPO` | Open Git's terminal interface in the current or specified repository |
 | `lazygit log` | Start focused on commit history |
+| Lazygit `j / k / l / ;` | Local remap: previous block / next item / previous item / next block (`j / ;` also switch hunks in main view) |
+| Lazygit `J / K / L / H` | Local remap: scroll main view left / down / up / right (`:` stays shell command) |
+| Lazygit `Ctrl+k / Ctrl+l`; `Ctrl+h`; `e` | Local remap: move commit down / up; open log menu; open file at line in `$EDITOR` (`ms` by default) |
 | `jlog` in Fish | Show the current boot's journal |
 | `jlog \| rg 'pattern'` | Filter current boot logs |
 | `jlog \| ov` | Browse logs interactively |

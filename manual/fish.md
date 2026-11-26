@@ -107,6 +107,7 @@ Abbreviations expand when followed by a space. These are typed commands, not sim
 | `jlog` | `journalctl -b -x --all --no-pager` |
 | `rm` | `trash-put` |
 | `cr`, `co` | `codex resume`, `codex` |
+| `lg` | `lazygit` |
 | `add` | `nix shell nixpkgs#`, with cursor at the package name |
 | `dis` | ` & disown`, with cursor before the command suffix |
 | `nix-clean` | Garbage-collect user and root Nix stores; also vacuum the journal to 300 MB on Linux |

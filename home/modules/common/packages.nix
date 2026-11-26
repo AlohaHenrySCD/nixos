@@ -26,7 +26,6 @@
     tlrc
     navi
     hugo
-    lazygit
     fd
     trash-cli
 

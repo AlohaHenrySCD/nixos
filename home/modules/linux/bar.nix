@@ -2,10 +2,12 @@
   config,
   lib,
   pkgs,
+  theme,
   ...
 }:
 let
-  fontSettings = (import ../../../fonts.nix { inherit pkgs; }).waybar;
+  inherit (theme) palette;
+  fontSettings = theme.fonts.waybar;
   inherit (fontSettings) iconSize;
   icon = glyph: "<span font_family=\"${fontSettings.iconFamily}\">${glyph}</span>";
   systemMonitor = "${pkgs.kitty}/bin/kitty --title 'System Monitor' -e ${pkgs.btop}/bin/btop";
@@ -335,15 +337,15 @@ in
     };
 
     style = ''
-      @define-color bg #2d353b;
-      @define-color bg_alt #343f44;
-      @define-color fg #d3c6aa;
-      @define-color muted #859289;
-      @define-color green #a7c080;
-      @define-color aqua #83c092;
-      @define-color blue #7fbbb3;
-      @define-color yellow #dbbc7f;
-      @define-color red #e67e80;
+      @define-color bg ${palette.bg0};
+      @define-color bg_alt ${palette.bg1};
+      @define-color fg ${palette.fg};
+      @define-color muted ${palette.grey1};
+      @define-color green ${palette.green};
+      @define-color aqua ${palette.aqua};
+      @define-color blue ${palette.blue};
+      @define-color yellow ${palette.yellow};
+      @define-color red ${palette.red};
 
       * {
         font-family: ${fontSettings.family};
