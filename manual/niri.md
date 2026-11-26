@@ -115,4 +115,4 @@ Media/brightness keys and Orca work while locked. Logout opens a confirmation me
 
 ---
 
-[Configuration](../home/config.kdl) · [Logout helper](../home/modules/linux/kitty-session.py) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Configuration](../home/niri.kdl) · [Logout helper](../home/modules/linux/kitty-session.py) · Checked 2026-11-15 · [Index](shortcuts.md) · [Find by task](task-index.md)

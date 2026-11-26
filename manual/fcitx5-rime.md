@@ -79,4 +79,4 @@ Switching away from Rime commits raw input. Kitty reserves Ctrl+Shift+U for scro
 
 ---
 
-[Fcitx keys](../home/fcitx5) · [Rime overrides](../home/default.custom.yaml) · [Raw text on symbols](../home/raw_on_symbol.lua) · [Linux integration](../home/linux.nix) · symbol override requires rebuild and Rime redeploy · Checked 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Fcitx keys](../home/fcitx5.conf) · [Rime overrides](../home/rime-default.custom.yaml) · [Raw text on symbols](../home/rime-raw-on-symbol.lua) · [Linux integration](../home/modules/linux/fcitx5.nix) · symbol override requires rebuild and Rime redeploy · Checked 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)

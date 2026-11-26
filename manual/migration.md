@@ -58,7 +58,7 @@
    ```
 2. 按新机器情况补几项主机配置（参考 [hosts/asahi/](../hosts/asahi/default.nix)）：
    - 主机名：`networking.hostName`（要和 [flake.nix](../flake.nix) 里的配置名一致，`bd` 依赖它）
-   - 显示器：进桌面后跑 `niri msg outputs`，按需建 `hosts/<host>/outputs.kdl`
+   - 显示器：进桌面后跑 `niri msg outputs`，可参考 [Asahi 的输出配置](../hosts/asahi/niri-outputs.kdl)，按需建 `hosts/<host>/niri-outputs.kdl`
    - 键盘映射：如需在内置/外接键盘启用 `keyd` 分层，用 `sudo keyd monitor` 查设备 ID，填进 `my.keyd.internalKeyboardIds`（见 [modules/keyd.nix](../modules/keyd.nix)）
    - 非 Btrfs 机器不要开 `services.btrfs.autoScrub`
 3. 如有旧的 Flatpak 应用数据，**先复制到 `~/.var/app/<app-id>/`**（不覆盖已有文件）：

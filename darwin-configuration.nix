@@ -43,25 +43,24 @@
     enableFishIntegration = true;
 
     taps = [ "akirco/pigma" ];
-    brews = [ "akirco/pigma/pigma" ];
+    brews = [ "akirco/pigma/pigma" ]; # 终端网易云音乐和本地音乐播放器
     casks = [
       "google-chrome"
       "obs"
       "discord"
       "wechat"
-      "osu"
+      "osu" # 节奏游戏
       "microsoft-office"
-      # "neteasemusic"
       "obsidian"
-      "clash-verge-rev"
+      "clash-verge-rev" # 管理 Clash 代理配置
       "zed"
-      "linearmouse"
-      "bazecor"
-      "iina"
-      "prismlauncher"
-      "monitorcontrol"
-      "raycast"
-      "background-music"
+      "linearmouse" # 调整鼠标与触控板的滚动和加速
+      "bazecor" # 配置 Dygma 键盘的键位和灯效
+      "iina" # macOS 视频播放器
+      "prismlauncher" # 管理和启动 Minecraft 实例
+      "monitorcontrol" # 调节外接显示器的亮度和音量
+      "raycast" # 启动应用并执行快捷操作
+      "background-music" # 按应用调节音量
     ];
   };
 

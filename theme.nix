@@ -75,24 +75,10 @@ in
       configFile.jetbrains-cjk = {
         enable = true;
         priority = 53;
-        text = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <alias binding="strong">
-              <family>${ui}</family>
-              <accept>
-                <family>${uiCjk}</family>
-              </accept>
-            </alias>
-            <alias binding="strong">
-              <family>${monospace}</family>
-              <accept>
-                <family>${monospaceCjk}</family>
-              </accept>
-            </alias>
-          </fontconfig>
-        '';
+        text = builtins.replaceStrings
+          [ "@ui@" "@uiCjk@" "@monospace@" "@monospaceCjk@" ]
+          [ ui uiCjk monospace monospaceCjk ]
+          (builtins.readFile ./fontconfig-jetbrains-cjk.xml);
       };
       defaultFonts = {
         monospace = [

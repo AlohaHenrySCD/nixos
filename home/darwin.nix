@@ -2,7 +2,7 @@
 {
   home.homeDirectory = "/Users/${constants.username}";
   home.packages = [
-    pkgs.halloy
+    pkgs.halloy # IRC 聊天客户端
     pkgs.qbittorrent
   ];
   targets.darwin.copyApps.enable = true;

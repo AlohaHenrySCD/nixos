@@ -8,22 +8,22 @@
 }:
 {
   imports = [
-    ./modules/common/packages.nix
-    ./modules/common/clash-hkmo.nix
-    ./modules/common/qbittorrent.nix
-    ./modules/common/btop.nix
     ./modules/common/broot.nix
-    ./modules/common/yazi.nix
+    ./modules/common/btop.nix
+    ./modules/common/clash-hkmo.nix
+    ./modules/common/claude.nix
+    ./modules/common/codex.nix
     ./modules/common/fish.nix
     ./modules/common/git.nix
+    ./modules/common/helix.nix
+    ./modules/common/kitty.nix
     ./modules/common/lazygit.nix
+    ./modules/common/packages.nix
+    ./modules/common/qbittorrent.nix
+    ./modules/common/sops.nix
     ./modules/common/ssh.nix
     ./modules/common/starship.nix
-    ./modules/common/kitty.nix
-    ./modules/common/helix.nix
-    ./modules/common/codex.nix
-    ./modules/common/claude.nix
-    ./modules/common/sops.nix
+    ./modules/common/yazi.nix
   ];
 
   home.stateVersion = "26.05";
@@ -50,9 +50,5 @@
 
   programs.zoxide.enable = true;
 
-  programs.bash = {
-    enable = true;
-
-  };
-
+  programs.bash.enable = true;
 }

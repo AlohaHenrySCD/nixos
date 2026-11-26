@@ -1,0 +1,15 @@
+
+.theme-dark {
+  --h1-color: var(--everforest-dim-orange);
+  --h2-color: var(--everforest-dim-yellow);
+  --h3-color: var(--everforest-dim-green);
+  --h4-color: var(--everforest-dim-aqua);
+  --h5-color: var(--everforest-dim-purple);
+}
+.theme-light {
+  --h1-color: var(--everforest-light-orange);
+  --h2-color: var(--everforest-light-yellow);
+  --h3-color: var(--everforest-light-green);
+  --h4-color: var(--everforest-light-aqua);
+  --h5-color: var(--everforest-light-purple);
+}

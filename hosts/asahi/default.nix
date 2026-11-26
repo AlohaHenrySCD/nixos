@@ -15,14 +15,14 @@
     ./kernel.nix
   ];
 
+  # ── 主机与外设 ──
   my.keyd.keymapIds = [ "05ac:0342:89b7fedc" ];
   services.btrfs.autoScrub.enable = true;
   networking.hostName = lib.mkDefault "asahi";
 
   environment.systemPackages = with pkgs; [
-    # utm
-    asahi-bless
-    picocom
+    asahi-bless # 选择 Apple 芯片 Mac 的启动分区
+    picocom # 串口终端
   ];
 
   services.udev.extraRules = ''
@@ -36,31 +36,10 @@
     LABEL="not_m1n1"
   '';
 
+  # ── 虚拟机与游戏 ──
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   programs.steam-asahi.enable = true;
-
-  nixpkgs.overlays = lib.mkAfter [
-    (final: prev: {
-      fex = final.symlinkJoin {
-        name = "fex-compat-${prev.fex.version}";
-        paths = [ prev.fex ];
-        postBuild = ''
-          ln -s FEX "$out/bin/FEXInterpreter"
-        '';
-        inherit (prev.fex) meta;
-      };
-      steam-asahi = prev.steam-asahi.override {
-        fuse = final.symlinkJoin {
-          name = "fuse-steam-compat";
-          paths = [ (lib.getBin final.fuse3) ];
-          postBuild = ''
-            ln -s fusermount3 "$out/bin/fusermount"
-          '';
-        };
-      };
-    })
-  ];
 
   # Allow libvirt guests to use the host's Clash proxy.
   networking.firewall.interfaces.virbr0.allowedTCPPorts = [ constants.proxy.port ];
@@ -89,6 +68,7 @@
     '';
   };
 
+  # ── 系统与启动 ──
   systemd.tmpfiles.rules = [
     "d /.Trash-1000 0700 ${constants.username} users - -"
   ];
@@ -101,30 +81,14 @@
 
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
-    # HibernateDelaySec = "1h";
     HandleLidSwitchExternalPower = "ignore";
     HandleSuspendKey = "suspend";
   };
 
   hardware.asahi = {
     enable = true;
-    # useExperimentalGPUDriver = true;
     peripheralFirmwareDirectory = null;
   };
-
-  # services.pipewire.wireplumber.extraConfig."51-asahi-hdmi" = {
-  #   "monitor.alsa.rules" = [
-  #     {
-  #       matches = [
-  #         { "node.name" = "~alsa_output.platform-39b540000.audio-controller.*"; }
-  #       ];
-  #       actions.update-props = {
-  #         "api.alsa.period-size" = 1024;
-  #         "api.alsa.period-num" = 8;
-  #       };
-  #     }
-  #   ];
-  # };
 
   boot = {
     kernelParams = [
@@ -132,4 +96,28 @@
       "appledrm.hdmi_audio=1"
     ];
   };
+
+  # ── Steam Asahi 兼容层 ──
+  # FEX 和 FUSE 3 的可执行文件在 nixpkgs 中使用了不同的名称。
+  nixpkgs.overlays = lib.mkAfter [
+    (final: prev: {
+      fex = final.symlinkJoin {
+        name = "fex-compat-${prev.fex.version}";
+        paths = [ prev.fex ];
+        postBuild = ''
+          ln -s FEX "$out/bin/FEXInterpreter"
+        '';
+        inherit (prev.fex) meta;
+      };
+      steam-asahi = prev.steam-asahi.override {
+        fuse = final.symlinkJoin {
+          name = "fuse-steam-compat";
+          paths = [ (lib.getBin final.fuse3) ];
+          postBuild = ''
+            ln -s fusermount3 "$out/bin/fusermount"
+          '';
+        };
+      };
+    })
+  ];
 }

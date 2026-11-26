@@ -36,15 +36,15 @@ in
       SUDO_EDITOR = "hx";
     };
     packages = with pkgs; [
-      pi-coding-agent
-      eza
-      ripgrep
-      fd
+      pi-coding-agent # 终端 AI 编程助手
+      eza # 带文件类型和 Git 状态的目录列表
+      ripgrep # 递归搜索文件内容
+      fd # 按名称查找文件
       jq
       tree
-      sops
-      age
-      nil
+      sops # 加密和编辑机密配置
+      age # 加密和解密文件
+      nil # Nix 语言服务器
       nixfmt
     ];
   };

@@ -43,35 +43,11 @@ let
       pkgs.coreutils
       pkgs.crudini
     ];
-    text = ''
-      config_file=${lib.escapeShellArg configFile}
-      mkdir -p "$(dirname "$config_file")"
-      temporary=$(mktemp "$config_file.XXXXXX")
-      trap 'rm -f "$temporary"' EXIT
-
-      if [ -e "$config_file" ]; then
-        cp -p "$config_file" "$temporary"
-      fi
-      crudini --merge "$temporary" < ${settings}
-
-      if [ -e "$config_file" ] && cmp -s "$config_file" "$temporary"; then
-        exit 0
-      fi
-      if ${pgrep} -u "$(id -u)" -x qbittorrent >/dev/null; then
-        echo "Close qBittorrent before activating its declarative settings." >&2
-        exit 1
-      fi
-
-      if [ -e "$config_file" ]; then
-        cp -p --backup=numbered "$config_file" "$config_file.before-home-manager"
-      fi
-      chmod 600 "$temporary"
-      mv "$temporary" "$config_file"
-    '';
+    text = builtins.readFile ./qbittorrent-configure.sh;
   };
 in
 {
   home.activation.qbittorrentConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run ${lib.getExe configure}
+    run ${lib.getExe configure} ${lib.escapeShellArgs [ configFile settings pgrep ]}
   '';
 }

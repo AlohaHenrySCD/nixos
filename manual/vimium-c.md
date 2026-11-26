@@ -1,6 +1,6 @@
 # Vimium C
 
-Vimium C 2.12.2 · Helix/Mitos layout. This guide describes the local export, which must be imported manually; it has not been applied to the browser. Import `/etc/nixos/home/vimium/config.json` through Vimium C's options page. No NixOS rebuild is required.
+Vimium C 2.12.2 · Helix/Mitos layout. This guide describes the local export, which must be imported manually; it has not been applied to the browser. Import `/etc/nixos/home/vimium-c.json` through Vimium C's options page. No NixOS rebuild is required.
 
 `j k l ;` = left/down/up/right. `→` means press in sequence; uppercase letters include Shift. Space is left to the webpage; there is no Space prefix. Keys below are the keys received by the browser after [keyd](keyd.md) remapping. Page shortcuts work outside editable text fields on pages where Vimium can run. The export clears normal-mode defaults; Visual/Caret mode retains its own defaults with the overrides below.
 
@@ -105,4 +105,4 @@ Esc cancels an active hint/search/chooser. On restricted browser pages or when a
 
 ---
 
-[Saved export](../home/vimium/config.json) · [Extension installation](../configuration.nix) · [Per-mode mapping reference](https://github.com/gdh1995/vimium-c/wiki/Use-in-another-keyboard-layout#per-mode-mapkey) · Updated 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)
+[Saved export](../home/vimium-c.json) · [Extension installation](../configuration.nix) · [Per-mode mapping reference](https://github.com/gdh1995/vimium-c/wiki/Use-in-another-keyboard-layout#per-mode-mapkey) · Updated 2026-11-16 · [Index](shortcuts.md) · [Find by task](task-index.md)
