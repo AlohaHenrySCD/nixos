@@ -45,7 +45,7 @@ Search this page for a task or a Chinese/English keyword, then follow the sectio
 | Resize, center, fullscreen, tabbed column / 调整宽高、居中、全屏、列标签 | [Arrange and resize](niri.md#arrange-and-resize) |
 | Workspace, monitor, display / 工作区、显示器、多屏 | [Workspaces and monitors](niri.md#workspaces-and-monitors) |
 | Screenshot, lock, logout, screen off / 截图、锁屏、注销、息屏 | [Screenshots and session](niri.md#screenshots-and-session) |
-| Fuzzel, launcher, start app / 启动器、打开应用 | [Launch apps](desktop-tools.md#launch-applications--fuzzel) |
+| Fuzzel, launcher, start app, Bazecor, NetEase / 启动器、打开应用、网易云音乐 | [Launch apps](desktop-tools.md#launch-applications--fuzzel) |
 | Waybar, tray, Wi-Fi, Bluetooth / 状态栏、托盘、网络、蓝牙 | [Top bar controls](desktop-tools.md#use-the-top-bar--waybar) |
 | Per-app and window volume, wiremix, mute, microphone, playback, brightness / 应用音量、窗口音量、静音、麦克风、播放、亮度 | [Media keys](niri.md#audio-and-brightness) · [Volume controls and audio devices](desktop-tools.md#use-the-top-bar--waybar) |
 | Mako, notification, dismiss, recover / 通知、关闭通知、找回通知 | [Notifications](desktop-tools.md#read-and-recover-notifications--mako) |

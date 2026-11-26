@@ -1,10 +1,18 @@
 {
   config,
+  constants,
   lib,
   pkgs,
   ...
 }:
 let
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  configFile =
+    if isDarwin then
+      "${config.xdg.configHome}/qBittorrent/qBittorrent.ini"
+    else
+      "${config.home.homeDirectory}/.var/app/org.qbittorrent.qBittorrent/config/qBittorrent/qBittorrent.conf";
+  pgrep = if isDarwin then "/usr/bin/pgrep" else "${pkgs.procps}/bin/pgrep";
   trackers = lib.filter (line: line != "") (
     lib.splitString "\n" (builtins.readFile ./qbittorrent-trackers.txt)
   );
@@ -22,8 +30,8 @@ let
     Network = {
       "Proxy\\AuthEnabled" = false;
       "Proxy\\HostnameLookupEnabled" = true;
-      "Proxy\\IP" = "127.0.0.1";
-      "Proxy\\Port" = 7897;
+      "Proxy\\IP" = constants.proxy.host;
+      "Proxy\\Port" = constants.proxy.port;
       "Proxy\\Profiles\\BitTorrent" = true;
       "Proxy\\Type" = "SOCKS5";
     };
@@ -34,10 +42,9 @@ let
     runtimeInputs = [
       pkgs.coreutils
       pkgs.crudini
-      pkgs.procps
     ];
     text = ''
-      config_file=${lib.escapeShellArg "${config.xdg.configHome}/qBittorrent/qBittorrent.conf"}
+      config_file=${lib.escapeShellArg configFile}
       mkdir -p "$(dirname "$config_file")"
       temporary=$(mktemp "$config_file.XXXXXX")
       trap 'rm -f "$temporary"' EXIT
@@ -50,7 +57,7 @@ let
       if [ -e "$config_file" ] && cmp -s "$config_file" "$temporary"; then
         exit 0
       fi
-      if pgrep -u "$(id -u)" -x 'qbittorrent|\.qbittorrent-wr' >/dev/null; then
+      if ${pgrep} -u "$(id -u)" -x qbittorrent >/dev/null; then
         echo "Close qBittorrent before activating its declarative settings." >&2
         exit 1
       fi

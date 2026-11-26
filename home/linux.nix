@@ -67,7 +67,6 @@ in
   imports = [
     ./modules/linux/packages.nix
     ./modules/linux/goldendict.nix
-    ./modules/linux/qbittorrent.nix
     ./modules/linux/fuzzel.nix
     ./modules/linux/clipboard.nix
     ./modules/linux/flatpak.nix
@@ -94,6 +93,19 @@ in
     enable = true;
     createDirectories = true;
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = "org.kde.dolphin.desktop";
+      "x-scheme-handler/clash" = "clash-verge.desktop";
+      "x-scheme-handler/clash-verge" = "clash-verge.desktop";
+      "x-scheme-handler/codex" = "chatgpt.desktop";
+      "x-scheme-handler/t3code" = "com.t3tools.T3Code.desktop";
+      "x-scheme-handler/dshu" = "deepseek-harness-uncensored.desktop";
+    };
+  };
+  xdg.configFile."mimeapps.list".force = true;
 
   xdg.dataFile."dbus-1/services/org.freedesktop.FileManager1.service".source =
     "${pkgs.kdePackages.dolphin}/share/dbus-1/services/org.kde.dolphin.FileManager1.service";
@@ -166,9 +178,6 @@ in
       Formats.LANG = "en_US.UTF-8";
       Translations.LANGUAGE = "en_US:en";
     };
-
-    configFile."mimeapps.list"."Default Applications"."inode/directory" =
-      "org.kde.dolphin.desktop";
 
     workspace.colorScheme = "Everforest";
     configFile."kdeglobals"."Icons"."Theme" = "Papirus";

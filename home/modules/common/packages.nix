@@ -9,9 +9,7 @@
     ffmpeg
     jujutsu
     tree
-    halloy
     ansifilter
-    qbittorrent
     eza
     ripgrep
     jq

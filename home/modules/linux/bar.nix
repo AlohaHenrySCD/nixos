@@ -195,6 +195,36 @@ in
               icon = "";
             }
             {
+              app-id = "(?i)(vlc|haruna)$";
+              class = "video";
+              icon = "";
+            }
+            {
+              app-id = "(?i)(vesktop|halloy)$";
+              class = "chat";
+              icon = "";
+            }
+            {
+              app-id = "(?i)papers$";
+              class = "document";
+              icon = "";
+            }
+            {
+              app-id = "(?i)qbittorrent$";
+              class = "download";
+              icon = "";
+            }
+            {
+              app-id = "(?i)prismlauncher$";
+              class = "game";
+              icon = "";
+            }
+            {
+              app-id = "(?i)bazecor$";
+              class = "keyboard";
+              icon = "";
+            }
+            {
               app-id = ".*";
               class = "application";
               icon = "";

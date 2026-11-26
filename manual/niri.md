@@ -25,7 +25,6 @@
 | `Mod+Ctrl+D` | Look up primary selected text in GoldenDict; fall back to clipboard text |
 | `Mod+B` | Launch Chromium |
 | `Mod+G` | Launch Kazumi |
-| `Mod+N` | Launch NetEase Cloud Music GTK4 |
 
 ## Screenshots and session
 

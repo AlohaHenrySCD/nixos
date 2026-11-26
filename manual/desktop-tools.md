@@ -8,7 +8,7 @@ Search words: launcher, notifications, tray, Wi-Fi, Bluetooth, volume, dictionar
 
 ## Launch applications — Fuzzel
 
-Open with **Mod+D**. Fuzzel 1.15.0 lists desktop applications; executable names from PATH are not listed by default. Helix, btop and Yazi are deliberately hidden from the application list; run `hx`, `btop` or `y` in Kitty. Bazecor has a configured launcher entry.
+Open with **Mod+D**. Fuzzel 1.15.0 lists desktop applications; executable names from PATH are not listed by default. Helix, btop and Yazi are deliberately hidden from the application list; run `hx`, `btop` or `y` in Kitty. After installing their Flatpaks, use **Mod+D** and search for Bazecor or NetEase Cloud Music.
 
 | Shortcut | Use |
 | --- | --- |

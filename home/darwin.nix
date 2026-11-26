@@ -1,6 +1,10 @@
 { constants, pkgs, ... }:
 {
   home.homeDirectory = "/Users/${constants.username}";
+  home.packages = [
+    pkgs.halloy
+    pkgs.qbittorrent
+  ];
   targets.darwin.copyApps.enable = true;
   programs.fish = {
     shellAliases = {
